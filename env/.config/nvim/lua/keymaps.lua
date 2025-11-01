@@ -45,3 +45,5 @@ vim.keymap.set("n", "<leader>u", vim.cmd.Undotree)
 
 -- Make U opposite to u.
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
+
+--vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help)

@@ -17,21 +17,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-    group = vim.api.nvim_create_augroup('mariasolos/close_with_q', { clear = true }),
-    desc = 'Close with <q>',
-    pattern = {
-        'git',
-        'help',
-        'man',
-        'qf',
-        'scratch',
-    },
-    callback = function(args)
-        vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })
-    end,
-})
-
 vim.api.nvim_create_autocmd('BufReadPost', {
     group = vim.api.nvim_create_augroup('mariasolos/last_location', { clear = true }),
     desc = 'Go to the last location when opening a buffer',
