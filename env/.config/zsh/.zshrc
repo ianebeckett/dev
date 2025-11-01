@@ -2,6 +2,15 @@
 
 unsetopt BEEP
 
+# Delete duplicates first when HISTFILE size exceeds HISTSIZE.
+setopt hist_expire_dups_first
+
+# Share history between windows.
+setopt SHARE_HISTORY
+
+# Ignore duplicated commands history list.
+setopt hist_ignore_dups
+
 mkdir -p $XDG_CACHE_HOME/zsh
 touch $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
@@ -55,6 +64,9 @@ zstyle ':vcs_info:*' formats '%F{green} (%b%u%F{green})%f'
 # keeping my "user@host" version in case I ever need it
 # PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
 PROMPT='%B%F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
+
+# Use a completion menu.
+zstyle ':completion:*' menu select
 
 # start ssh-agent (keyring already does this on ubuntu: $ ps -aux | grep ssh)
 # eval "$(ssh-agent -s)" > /dev/null

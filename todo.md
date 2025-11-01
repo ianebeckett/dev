@@ -1,18 +1,18 @@
-dev-env
-software checklist: (needs to be reordered)
-zsh
-apt packages
-tmux
-neovim
-scripts
-neovim plugins, servers
-nvm
-npm
-lua
-lua_ls
-eslint
-prettier
-sway
+dev-env software checklist:
+    apt packages
+    git (move to .config/git/config w/ symlink)
+x    zsh
+x    tmux
+x    scripts
+    nvim
+    sway
+    neovim plugins, servers
+    lua
+    nvm
+    npm
+    lua_ls
+    eslint
+    prettier
 
 dev-env
     set up set-up script per:
@@ -21,7 +21,7 @@ dev-env
     set up dev-env and dev-commit scripts:
     https://github.com/ThePrimeagen/dev/blob/master/env/.local/scripts/dev-commit
 window manager
-    hyperland or sway use super+... for WM keys, because many apps use alt
+    sway use super+... for WM keys
         rofi or dmenu
         enter: terminal
     waybar
@@ -36,12 +36,6 @@ tmux:
 neovim:
     set up prettier with format on save (via blink?)
     set up eslint for jump to def, jump to impl, etc
-    plugins
-        blink 
-            prettier
-        hrsh7th/cmp-lsp-lua
-        hrsh7th/cmp-buffer
-        hrsh7th/cmp-path
 Freedom:
     update timezone
 
@@ -58,19 +52,19 @@ etc
 principles:
 1. Try not to stray from defaults.
 2. Minimize searching with eyeballs.
-3. Don't switch to something because it's newer.
+3. Don't switch to something just because it's newer.
 4. Create tools to improve your experience; not to shave off one keystroke.
 5. Minimize mental indirection e.g. symlinks, deeply nested directories, and
     black-box tools.
 
 guidelines:
-keep it specific to my own machine: don't try to be cross-platform
+keep it specific to my own machine: don't try to be cross-platform unlenss it's
+the last thing to do.
 
-what is the worklow i'm trying to enable with C-f and tmux sessionizer?
-I'd like to C-f in to a project and start coding, so I should probably start
-cloning projects directly into ~/, ~/personal/, and ~/school/, instead of doing
-nested directories. This flatter directory tree keeps the leaves projects
-easily navigable with tmux-sessionizer.
+I'd like to C-f in to a project and start coding, so I should probably clone
+projects directly into ~/, ~/personal/, and ~/school/, instead of doing nested
+directories. This flatter directory tree keeps the leaf projects easily
+navigable with tmux-sessionizer.
 
 keymap mental models: mnemonic when possible, with certain exceptions e.g hjkl,
 tmux ctrl+b, etc 2, 3-letter keymap mnemonics should try to adhere to a
@@ -79,18 +73,6 @@ keystrokes over stacking operations in mental overhead e.g. "delete line, then
 insert" is easier than "insert delete line" avoid using same finger twice in a
 row, but prefer it over finger-twisters avoid situations wherein one keymap is
 a prefix of another don't rely on insert key; my laptop doesn't have one!
-
-dotfile paradigms:
-
-manual cp:
-freedom to put stuff anywhere
-easy for repo and local configs to get out of sync
-
-GNU stow:
-links ensure local kept up to date with repo
-opinionated wrt file tree
-with things directly in .config, it's easy to use tmux-sessionizer to edit configs:
-    nvim, tmux, zsh,
 
 ansible:
 overkill with high overhead; only use for small things like ssh key vault

@@ -40,3 +40,8 @@ vim.keymap.set("n", "<leader>x", "<Cmd>!chmod +x %<cr>", { silent = true })
 
 vim.keymap.set("n", "<C-f>", "<Cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<C-t>", "<Cmd>silent !tmux neww tmux-todo-finder<CR>")
+
+vim.keymap.set("n", "<leader>u", vim.cmd.Undotree)
+
+-- Make U opposite to u.
+vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })

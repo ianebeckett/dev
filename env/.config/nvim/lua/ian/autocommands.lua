@@ -1,25 +1,3 @@
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank({ timeout = 50 })
-  end,
-})
-
--- open help buffer on the right side of a vertical split
--- TODO: provide enough horiz. space in the v. split so that it doesnt shift
-vim.cmd [[
-augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-augroup end
-]]
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "netrw",
-  command = "setlocal nocursorline",
-})
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
   callback = function(event)
@@ -38,3 +16,49 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
   end
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('mariasolos/close_with_q', { clear = true }),
+    desc = 'Close with <q>',
+    pattern = {
+        'git',
+        'help',
+        'man',
+        'qf',
+        'scratch',
+    },
+    callback = function(args)
+        vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf })
+    end,
+})
+
+vim.api.nvim_create_autocmd('BufReadPost', {
+    group = vim.api.nvim_create_augroup('mariasolos/last_location', { clear = true }),
+    desc = 'Go to the last location when opening a buffer',
+    callback = function(args)
+        local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+        local line_count = vim.api.nvim_buf_line_count(args.buf)
+        if mark[1] > 0 and mark[1] <= line_count then
+            vim.cmd 'normal! g`"zz'
+        end
+    end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "netrw",
+  command = "setlocal nocursorline",
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.hl.on_yank({ timeout = 50 })
+  end,
+})
+
+vim.cmd [[
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup end
+]]

@@ -8,13 +8,13 @@ vim.opt.statusline="%f %= bufnr %n column %9.9c byte %9.9o: 0x%2.2B %{&fileencod
 
 vim.opt.number = true
 vim.opt.relativenumber = true
- -- high scrolloff minimizes vertical scanning with eyes
- -- set to rows / 2 - 1 to prevent text from moving when spamming jkjkjk
-vim.opt.scrolloff = 21
+-- high scrolloff minimizes vertical scanning with eyes
+-- set to rows / 2 - 1 to prevent text from moving when spamming jkjkjk
+vim.opt.scrolloff = 10
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
@@ -35,7 +35,18 @@ vim.opt.smartcase = true
 vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
+vim.opt.timeoutlen = 500
 
 vim.opt.colorcolumn = { "80" }
 vim.opt.signcolumn = "yes"
 
+vim.o.pumheight = 15
+vim.o.pumborder = 'rounded'
+
+vim.o.winborder = 'rounded'
+
+--NOTE: use shortmess when you remember what command you were trying to do
+--without 'hit enter' prompt
+
+-- Sync clipboard between the OS and Neovim.
+--vim.o.clipboard = 'unnamedplus'

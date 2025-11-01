@@ -6,9 +6,6 @@ if ! command -v git &> /dev/null; then
 fi
 
 ln -s "$HOME/dev/env/.gitconfig" "$HOME/.gitconfig"
-#cat $HOME/dev/env/.gitconfig > $HOME/.gitconfig
-#read -p "enter an email for git messages:" email
-#git config --global user.email "$email"
 
 if [ ! -d $HOME/dev]; then
     mkdir $HOME/dev

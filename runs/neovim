@@ -6,3 +6,5 @@ sudo apt install cmake gettext lua5.1 liblua5.1.0-dev #etc
 cd $HOME/personal/neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
+
+ln -s "$HOME/dev/env/.config/nvim" "$HOME/.config/nvim"
