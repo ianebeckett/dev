@@ -3,14 +3,18 @@ sudo apt -y update
 
 if ! command -v git &> /dev/null; then
     sudo apt -y install git
-    read -p "enter your git email: " email
-    git config --global user.email "$email"
 fi
 
-if [ ! -d $HOME/personal ]; then
-    mkdir $HOME/personal
+ln -s "$HOME/dev/env/.gitconfig" "$HOME/.gitconfig"
+#cat $HOME/dev/env/.gitconfig > $HOME/.gitconfig
+#read -p "enter an email for git messages:" email
+#git config --global user.email "$email"
+
+if [ ! -d $HOME/dev]; then
+    mkdir $HOME/dev
 fi
 
-git clone https://github.com/ThePrimeagen/dev $HOME/personal/dev
+git clone https://github.com//dev https://github.com/ianedwardbeckett/dev $HOME/dev
+# TODO: set up ssh key
 
 ./run

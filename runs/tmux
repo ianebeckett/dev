@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ln -s "$HOME/dev/env/.config/tmux" "$HOME/.config/tmux"

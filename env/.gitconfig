@@ -1,9 +1,11 @@
 [core]
+    editor = "vim"
 	pager = /usr/bin/less
 [diff]
 	colorMoved = zebra
 [user]
     name = Ian Beckett
+    email = ianedwardbeckett@gmail.com
 [pull]
 	rebase = false
 [init]
