@@ -2,3 +2,8 @@
 
 ln -s "$HOME/dev/env/.config/zsh" "$HOME/.config/zsh"
 ln -s "$HOME/dev/env/.config/zsh/.zshrc" "$HOME/.zshrc"
+
+mkdir -p $XDG_CACHE_HOME/zsh
+touch $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+mkdir -p $XDG_STATE_HOME/zsh
+touch $XDG_STATE_HOME/zsh/zsh_history

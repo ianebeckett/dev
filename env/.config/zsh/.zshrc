@@ -1,5 +1,3 @@
-#echo "hello from ~/.config/zsh/.zshrc"
-
 unsetopt BEEP
 
 # Delete duplicates first when HISTFILE size exceeds HISTSIZE.
@@ -11,8 +9,6 @@ setopt SHARE_HISTORY
 # Ignore duplicated commands history list.
 setopt hist_ignore_dups
 
-mkdir -p $XDG_CACHE_HOME/zsh
-touch $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
 # vi mode; esc to simulate normal mode; i for insert mode
@@ -28,8 +24,6 @@ bindkey -s '^f' "tmux-sessionizer\n"
 #bindkey -s '\el' "tmux-sessionizer -s 3\n"
 bindkey -s '^t' "tmux-todo-finder\n"
 
-mkdir -p $XDG_STATE_HOME/zsh
-touch $XDG_STATE_HOME/zsh/zsh_history
 HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
 HISTSIZE=10000
 SAVEHIST=1000
