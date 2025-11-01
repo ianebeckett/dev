@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+DIRS=(
+    $HOME
+    $HOME/personal
+    $HOME/.local/scripts
+    $HOME/.config
+    $HOME/school
+    $HOME/school/*
+    $HOME/work
+)
+
+if [[ $# -eq 1 ]]; then
+    selected=(realpath $1) 
+else
+    selected=$(
+        find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d \
+        | sed "s|^$HOME/||" \
+        | fzf --layout=reverse
+    )
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selectedName=$(basename "$selected" | tr ".,: " "____")
+tmuxRunning=$(pgrep tmux)
+
+# not running
+if [[ -z $tmuxRunning ]]; then
+    tmux new-session -s $selectedName -c $selected
+    exit 0
+fi
+
+# detached
+if [[ -z $TMUX ]]; then
+    tmux new-session -A -s $selectedName -c $selected
+fi
+
+# attached
+if ! tmux has-session -t=$selectedName 2> /dev/null; then
+    tmux new-session -ds $selectedName -c $selected
+fi
+
+tmux switch-client -t $selectedName
+

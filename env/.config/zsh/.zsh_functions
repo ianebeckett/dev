@@ -1,0 +1,104 @@
+# note: "cd -" prints the new cwd.
+cd() {
+    builtin cd "$@" && ls
+}
+
+# beware infinite loops when failing to use command foo in function foo()
+
+info() {
+    command info --vi-keys --subnodes $@
+}
+
+function md() {
+  pandoc $1 > /tmp/$1.html
+  xdg-open /tmp/$1.html
+}
+
+addToPath() {
+    if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$1") ; then
+        PATH=$PATH:$1 ;
+    fi
+}
+
+addToPathFront() {
+    if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$1") ; then
+        PATH=$1:$PATH ;
+    fi
+}
+
+removeFromPath() {
+  local dir_to_remove="$1"
+  if [[ -z "$dir_to_remove" ]]; then
+    echo "Usage: removeFromPath <directory>"
+    return 1
+  fi
+
+  # Convert PATH string to an array for easier manipulation
+  local -a path_array
+  IFS=':' read -r -A path_array <<< "$PATH"
+
+  # Filter out the directory to remove
+  local -a new_path_array
+  for p in "${path_array[@]}"; do
+    if [[ "$p" != "$dir_to_remove" ]]; then
+      new_path_array+=("$p")
+    fi
+  done
+
+  # Reconstruct the PATH string
+  export PATH="$(IFS=':'; echo "${new_path_array[*]}")"
+}
+
+# remove/install google play store
+# view packages: adb shell pm list packages | grep 'foo'
+# TODO: make these into toggleFoo functions
+removeGooglePlay() {
+    adb shell pm uninstall -k --user 0 com.android.vending
+}
+
+# you may need to reset the app to factory settings and reboot before it can
+# update or install anything
+restoreGooglePlay() {
+    adb shell pm install-existing com.android.vending
+}
+
+removeSamsungInternet() {
+    adb shell pm uninstall -k --user 0 com.sec.android.app.sbrowser
+}
+
+restoreSamsungInternet() {
+    adb shell pm install-existing com.sec.android.app.sbrowser
+}
+
+nodeVersions() {
+    # installed via official bash script at github.com/nvm-sh/nvm
+    echo "nvm --version"
+    nvm --version;
+
+    echo "nvm ls"
+    nvm ls;
+
+    # installed via `node install`
+    # Check that this matches nvm's node version. Mismatch may indicate that
+    # node was installed using a different package manager e.g. apt
+    echo "node --version"
+    node --version;
+
+    echo "npm --version"
+    npm --version;
+
+    echo "npm list -g"
+    npm list -g;
+
+    echo "npm list"
+    npm list;
+
+    echo "yarn --version"
+    yarn --version;
+
+    echo "yarn global list"
+    yarn global list;
+
+    echo "yarn list"
+    yarn list;
+}

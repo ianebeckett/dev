@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+ln -s "$HOME/dev/env/.config/zsh" "$HOME/.config/zsh"
+ln -s "$HOME/dev/env/.config/zsh/.zshrc" "$HOME/.zshrc"
+
+# TODO: set up zsh-autosuggestions
+# I'd rather keep the source as opposed to downloading it

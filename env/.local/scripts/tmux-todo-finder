@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Find the todo.md file that is most relevant to the current directory.
+# The order of relevance is cwd > current workspace > selected workspace
+
+log() {
+    echo "$*" >&2 >> $HOME/personal/dev/scripts/tmux-todo-finder.log
+}
+
+todo=$(find $PWD -maxdepth 1 -iname 'todo.md' -print -quit)
+
+if [[ -n $todo ]]; then
+    nvim "$todo"
+    exit 0
+fi
+
+DIRS=(
+    $HOME/personal
+    $HOME/school
+    $HOME/work
+)
+
+for dir in "${DIRS[@]}"; do
+    if [[ "$PWD" == "$dir"* ]]; then
+        nvim $dir/todo.md
+        exit 0
+    fi
+done
+
+selected=$(
+    printf "%s\n" "${DIRS[@]}" \
+    | sed "s|^$HOME/||" \
+    | fzf --layout=reverse
+)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+nvim $HOME/"$selected"/todo.md
+exit 0

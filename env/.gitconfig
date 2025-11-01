@@ -1,0 +1,14 @@
+[core]
+	pager = /usr/bin/less
+[diff]
+	colorMoved = zebra
+[user]
+    name = Ian Beckett
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[branch]
+    sort=-committerdate
+[tag]
+    sort=-version:refname

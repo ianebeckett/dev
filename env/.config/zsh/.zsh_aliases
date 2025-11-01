@@ -1,0 +1,21 @@
+# aliases don't do arg substitution. Write a function for that.
+
+alias vim='nvim'
+alias gdb='gdb -quiet' #use cgdb/gf2?
+
+alias gs='git status'
+alias gb='git branch'
+alias gc='git checkout'
+alias gd='git diff'
+alias gl="git log --pretty=format:'%C(green)%h%Creset %an:%C(cyan)%d%Creset %s %Cgreen(%cr)'"
+alias gld="git log --pretty=format:'%C(green)%h%Creset %C(red)%ad%Creset %an:%C(cyan)%d%Creset %s %Cgreen(%cr)'"
+alias glg="git log --graph --pretty=format:'%C(green)%h%Creset %an:%C(cyan)%d%Creset %s %Cgreen(%cr)'"
+
+alias ls='ls -Ah --color=auto --group-directories-first --format=single-column'
+alias la='command ls -lha --color=auto --group-directories-first' # aliases are recursive
+alias path='<<<${(F)path}'
+alias mv='mv -i'
+alias rm='trash-put'
+alias trash='trash-put'
+
+alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
