@@ -9,13 +9,13 @@ packages=(
    git
    curl
    neovim
-   clang
-   ripgrep
    tmux
    fzf
+   ripgrep
    xclip
    tldr
    yt-dlp
+   clang
 )
 
 for package in "${packages[@]}"; do
