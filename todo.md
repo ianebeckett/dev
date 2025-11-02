@@ -1,10 +1,31 @@
-fix terminal double-input when not in tmux
-configure status far
-configure rofi
-get zen onto rofi menu
-configure brightness adjustment
-display birghtness and volume levels
+configure sway-bar
+add power menu
+fix slow start firefox/zen, firefox hanging for several seconds
+kitty not accepting input for several seconds on startup
+configure brightness adjustment buttons
+display brightness and volume levels
+configure window titles
+sync neovim and OS clipboard
 
+sway:
+zsh and terminal:
+    configure zsh-autosuggestion: accept suggestion (currently set to right arrow)
+    ctrl click to go to url
+    click to place cursor in terminal
+    click and drag to copy text
+    double clicking to highlight and then copying modified files for git-add (like that guy from paycom)
+tmux:
+neovim:
+    set up prettier with format on save (via blink?)
+    set up eslint for jump to def, jump to impl, etc
+Freedom:
+    update timezone
+dev-env
+    set up set-up script per:
+    https://frontendmasters.com/courses/developer-productivity-v2/convert-ansible-script-to-bash/
+    https://frontendmasters.com/courses/developer-productivity-v2/dotfiles/
+    set up dev-env and dev-commit scripts:
+    https://github.com/ThePrimeagen/dev/blob/master/env/.local/scripts/dev-commit
 dev-env software checklist:
     apt packages
     git (move to .config/git/config w/ symlink)
@@ -21,40 +42,6 @@ x    scripts
     eslint
     prettier
 
-dev-env
-    set up set-up script per:
-    https://frontendmasters.com/courses/developer-productivity-v2/convert-ansible-script-to-bash/
-    https://frontendmasters.com/courses/developer-productivity-v2/dotfiles/
-    set up dev-env and dev-commit scripts:
-    https://github.com/ThePrimeagen/dev/blob/master/env/.local/scripts/dev-commit
-window manager
-    sway use super+... for WM keys
-        rofi or dmenu
-        enter: terminal
-    waybar
-zsh and terminal:
-    shortcut for vim .
-    configure zsh-autosuggestion: accept suggestion (currently set to right arrow)
-    ctrl click to go to url
-    click to place cursor in terminal
-    click and drag to copy text
-    double clicking to highlight and then copying modified files for git-add (like that guy from paycom)
-tmux:
-neovim:
-    set up prettier with format on save (via blink?)
-    set up eslint for jump to def, jump to impl, etc
-Freedom:
-    update timezone
-
-Problem with copying instead of linking configs:
-when I edit a config locally, it's not added to the repo.
-When I edit a config in the repo, it's nto added locally.
-
-switch to real programmer's qwerty?
-consolidate configs from several repos:
-scripts
-dotfiles
-etc
 ------------------------ CONFIG PLANNING ------------------------
 principles:
 1. Try not to stray from defaults.

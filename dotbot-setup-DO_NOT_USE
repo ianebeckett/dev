@@ -23,6 +23,7 @@ for package in "${packages[@]}"; do
 done
 
 sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+
 tldr --update
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
