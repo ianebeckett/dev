@@ -24,7 +24,6 @@ vim.opt.wrap = false
 --use undofile and undotree intead of swapfile
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.undodir = os.getenv("XDG_STATE_HOME") .. "/vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = false

@@ -10,6 +10,5 @@ vim.lsp.enable({
     -- 'eslint',
 });
 
--- Interactive textual undotree:
+-- Interactive textual undotree
 vim.cmd.packadd 'nvim.undotree'
-
