@@ -1,4 +1,5 @@
 configure sway-bar
+    display unused windows
 add power menu
 fix slow start firefox/zen, firefox hanging for several seconds
 kitty not accepting input for several seconds on startup
@@ -6,6 +7,7 @@ configure brightness adjustment buttons
 display brightness and volume levels
 configure window titles
 sync neovim and OS clipboard
+show clipboard contents in top menu?
 
 sway:
 zsh and terminal:
@@ -24,7 +26,7 @@ dev-env
     set up set-up script per:
     https://frontendmasters.com/courses/developer-productivity-v2/convert-ansible-script-to-bash/
     https://frontendmasters.com/courses/developer-productivity-v2/dotfiles/
-    set up dev-env and dev-commit scripts:
+    dev-env and dev-commit scripts:
     https://github.com/ThePrimeagen/dev/blob/master/env/.local/scripts/dev-commit
 dev-env software checklist:
     apt packages
@@ -46,6 +48,9 @@ x    scripts
 principles:
 1. Try not to stray from defaults.
 2. Minimize searching with eyeballs.
+    a) hotkeys to jump around 
+    b) fuzzy finding
+    c) eyball search
 3. Don't switch to something just because it's newer.
 4. Create tools to improve your experience; not to shave off one keystroke.
 5. Minimize mental indirection e.g. symlinks, deeply nested directories, and

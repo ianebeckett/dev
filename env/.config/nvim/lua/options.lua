@@ -48,4 +48,4 @@ vim.o.winborder = 'rounded'
 --without 'hit enter' prompt
 
 -- Sync clipboard between the OS and Neovim.
---vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = 'unnamedplus'
