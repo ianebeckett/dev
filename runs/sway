@@ -1,0 +1,1 @@
+ln -s "$HOME/dev/env/.config/sway" "$HOME/.config/sway"

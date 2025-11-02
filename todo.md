@@ -1,3 +1,10 @@
+fix terminal double-input when not in tmux
+configure status far
+configure rofi
+get zen onto rofi menu
+configure brightness adjustment
+display birghtness and volume levels
+
 dev-env software checklist:
     apt packages
     git (move to .config/git/config w/ symlink)
