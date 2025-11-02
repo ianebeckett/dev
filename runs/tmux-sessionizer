@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+ln -s "$HOME/dev/env/.config/tmux-sessionizer" "$XDG_CONFIG_HOME/tmux-sessionizer"
+ln -s "$HOME/dev/env/.cache/tmux-sessionizer" "$XDG_CACHE_HOME/tmux-sessionizer"
