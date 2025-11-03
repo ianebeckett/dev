@@ -1,18 +1,14 @@
-write a ftplugin to open manpages on the right side
+configure brightness adjustment buttons
 configure sway-bar
     display unused windows
-add power menu
+    show internet, brightness, volume, battery 
+    add power menu
+kitty not accepting input for several seconds on new terminal start
 fix slow start firefox/zen, firefox hanging for several seconds
-kitty not accepting input for several seconds on startup
-configure brightness adjustment buttons
-display brightness and volume levels
-configure window titles
-sync neovim and OS clipboard
-show clipboard contents in top menu?
 
 sway:
 zsh and terminal:
-    configure zsh-autosuggestion: accept suggestion (currently set to right arrow)
+    configure zsh-autosuggestion: accept suggestion (currently set to right arrow) (change to enter?)
     ctrl click to go to url
     click to place cursor in terminal
     click and drag to copy text

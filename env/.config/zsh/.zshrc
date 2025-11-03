@@ -16,12 +16,11 @@ autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 bindkey -v
 export KEYTIMEOUT=1
 
-# TODO: modify tmux-sessionizer and tmux.conf to take these args
 bindkey -s '^f' "tmux-sessionizer\n"
-#bindkey -s '\eh' "tmux-sessionizer -s 0\n"
-#bindkey -s '\ej' "tmux-sessionizer -s 1\n"
-#bindkey -s '\ek' "tmux-sessionizer -s 2\n"
-#bindkey -s '\el' "tmux-sessionizer -s 3\n"
+bindkey -s '\e7' "tmux-sessionizer -s 0\n"
+bindkey -s '\e8' "tmux-sessionizer -s 1\n"
+bindkey -s '\e9' "tmux-sessionizer -s 2\n"
+bindkey -s '\e0' "tmux-sessionizer -s 3\n"
 bindkey -s '^t' "tmux-todo-finder\n"
 
 HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
