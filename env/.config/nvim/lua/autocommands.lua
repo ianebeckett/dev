@@ -1,3 +1,14 @@
+vim.api.nvim_create_autocmd('FileType', {
+    group = vim.api.nvim_create_augroup('mariasolos/big_file', { clear = true }),
+    desc = 'Disable features in big files',
+    pattern = 'bigfile',
+    callback = function(args)
+        vim.schedule(function()
+            vim.bo[args.buf].syntax = vim.filetype.match { buf = args.buf } or ''
+        end)
+    end,
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
   callback = function(event)

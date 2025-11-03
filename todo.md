@@ -1,3 +1,4 @@
+write a ftplugin to open manpages on the right side
 configure sway-bar
     display unused windows
 add power menu
