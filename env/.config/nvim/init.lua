@@ -7,7 +7,8 @@ require("colors.rose-pine")
 vim.lsp.enable({
     'lua_ls',
     'clangd',
-    -- 'eslint',
+    'eslint',
+    'ts_ls',
 });
 
 -- Interactive textual undotree
