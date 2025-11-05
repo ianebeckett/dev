@@ -11,16 +11,21 @@ setopt hist_ignore_dups
 
 autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
-# vi mode; esc to simulate normal mode; i for insert mode
-# TODO: redundant with tmux vi mode?
+# enable vi mode to for traversingthe command line:
+# alt+b - back one word
+# alt+w - forward one word
+# alt+0 - beginning of line (currently smeared by tms session command)
+# alt+$ - end of line
+# and more
 bindkey -v
+
 export KEYTIMEOUT=1
 
 bindkey -s '^f' "tmux-sessionizer\n"
 bindkey -s '\e7' "tmux-sessionizer -s 0\n"
 bindkey -s '\e8' "tmux-sessionizer -s 1\n"
 bindkey -s '\e9' "tmux-sessionizer -s 2\n"
-bindkey -s '\e0' "tmux-sessionizer -s 3\n"
+bindkey -s '\e0' "tmux-sessionizer -s 3\n" # currently smears "begin line" in shell
 bindkey -s '^t' "tmux-todo-finder\n"
 
 HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
@@ -35,31 +40,35 @@ source /usr/share/doc/fzf/examples/completion.zsh
 # TODO: unhide files that are in their proper xdg config dirs?
 source $ZDOTDIR/.zsh_aliases
 source $ZDOTDIR/.zsh_functions
+
+# add directories to PATH
 addToPath $HOME/.local/bin
 addToPath $HOME/.local/scripts
 addToPath $HOME/.local/lua-language-server/bin
 addToPath /usr/lib/postgresql/18/bin
-
-# precmd runs after executing a command, before the next prompt is printed
-# there is also preexec
-precmd() {
-    print -Pn "\e]0;%~\a";
-    vcs_info 2> /dev/null # silence git complaining when working with bare repos
-}
+addToPath /usr/local/go/bin
+. "$HOME/.cargo/env" # rust
 
 # prompt customization
+precmd() {
+  #show vcs info without complaints about bare git repos
+  vcs_info 2> /dev/null
+}
+
+# customize prompt with version control
 zstyle ':vcs_info:*' enable git
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '%F{1}*'
 zstyle ':vcs_info:*' formats '%F{green} (%b%u%F{green})%f'
-# keeping my "user@host" version in case I ever need it
-# PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
+zstyle ':completion:*' menu select # Use a completion menu.
+
+# format prompt
 PROMPT='%B%F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
 
-# Use a completion menu.
-zstyle ':completion:*' menu select
+# "user@host" version
+# PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
 
 # start ssh-agent (keyring already does this on ubuntu: $ ps -aux | grep ssh)
 # eval "$(ssh-agent -s)" > /dev/null
