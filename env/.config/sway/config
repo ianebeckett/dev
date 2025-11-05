@@ -151,11 +151,15 @@ shortcut. Do you really want to exit i3? This will end your X session.' -B \
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# brightness controls
+bindsym $mod+i exec --no-startup-id brightnessctl s 5%+
+bindsym $mod+o exec --no-startup-id brightnessctl s 5%-
 
 # Scratchpad:
 #
