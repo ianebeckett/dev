@@ -158,8 +158,8 @@ bindsym $mod+b splith
 bindsym $mod+v splitv
 
 # brightness controls
-bindsym $mod+i exec --no-startup-id brightnessctl s 5%+
-bindsym $mod+o exec --no-startup-id brightnessctl s 5%-
+bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Scratchpad:
 #
