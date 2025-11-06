@@ -319,7 +319,7 @@ if [[ ! -z $session_cmd ]]; then
 elif [[ ! -z $user_selected ]]; then
     selected="$user_selected"
 else
-    selected=$(find_dirs | fzf --layout=reverse)
+    selected=$(find_dirs | fzf --layout=reverse --no-multi)
 fi
 
 if [[ -z $selected ]]; then

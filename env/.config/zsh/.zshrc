@@ -1,13 +1,15 @@
 unsetopt BEEP
 
-# Delete duplicates first when HISTFILE size exceeds HISTSIZE.
-setopt hist_expire_dups_first
-
-# Share history between windows.
-setopt SHARE_HISTORY
-
-# Ignore duplicated commands history list.
-setopt hist_ignore_dups
+# configure zsh history
+HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
+HISTSIZE=10000
+SAVEHIST=1000
+setopt INC_APPEND_HISTORY # write to the history file immediately
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first
+setopt SHARE_HISTORY # Share history between windows.
+setopt HIST_IGNORE_DUPS # Ignore duplicated commands history list.
 
 autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
@@ -28,16 +30,8 @@ bindkey -s '\e9' "tmux-sessionizer -s 2\n"
 bindkey -s '\e0' "tmux-sessionizer -s 3\n" # currently smears "begin line" in shell
 bindkey -s '^t' "tmux-todo-finder\n"
 
-HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
-HISTSIZE=10000
-SAVEHIST=1000
-setopt INC_APPEND_HISTORY # write to the history file immediately
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt EXTENDED_HISTORY
-
 source $HOME/.config/zsh/fzf.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
-# TODO: unhide files that are in their proper xdg config dirs?
 source $ZDOTDIR/.zsh_aliases
 source $ZDOTDIR/.zsh_functions
 
