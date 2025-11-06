@@ -13,6 +13,10 @@ setopt HIST_IGNORE_DUPS # Ignore duplicated commands history list.
 
 autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 
+# completion styling (order matters here)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
+
 # enable vi mode to for traversingthe command line:
 # alt+b - back one word
 # alt+w - forward one word
@@ -29,6 +33,9 @@ bindkey -s '\e8' "tmux-sessionizer -s 1\n"
 bindkey -s '\e9' "tmux-sessionizer -s 2\n"
 bindkey -s '\e0' "tmux-sessionizer -s 3\n" # currently smears "begin line" in shell
 bindkey -s '^t' "tmux-todo-finder\n"
+
+# Bind Ctrl+Space to accept the full autosuggestion
+bindkey '^@' autosuggest-accept
 
 source $HOME/.config/zsh/fzf.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
@@ -56,7 +63,6 @@ setopt prompt_subst
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '%F{1}*'
 zstyle ':vcs_info:*' formats '%F{green} (%b%u%F{green})%f'
-zstyle ':completion:*' menu select # Use a completion menu.
 
 # format prompt
 PROMPT='%B%F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
@@ -70,7 +76,7 @@ PROMPT='%B%F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
     # ssh-add -q ~/.ssh/foo
 
 # plugins
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # things addded by outside scripts, e.g. version managers
 export NVM_DIR="$HOME/.config/nvm"
