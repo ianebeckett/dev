@@ -65,7 +65,7 @@ zstyle ':vcs_info:*' unstagedstr '%F{1}*'
 zstyle ':vcs_info:*' formats '%F{green} (%b%u%F{green})%f'
 
 # format prompt
-PROMPT='%B%F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
+PROMPT='%B%F{blue}%~%f%b${vcs_info_msg_0_}%b %(!.#.$) '
 
 # "user@host" version
 # PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
