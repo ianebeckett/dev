@@ -17,6 +17,9 @@ autoload -U compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
+# enable cd without typing "cd"
+setopt autocd
+
 # enable vi mode to for traversingthe command line:
 # alt+b - back one word
 # alt+w - forward one word
