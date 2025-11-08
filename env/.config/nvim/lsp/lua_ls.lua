@@ -10,21 +10,23 @@ return {
         version = 'LuaJIT',
         pathStrict = true,
         path = {
-            "lua/?.lua",
+          "lua/?.lua",
         },
       },
       workspace = {
         --See https://github.com/neovim/nvim-lspconfig/blob/master/lsp/lua_ls.lua
-        library = vim.api.nvim_get_runtime_file('', true),
+        --See https://github.com/folke/lazydev.nvim
+        --See https://www.youtube.com/watch?v=bTWWFQZqzyI&list=PLep05UYkc6wTyBe7kPjQFWVXTlhKeQejM&index=8
+        library = {
+          vim.fn.expand('$VIMRUNTIME/lua'),
+        },
+        -- reduce CPU-intensive loading on attach
         checkThirdParty = false,
+        maxPreload = 100,
       },
-      -- diagnostics= {
-      --     globals = { 'vim' },
-      -- },
       telemetry = {
         enable = false,
       },
     }
   }
 }
-
