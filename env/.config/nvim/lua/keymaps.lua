@@ -1,6 +1,9 @@
 --toggle line comment: gcc
 --toggle block comment: vapgc
 
+vim.keymap.set("n", "<leader><CR>", vim.cmd.source)
+--print("hi from keymaps")
+
 --plugin-specific remaps are in their respective "after/plugin/foo.lua"
 vim.keymap.set("i", "<C-c>", "<esc>")
 vim.keymap.set("i", "<Esc>", "<nop>")

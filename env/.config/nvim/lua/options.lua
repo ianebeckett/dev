@@ -4,7 +4,7 @@ vim.g.netrw_banner = 0
 vim.g.mapleader = " "
 vim.opt.guicursor = ""
 vim.opt.encoding = "utf-8"
-vim.opt.statusline="%f %= bufnr %n column %9.9c byte %9.9o: 0x%2.2B %{&fileencoding}"
+vim.opt.statusline="%f %= %n %l,%c %{&fileencoding}"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -39,13 +39,20 @@ vim.opt.timeoutlen = 500
 vim.opt.colorcolumn = { "80" }
 vim.opt.signcolumn = "yes"
 
-vim.o.pumheight = 15
-vim.o.pumborder = 'rounded'
-
-vim.o.winborder = 'rounded'
+--configure floating windows style
+vim.o.winborder = 'solid'
 
 --NOTE: use shortmess when you remember what command you were trying to do
 --without 'hit enter' prompt
 
 -- Sync clipboard between the OS and Neovim.
 vim.o.clipboard = 'unnamedplus'
+
+-- set options for comment formatting
+vim.opt.formatoptions='rqj'
+
+-- Here is an example comment.
+-- When I press enter in insert mode, I get a new commented line.
+-- When I press o in normal mode, I don't get a new commented line.
+
+-- here's a way I can write comments
