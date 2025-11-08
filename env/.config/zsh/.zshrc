@@ -37,9 +37,6 @@ bindkey -s '\e9' "tmux-sessionizer -s 2\n"
 bindkey -s '\e0' "tmux-sessionizer -s 3\n" # currently smears "begin line" in shell
 bindkey -s '^t' "tmux-todo-finder\n"
 
-# Bind Ctrl+Space to accept the full autosuggestion
-bindkey '^@' autosuggest-accept
-
 source $HOME/.config/zsh/fzf.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 source $ZDOTDIR/.zsh_aliases
@@ -77,9 +74,6 @@ PROMPT='%B%F{blue}%~%f%b${vcs_info_msg_0_}%b %(!.#.$) '
 # eval "$(ssh-agent -s)" > /dev/null
 # for file in .ssh:
     # ssh-add -q ~/.ssh/foo
-
-# plugins
-source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # things addded by outside scripts, e.g. version managers
 export NVM_DIR="$HOME/.config/nvm"
