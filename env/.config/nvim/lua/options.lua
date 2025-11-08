@@ -4,7 +4,7 @@ vim.g.netrw_banner = 0
 vim.g.mapleader = " "
 vim.opt.guicursor = ""
 vim.opt.encoding = "utf-8"
-vim.opt.statusline="%f %= %n %l,%c %{&fileencoding}"
+vim.opt.statusline="%f %= %n %l,%c %P %{&fileencoding}"
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -52,7 +52,5 @@ vim.o.clipboard = 'unnamedplus'
 vim.opt.formatoptions='rqj'
 
 -- Here is an example comment.
--- When I press enter in insert mode, I get a new commented line.
+-- When I press enter at end of line in insert mode, I get a new commented line.
 -- When I press o in normal mode, I don't get a new commented line.
-
--- here's a way I can write comments
