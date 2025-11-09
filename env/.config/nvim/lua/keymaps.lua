@@ -22,10 +22,12 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
---delete selection into the black hole register,
---preserving state of main register
+--delete without overwriting clipboard
 vim.keymap.set({"n", "v"}, "<leader>d", "\"_d")
-vim.keymap.set("x", "<leader>p", "\"_dp")
+
+--replace selected text with clipboard contents
+--try with ve<leader>p to replace a word
+vim.keymap.set("x", "<leader>p", "\"_dP")
 
 --yank into system clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", "\"+y")
@@ -52,3 +54,4 @@ vim.keymap.set("n", "<leader>u", vim.cmd.Undotree)
 
 -- Make U opposite to u.
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
+
