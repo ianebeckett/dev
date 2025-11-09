@@ -47,10 +47,3 @@ vim.o.winborder = 'solid'
 
 -- Sync clipboard between the OS and Neovim.
 vim.o.clipboard = 'unnamedplus'
-
--- set options for comment formatting
-vim.opt.formatoptions='rqj'
-
--- Here is an example comment.
--- When I press enter at end of line in insert mode, I get a new commented line.
--- When I press o in normal mode, I don't get a new commented line.

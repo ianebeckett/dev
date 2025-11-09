@@ -1,3 +1,15 @@
+vim.api.nvim_create_autocmd("FileType", {
+  desc = 'Specify format options for all filetypes',
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions = "rqj"
+  end,
+})
+
+-- Here is an example comment.
+-- When I press enter at end of line in insert mode, I get a new commented line.
+-- When I press o in normal mode, I don't get a new commented line.
+
 vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('mariasolos/big_file', { clear = true }),
     desc = 'Disable features in big files',
