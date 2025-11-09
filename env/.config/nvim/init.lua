@@ -109,10 +109,6 @@ telescope.setup {
       },
     }
 
-    vim.keymap.set('n', '<Leader>d', vim.diagnostic.open_float, { desc = "Show diagnostic" })
-    vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ float = true, count = 1 }) end)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ float = true, count = -1 }) end)
-
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "find files in project" }) --"project files"
     vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = "find files in git repo" }) --"git files"

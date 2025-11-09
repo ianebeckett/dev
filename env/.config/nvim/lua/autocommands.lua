@@ -30,10 +30,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     local builtin = require('telescope.builtin')
     map("<leader>f", function() vim.lsp.buf.format() end, '[F]ormat')
-    map('gd', builtin.lsp_definitions, '[G]oto [d]efinition')
+    map('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    map('gW', builtin.lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
-    map('gt', builtin.lsp_type_definitions, '[G]oto [t]ype Definition')
+    map('gt', builtin.lsp_type_definitions, '[G]oto [T]ype Definition')
+    map('vd', vim.diagnostic.open_float, '[V]iew [D]iagnostic')
+    map("]d", function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
+    map("[d", function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
+    map('vws', vim.lsp.buf.workspace_symbols, '[V]iew [W]orkspace [S]ymbols')
+    map('vrr', vim.lsp.buf.references, '[V]iew [RR]eferences')
+    map('vrn', vim.lsp.buf.rename, '[V]iew [R]e[N]ame')
+    map('<C-h>', vim.lsp.buf.signature_help, 'signature [H]elp', "i")
   end
 })
 
