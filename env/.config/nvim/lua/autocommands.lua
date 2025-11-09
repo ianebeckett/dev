@@ -20,6 +20,25 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+--fuzzy-find help documents with Telescope
+vim.cmd [[
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup end
+]]
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = 'Fuzzy-find manpages with Telescope',
+  pattern = "man",
+  callback = function()
+    if vim.bo.buftype == "nofile" and vim.bo.filetype == "man" then
+      vim.cmd("wincmd L")
+      --vim.cmd("vertical resize 115")
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd('BufReadPost', {
   desc = 'Go to the last location when opening a buffer',
   callback = function(args)
@@ -44,20 +63,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.cmd [[
-augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-augroup end
-]]
-
 vim.api.nvim_create_autocmd('PackChanged', {
   desc = '',
   callback = function(ev)
     if ev.data.kind == 'update' and ev.data.spec.name == 'nvim-treesitter' then
       local ok = pcall(vim.cmd('TSUpdate'))
       if not ok then
-        vim.notify('TsUpdate failed!', vim.log.levels.WARN)
+        vim.notify('TSUpdate failed!', vim.log.levels.WARN)
       end
     end
   end,

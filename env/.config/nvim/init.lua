@@ -110,22 +110,23 @@ telescope.setup {
     }
 
     local telescope_builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>pf', telescope_builtin.find_files, { desc = "find files in project" }) --"project files"
-    vim.keymap.set('n', '<leader>gf', telescope_builtin.git_files, { desc = "find files in git repo" }) --"git files"
-    vim.keymap.set('n', '<leader>ps', telescope_builtin.live_grep, { desc = "search file contents in project for string" }) --"project search"
+    vim.keymap.set('n', '<leader>pf', telescope_builtin.find_files, { desc = 'find files in project' }) --'project files'
+    vim.keymap.set('n', '<leader>gf', telescope_builtin.git_files, { desc = 'find files in git repo' }) --'git files'
+    vim.keymap.set('n', '<leader>ps', telescope_builtin.live_grep, { desc = 'search file contents in project for string' }) --'project search'
+    vim.keymap.set('n', '<C-h>', telescope_builtin.help_tags, { desc = 'search help tags' })
 
-    vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-    vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-    vim.keymap.set("n", "<A-h>", function() harpoon:list():select(1) end)
-    vim.keymap.set("n", "<A-j>", function() harpoon:list():select(2) end)
-    vim.keymap.set("n", "<A-k>", function() harpoon:list():select(3) end)
-    vim.keymap.set("n", "<A-l>", function() harpoon:list():select(4) end)
+    vim.keymap.set('n', '<leader>a', function() harpoon:list():add() end)
+    vim.keymap.set('n', '<C-e>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+    vim.keymap.set('n', '<A-h>', function() harpoon:list():select(1) end)
+    vim.keymap.set('n', '<A-j>', function() harpoon:list():select(2) end)
+    vim.keymap.set('n', '<A-k>', function() harpoon:list():select(3) end)
+    vim.keymap.set('n', '<A-l>', function() harpoon:list():select(4) end)
 
-    vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+    vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
     --run session commands while in neovim
     --Neovim registers super as alt, but alt+[hjkl] are used by Harpoon.
     --To avoid smearing harpoon keymaps, we could configure upstream to send
     --different keycodes. I've instead decided to map these to [7890]
-    vim.keymap.set("n", "<M-7>", "<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>")
-    vim.keymap.set("n", "<M-8>", "<cmd>silent !tmux neww tmux-sessionizer -s 1<CR>")
-    vim.keymap.set("n", "<M-9>", "<cmd>silent !tmux neww tmux-sessionizer -s 2<CR>")
+    vim.keymap.set('n', '<M-7>', '<cmd>silent !tmux neww tmux-sessionizer -s 0<CR>')
+    vim.keymap.set('n', '<M-8>', '<cmd>silent !tmux neww tmux-sessionizer -s 1<CR>')
+    vim.keymap.set('n', '<M-9>', '<cmd>silent !tmux neww tmux-sessionizer -s 2<CR>')
