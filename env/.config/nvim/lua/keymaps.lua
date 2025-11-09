@@ -26,12 +26,12 @@ vim.keymap.set("x", "<leader>p", "\"_dp")
 vim.keymap.set({"n", "v"}, "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>y", "\"+Y")
 
---quickfix navigation
-vim.keymap.set("n", "qf", "<Cmd>copen<CR>zz")
+--quickfix list navigation
+vim.keymap.set("n", "qf", "<Cmd>copen<CR>")
 vim.keymap.set("n", "<C-j>", "<Cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-k>", "<Cmd>cnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<Cmd>lprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<Cmd>lnext<CR>zz")
+--jumplist navigation: C-i and C-o are prev and next
+--location list navigation (none)
 
 --edit all instances of cursor word in file
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>")

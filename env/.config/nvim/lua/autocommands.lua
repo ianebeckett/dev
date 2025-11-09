@@ -11,8 +11,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -- When I press o in normal mode, I don't get a new commented line.
 
 vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('mariasolos/big_file', { clear = true }),
   desc = 'Disable features in big files',
+  group = vim.api.nvim_create_augroup('mariasolos/big_file', { clear = true }),
   pattern = 'bigfile',
   callback = function(args)
     vim.schedule(function()
@@ -28,20 +28,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
       mode = mode or 'n'
       vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
     end
-
-    -- list all mappings with :map
+    local builtin = require('telescope.builtin')
     map("<leader>f", function() vim.lsp.buf.format() end, '[F]ormat')
-
-    map('grd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-    map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-    map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
-    map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+    map('gd', builtin.lsp_definitions, '[G]oto [d]efinition')
+    map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+    map('gW', builtin.lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
+    map('gt', builtin.lsp_type_definitions, '[G]oto [t]ype Definition')
   end
 })
 
 vim.api.nvim_create_autocmd('BufReadPost', {
-  group = vim.api.nvim_create_augroup('mariasolos/last_location', { clear = true }),
   desc = 'Go to the last location when opening a buffer',
+  group = vim.api.nvim_create_augroup('mariasolos/last_location', { clear = true }),
   callback = function(args)
     local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
     local line_count = vim.api.nvim_buf_line_count(args.buf)
