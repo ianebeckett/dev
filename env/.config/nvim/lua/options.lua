@@ -10,7 +10,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- high scrolloff minimizes vertical scanning with eyes
 -- set to rows / 2 - 1 to prevent text from moving when spamming jkjkjk
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 14
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
