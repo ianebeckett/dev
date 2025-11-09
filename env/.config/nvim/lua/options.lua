@@ -42,8 +42,7 @@ vim.opt.signcolumn = "yes"
 --configure floating windows style
 vim.o.winborder = 'solid'
 
---NOTE: use shortmess when you remember what command you were trying to do
---without 'hit enter' prompt
-
 -- Sync clipboard between the OS and Neovim.
 vim.o.clipboard = 'unnamedplus'
+
+vim.o.splitright = true
