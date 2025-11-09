@@ -75,6 +75,20 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
+vim.api.nvim_create_autocmd('CmdlineEnter', {
+  desc = 'Highlight all matches while searching',
+  callback = function()
+    vim.o.hlsearch = true
+  end,
+})
+
+vim.api.nvim_create_autocmd('CmdlineLeave', {
+  desc = 'Remove highlights when done searching',
+  callback = function()
+    vim.o.hlsearch = false
+  end,
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'Set LSP keymaps upon attaching to a buffer',
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
