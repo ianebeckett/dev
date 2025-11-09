@@ -4,13 +4,13 @@
 local a, b = 1  -- Error: unbalanced-assignments
 
 ---@type number
-   local myNumber = "This will cause [assign-type-mismatch]."
+local myNumber = "This will cause [assign-type-mismatch]."
 
 myGlobal = "This will cause [lowercase-global]."
 
 ---@deprecated Please use a more modern function.
 local function outdated_function()
-    return "This function is deprecated."
+  return "This function is deprecated."
 end
 
 -- Call the deprecated function to use it.
