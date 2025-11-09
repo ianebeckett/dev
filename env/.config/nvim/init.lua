@@ -2,8 +2,9 @@ require("pack")
 require("options")
 require("keymaps")
 require("autocommands")
-require("colors.rose-pine")
+--require("colors.rose-pine")
 --require("colors.nord")
+require("colors.nightfox")
 
 vim.lsp.enable({
   'lua_ls',
