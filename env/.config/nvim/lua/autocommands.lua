@@ -69,3 +69,14 @@ augroup vimrc_help
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup end
 ]]
+
+vim.api.nvim_create_autocmd('PackChanged', {
+  callback = function(event)
+    if event.data.kind == 'update' and event.data.spec.name == 'nvim-treesitter' then
+      local ok = pcall(vim.cmd, 'TSUpdate')
+      if not ok then
+        vim.notify('TsUpdate failed!', vim.log.levels.WARN)
+      end
+    end
+  end,
+})

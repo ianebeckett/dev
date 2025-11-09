@@ -30,6 +30,7 @@ vim.keymap.set({"n", "v"}, "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>y", "\"+Y")
 
 --quickfix navigation
+vim.keymap.set("n", "qf", "<Cmd>copen<CR>zz")
 vim.keymap.set("n", "<C-j>", "<Cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-k>", "<Cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<Cmd>lprev<CR>zz")

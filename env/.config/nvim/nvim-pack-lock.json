@@ -27,7 +27,8 @@
     },
     "telescope.nvim": {
       "rev": "0294ae3",
-      "src": "https://github.com/nvim-telescope/telescope.nvim.git"
+      "src": "https://github.com/nvim-telescope/telescope.nvim.git",
+      "version": "'release'"
     }
   }
 }
