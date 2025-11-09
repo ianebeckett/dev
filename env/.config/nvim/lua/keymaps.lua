@@ -2,6 +2,11 @@
 --toggle block comment: vapgc
 --indent lines: =
 
+local map = function(keys, func, desc, mode)
+  mode = mode or 'n'
+  vim.keymap.set(mode, keys, func, { desc = desc })
+end
+
 vim.keymap.set("i", "<C-c>", "<esc>")
 vim.keymap.set("i", "<Esc>", "<nop>")
 vim.keymap.set("n", "Q", "<nop>")
@@ -27,7 +32,8 @@ vim.keymap.set({"n", "v"}, "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>y", "\"+Y")
 
 --quickfix list navigation
-vim.keymap.set("n", "qf", "<Cmd>copen<CR>")
+local telescope_builtin = require('telescope.builtin')
+map('qf', telescope_builtin.quickfix, '[Q]uick[Fix]')
 vim.keymap.set("n", "<C-j>", "<Cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-k>", "<Cmd>cnext<CR>zz")
 --jumplist navigation: C-i and C-o are prev and next

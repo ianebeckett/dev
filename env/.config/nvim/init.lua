@@ -109,10 +109,10 @@ telescope.setup {
       },
     }
 
-    local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "find files in project" }) --"project files"
-    vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = "find files in git repo" }) --"git files"
-    vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = "search file contents in project for string" }) --"project search"
+    local telescope_builtin = require('telescope.builtin')
+    vim.keymap.set('n', '<leader>pf', telescope_builtin.find_files, { desc = "find files in project" }) --"project files"
+    vim.keymap.set('n', '<leader>gf', telescope_builtin.git_files, { desc = "find files in git repo" }) --"git files"
+    vim.keymap.set('n', '<leader>ps', telescope_builtin.live_grep, { desc = "search file contents in project for string" }) --"project search"
 
     vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
     vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
