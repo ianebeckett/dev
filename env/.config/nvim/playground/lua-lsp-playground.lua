@@ -1,4 +1,4 @@
---if true then  -- Missing 'end' (uncomment to test)
+--if true then  -- Error: Missing 'end' (uncomment to test)
 --print("Hello")
 
 local a, b = 1  -- Error: unbalanced-assignments

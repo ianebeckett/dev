@@ -11,6 +11,7 @@ return {
         pathStrict = true,
         path = {
           "lua/?.lua",
+          "lua/?/init.lua",
         },
       },
       workspace = {

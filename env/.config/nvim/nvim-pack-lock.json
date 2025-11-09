@@ -1,0 +1,33 @@
+{
+  "plugins": {
+    "gitsigns.nvim": {
+      "rev": "20ad441",
+      "src": "https://github.com/lewis6991/gitsigns.nvim.git"
+    },
+    "harpoon": {
+      "rev": "87b1a35",
+      "src": "https://github.com/ThePrimeagen/harpoon",
+      "version": "'harpoon2'"
+    },
+    "neovim": {
+      "rev": "eb3ff49",
+      "src": "https://github.com/rose-pine/neovim.git"
+    },
+    "nvim-lightbulb": {
+      "rev": "aa3a8b0",
+      "src": "https://github.com/kosayoda/nvim-lightbulb.git"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim.git"
+    },
+    "telescope.nvim": {
+      "rev": "0294ae3",
+      "src": "https://github.com/nvim-telescope/telescope.nvim.git"
+    }
+  }
+}
