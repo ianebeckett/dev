@@ -47,3 +47,5 @@ vim.o.winborder = 'solid'
 
 -- Sync clipboard between the OS and Neovim.
 vim.o.clipboard = 'unnamedplus'
+
+vim.opt.isfname:append('@-@') --include @ as a valid filename character
