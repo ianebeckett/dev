@@ -11,7 +11,8 @@ telescope.setup {
       } } }
 }
 
-vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'find files in project' }) --'project files'
-vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'find files in git repo' }) --'git files'
+vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'find files in project' })                     --'project files'
+vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'find files in git repo' })                     --'git files'
 vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = 'search file contents in project for string' }) --'project search'
 vim.keymap.set('n', '<C-h>', builtin.help_tags, { desc = 'search neovim help docs' })
+vim.keymap.set('n', '<leader>gl', builtin.git_commits, { desc = 'search git commit history' })
