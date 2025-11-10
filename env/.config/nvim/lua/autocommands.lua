@@ -1,5 +1,6 @@
 local augroup = vim.api.nvim_create_augroup
 local lspAttachGroup = augroup('lsp-attach', { clear = true })
+local formatOnWriteGroup = augroup('format-on-write', { clear = false })
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -120,6 +121,32 @@ autocmd('LspAttach', {
     map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls') -- has Telescope builtin
     map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls') -- has Telescope builtin
     map('<C-h>', vim.lsp.buf.signature_help, 'Signature [H]elp', 'i')
+
+    -- Auto-format ("lint") on write.
+    -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client then
+      return
+    end
+    if not client:supports_method('textDocument/willSaveWaitUntil')
+        and client:supports_method('textDocument/formatting') then
+      autocmd('BufWritePre', {
+        group = formatOnWriteGroup,
+        buffer = ev.buf,
+        callback = function()
+          vim.lsp.buf.format({
+            bufnr = ev.buf,
+            id = client.id,
+            timeout_ms = 200,
+            filter = function()
+              --enable/disable here
+              return client.name == 'lua_ls' or
+                  client.name == 'prettier'
+            end,
+          })
+        end
+      })
+    end
 
     --also potentially useful:
     --vim.lsp.buf.typehierarchy('supertypes', 'subtypes')
