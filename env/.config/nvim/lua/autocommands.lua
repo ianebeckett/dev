@@ -1,4 +1,9 @@
-vim.api.nvim_create_autocmd('FileType', {
+local augroup = vim.api.nvim_create_augroup
+local lspAttachGroup = augroup('lsp-attach', { clear = true })
+
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd('FileType', {
   desc = 'Specify format options for all filetypes',
   pattern = '*',
   callback = function()
@@ -10,7 +15,7 @@ vim.api.nvim_create_autocmd('FileType', {
 -- When I press enter at end of line in insert mode, I get a new commented line.
 -- When I press o in normal mode, I don't get a new commented line.
 
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
   desc = 'Disable features in big files',
   pattern = 'bigfile',
   callback = function(args)
@@ -20,13 +25,13 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
   desc = 'Disable cursorline in netrw',
   pattern = 'netrw',
   command = 'setlocal nocursorline',
 })
 
-vim.api.nvim_create_autocmd('FileType', {
+autocmd('FileType', {
   desc = 'Fuzzy-find manpages with Telescope',
   pattern = 'man',
   callback = function()
@@ -37,7 +42,7 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufNew', {
+autocmd('BufNew', {
   desc = 'Open help docs in right split',
   pattern = '*.txt',
   callback = function()
@@ -45,7 +50,7 @@ vim.api.nvim_create_autocmd('BufNew', {
   end
 })
 
-vim.api.nvim_create_autocmd('BufReadPost', {
+autocmd('BufReadPost', {
   desc = 'Go to the last location when opening a buffer',
   callback = function(args)
     local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
@@ -56,14 +61,14 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
+autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   callback = function()
     vim.hl.on_yank({ timeout = 50 })
   end,
 })
 
-vim.api.nvim_create_autocmd('PackChanged', {
+autocmd('PackChanged', {
   desc = '',
   callback = function(ev)
     if ev.data.kind == 'update' and ev.data.spec.name == 'nvim-treesitter' then
@@ -75,23 +80,23 @@ vim.api.nvim_create_autocmd('PackChanged', {
   end,
 })
 
-vim.api.nvim_create_autocmd('CmdlineEnter', {
+autocmd('CmdlineEnter', {
   desc = 'Highlight all matches while searching',
   callback = function()
     vim.o.hlsearch = true
   end,
 })
 
-vim.api.nvim_create_autocmd('CmdlineLeave', {
+autocmd('CmdlineLeave', {
   desc = 'Remove highlights when done searching',
   callback = function()
     vim.o.hlsearch = false
   end,
 })
 
-vim.api.nvim_create_autocmd('LspAttach', {
+autocmd('LspAttach', {
   desc = 'Set LSP keymaps upon attaching to a buffer',
-  group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+  group = lspAttachGroup,
   callback = function(ev)
     local map = function(keys, func, desc, mode)
       mode = mode or 'n'
