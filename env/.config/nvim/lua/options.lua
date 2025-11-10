@@ -4,7 +4,7 @@ vim.g.netrw_banner = 0
 vim.g.mapleader = " "
 vim.opt.guicursor = ""
 vim.opt.encoding = 'utf-8'
-vim.opt.statusline='%F %= %n %l,%c %P %{&fileencoding}'
+vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'
 
 vim.opt.number = true
 vim.opt.relativenumber = true

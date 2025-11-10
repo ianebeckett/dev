@@ -12,7 +12,7 @@ vim.keymap.set('i', '<Esc>', '<nop>')
 vim.keymap.set('n', 'Q', '<nop>')
 
 --netrw window management
-vim.keymap.set('n', '<leader>nw', vim.cmd.Ex) --'new' window, or 'netrw'
+vim.keymap.set('n', '<leader>nw', vim.cmd.Ex)  --'new' window, or 'netrw'
 vim.keymap.set('n', '<leader>vw', vim.cmd.Vex) --vertical window
 
 --centered cursor for half-page jumping
@@ -23,14 +23,14 @@ vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
 --delete without overwriting clipboard
-vim.keymap.set({'n', 'v'}, '<leader>d', '\'_d')
+vim.keymap.set({ 'n', 'v' }, '<leader>d', '\'_d')
 
 --replace selected text with clipboard contents
 --try with ve<leader>p to replace a word
 vim.keymap.set('x', '<leader>p', '\'_dP')
 
 --yank into system clipboard
-vim.keymap.set({'n', 'v'}, '<leader>y', '\'+y')
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '\'+y')
 vim.keymap.set('n', '<leader>y', '\'+Y')
 
 --quickfix list navigation
