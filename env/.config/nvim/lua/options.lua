@@ -9,8 +9,8 @@ vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'
 vim.opt.number = true
 vim.opt.relativenumber = true
 -- high scrolloff minimizes vertical scanning with eyes
--- set to rows / 2 - 1 to prevent text from moving when spamming jkjkjk
-vim.opt.scrolloff = 14
+-- if scrolloff is too high, we get screen jank when doing jkjkjkjk
+vim.opt.scrolloff = 18
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
