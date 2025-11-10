@@ -16,4 +16,6 @@ vim.pack.add({
     src = 'https://github.com/ThePrimeagen/harpoon',
     version = 'harpoon2',
   },
+  'https://github.com/ThePrimeagen/vim-be-good.git',
+  'https://github.com/folke/trouble.nvim.git',
 })
