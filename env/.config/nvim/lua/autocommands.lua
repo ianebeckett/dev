@@ -20,16 +20,10 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.cmd [[
-augroup vimrc_help
-autocmd!
-autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-augroup end
-]]
-
 vim.api.nvim_create_autocmd('FileType', {
-  desc = 'fuzzy-find help documents with Telescope',
-  pattern = ''
+  desc = 'Disable cursorline in netrw',
+  pattern = 'netrw',
+  command = 'setlocal nocursorline',
 })
 
 vim.api.nvim_create_autocmd('FileType', {
@@ -43,6 +37,14 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufNew', {
+  desc = 'Open help docs in right split',
+  pattern = '*.txt',
+  callback = function()
+    vim.cmd('wincmd L')
+  end
+})
+
 vim.api.nvim_create_autocmd('BufReadPost', {
   desc = 'Go to the last location when opening a buffer',
   callback = function(args)
@@ -52,12 +54,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
       vim.cmd 'normal! g`"zz'
     end
   end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  desc = 'Disable cursorline in netrw',
-  pattern = "netrw",
-  command = "setlocal nocursorline",
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -116,8 +112,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('vrr', telescope_builtin.lsp_references, '[V]iew [RR]eferences')
     map('vrn', vim.lsp.buf.rename, '[V]iew [R]e[N]ame')
     map('vca', vim.lsp.buf.code_action, '[V]iew [R]e[N]ame')
-    map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls')   -- has Telescope builtin
-    map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls')   -- has Telescope builtin
+    map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls') -- has Telescope builtin
+    map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls') -- has Telescope builtin
     map('<C-h>', vim.lsp.buf.signature_help, 'Signature [H]elp', 'i')
 
     --also potentially useful:
