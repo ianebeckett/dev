@@ -1,19 +1,19 @@
 require 'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the first seven MUST always be installed)
+  -- A list of parser names, or 'all' (the first seven MUST always be installed)
   -- for list of available parsers see https://github.com/nvim-treesitter/nvim-treesitter
   ensure_installed = {
-    "c",
-    "lua",
-    "vim",
-    "vimdoc",
-    "query",
-    "markdown",
-    "markdown_inline",
-    "cpp",
-    "python",
-    "json",
-    "javascript",
-    "typescript",
+    'c',
+    'lua',
+    'vim',
+    'vimdoc',
+    'query',
+    'markdown',
+    'markdown_inline',
+    'cpp',
+    'python',
+    'json',
+    'javascript',
+    'typescript',
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -26,18 +26,18 @@ require 'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
 
-    -- List of parsers to ignore installing (or "all")
-    -- ignore_install = { "javascript" },
+    -- List of parsers to ignore installing (or 'all')
+    -- ignore_install = { 'javascript' },
 
     -- list of language that will be disabled
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
-    -- disable = { "c", "rust", "latex" },
+    -- disable = { 'c', 'rust', 'latex' },
 
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     disable = function(lang, buf)
-      local max_filesize = 100 * 1024     -- 100 KB
+      local max_filesize = 100 * 1024 -- 100 KB
       local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
       if ok and stats and stats.size > max_filesize then
         return true
@@ -48,6 +48,6 @@ require 'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,     -- maybe helpful for Ruby, PHP
+    additional_vim_regex_highlighting = false, -- maybe helpful for Ruby, PHP
   },
 }

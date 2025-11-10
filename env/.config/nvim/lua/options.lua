@@ -3,8 +3,8 @@ vim.g.netrw_banner = 0
 
 vim.g.mapleader = " "
 vim.opt.guicursor = ""
-vim.opt.encoding = "utf-8"
-vim.opt.statusline="%F %= %n %l,%c %P %{&fileencoding}"
+vim.opt.encoding = 'utf-8'
+vim.opt.statusline='%F %= %n %l,%c %P %{&fileencoding}'
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -35,8 +35,8 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 500
 
-vim.opt.colorcolumn = { "80" }
-vim.opt.signcolumn = "yes"
+vim.opt.colorcolumn = { '80' }
+vim.opt.signcolumn = 'yes'
 
 --configure floating windows style
 vim.o.winborder = 'solid'
