@@ -122,32 +122,32 @@ autocmd('LspAttach', {
     map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls') -- has Telescope builtin
     map('<C-h>', vim.lsp.buf.signature_help, 'Signature [H]elp', 'i')
 
-    -- Auto-format ("lint") on write.
-    -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if not client then
-      return
-    end
-    if not client:supports_method('textDocument/willSaveWaitUntil')
-        and client:supports_method('textDocument/formatting') then
-      autocmd('BufWritePre', {
-        group = formatOnWriteGroup,
-        buffer = ev.buf,
-        callback = function()
-          vim.lsp.buf.format({
-            bufnr = ev.buf,
-            id = client.id,
-            timeout_ms = 200,
-            filter = function()
-              --enable/disable here
-              return client.name == 'lua_ls' or
-                  client.name == 'prettier'
-            end,
-          })
-        end
-      })
-    end
-
+    -- -- format on write.
+    -- -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+    -- local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    -- if not client then
+    --   return
+    -- end
+    -- if not client:supports_method('textDocument/willSaveWaitUntil')
+    --     and client:supports_method('textDocument/formatting') then
+    --   autocmd('BufWritePre', {
+    --     group = formatOnWriteGroup,
+    --     buffer = ev.buf,
+    --     callback = function()
+    --       vim.lsp.buf.format({
+    --         bufnr = ev.buf,
+    --         id = client.id,
+    --         timeout_ms = 200,
+    --         filter = function()
+    --           --enable/disable here
+    --           return client.name == 'lua_ls' or
+    --               client.name == 'prettier'
+    --         end,
+    --       })
+    --     end
+    --   })
+    -- end
+    --
     --also potentially useful:
     --vim.lsp.buf.typehierarchy('supertypes', 'subtypes')
     --vim.lsp.codelens
