@@ -21,10 +21,6 @@
       "rev": "ba47d4b",
       "src": "https://github.com/EdenEast/nightfox.nvim.git"
     },
-    "nvim-lightbulb": {
-      "rev": "aa3a8b0",
-      "src": "https://github.com/kosayoda/nvim-lightbulb.git"
-    },
     "nvim-treesitter": {
       "rev": "42fc28ba",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
