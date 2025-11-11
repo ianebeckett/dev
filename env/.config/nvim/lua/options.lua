@@ -41,7 +41,7 @@ vim.opt.colorcolumn = { '80' }
 vim.opt.signcolumn = 'yes'
 
 --configure floating windows style
-vim.o.winborder = 'solid'
+vim.o.winborder = 'rounded'
 
 --NOTE: use shortmess when you remember what command you were trying to do
 --without 'hit enter' prompt

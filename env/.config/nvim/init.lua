@@ -13,10 +13,18 @@ vim.cmd.packadd 'nvim.undotree'
 
 -- Global diagnostics configuration
 vim.diagnostic.config({
+  underline = false,
   virtual_text = {
     enabled = true,
     virt_text_pos = 'eol',
   },
   signs = true,
-  update_in_insert = false,
+  float = {
+    header = '',
+    source = true,
+    prefix = '',
+    style = 'minimal',
+    border = 'rounded',
+  },
+  severity_sort = true,
 })

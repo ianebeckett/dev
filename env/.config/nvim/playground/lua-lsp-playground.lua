@@ -1,7 +1,7 @@
 --if true then  -- Error: Missing 'end' (uncomment to test)
 --print("Hello")
 
-local a, b = 1  -- Error: unbalanced-assignments
+local a, b = 1 -- Error: unbalanced-assignments
 
 ---@type number
 local myNumber = "This will cause [assign-type-mismatch]."
