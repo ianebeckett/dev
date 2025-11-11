@@ -1,6 +1,6 @@
 -- reload without quitting neovim with :restart
 -- check status with :lua vim.print(vim.pack.get())
--- delete a package by name with vim.pack.del(<name>)
+-- delete a package by name with :lua vim.pack.del(<name>)
 -- it will reinstall unless it's been remobed from vim.pack.add()
 vim.pack.add({
   'https://github.com/rose-pine/neovim.git',
@@ -18,4 +18,5 @@ vim.pack.add({
   },
   'https://github.com/ThePrimeagen/vim-be-good.git',
   'https://github.com/folke/trouble.nvim.git',
+  'https://github.com/saghen/blink.cmp.git',
 })

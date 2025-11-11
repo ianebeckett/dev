@@ -1,3 +1,5 @@
+-- lsp currently relies on '.git/' being present in root_markers.
+
 --if true then  -- Error: Missing 'end' (uncomment to test)
 --print("Hello")
 
