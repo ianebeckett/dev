@@ -225,9 +225,9 @@ find_dirs() {
     # list TMUX sessions
     if [[ -n "${TMUX}" ]]; then
         current_session=$(tmux display-message -p '#S')
-        tmux list-sessions -F "[TMUX] #{session_name}" 2>/dev/null | grep -vFx "[TMUX] $current_session"
+        tmux list-sessions -F "[OPEN] #{session_name}" 2>/dev/null | grep -vFx "[OPEN] $current_session"
     else
-        tmux list-sessions -F "[TMUX] #{session_name}" 2>/dev/null
+        tmux list-sessions -F "[OPEN] #{session_name}" 2>/dev/null
     fi
 
     # note: TS_SEARCH_PATHS is an array of paths to search for directories
@@ -326,7 +326,7 @@ if [[ -z $selected ]]; then
     exit 0
 fi
 
-if [[ "$selected" =~ ^\[TMUX\]\ (.+)$ ]]; then
+if [[ "$selected" =~ ^\[OPEN\]\ (.+)$ ]]; then
     selected="${BASH_REMATCH[1]}"
 fi
 
