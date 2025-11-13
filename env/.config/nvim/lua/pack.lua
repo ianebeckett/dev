@@ -21,4 +21,9 @@ vim.pack.add({
   'https://github.com/ThePrimeagen/vim-be-good.git',
   'https://github.com/folke/trouble.nvim.git',
   'https://github.com/saghen/blink.cmp.git',
+  {
+    src = 'https://github.com/L3MON4D3/LuaSnip.git',
+    version = 'v2.*',
+  },
+  'https://github.com/rafamadriz/friendly-snippets',
 })

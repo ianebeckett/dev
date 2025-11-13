@@ -1,8 +1,17 @@
 {
   "plugins": {
+    "LuaSnip": {
+      "rev": "3732756",
+      "src": "https://github.com/L3MON4D3/LuaSnip.git",
+      "version": "'v2.*'"
+    },
     "blink.cmp": {
       "rev": "40380e7",
       "src": "https://github.com/saghen/blink.cmp.git"
+    },
+    "friendly-snippets": {
+      "rev": "572f566",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
       "rev": "20ad441",
