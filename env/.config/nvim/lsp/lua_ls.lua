@@ -20,6 +20,7 @@ return {
         --See https://www.youtube.com/watch?v=bTWWFQZqzyI&list=PLep05UYkc6wTyBe7kPjQFWVXTlhKeQejM&index=8
         library = {
           vim.fn.expand('$VIMRUNTIME/lua'),
+          -- { path = "${3rd}/luv/library", words = { "vim%.uv" } }
         },
         -- reduce CPU-intensive loading on attach
         checkThirdParty = false,
