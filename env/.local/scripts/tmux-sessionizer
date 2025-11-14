@@ -31,6 +31,10 @@ PANE_CACHE_FILE="$PANE_CACHE_DIR/panes.cache"
 # TS_LOG_FILE=<file> # will write logs to <file> Defaults to ~/.local/share/tmux-sessionizer/tmux-sessionizer.logs
 # ------------------------
 
+
+#potetial solution in case tms keeps starting new window in home directory
+#pushd $HOME
+
 if [[ -f "$CONFIG_FILE" ]]; then
     source "$CONFIG_FILE"
 fi
@@ -344,3 +348,5 @@ fi
 
 switch_to "$selected_name"
 
+#potetial solution in case tms keeps starting new window in home directory
+#popd
