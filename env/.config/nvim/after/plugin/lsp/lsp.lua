@@ -9,3 +9,21 @@ vim.lsp.enable({
   'eslint',
   'ts_ls',
 });
+
+-- Global diagnostics configuration
+vim.diagnostic.config({
+  underline = false,
+  virtual_text = {
+    enabled = true,
+    virt_text_pos = 'eol',
+  },
+  signs = true,
+  float = {
+    header = '',
+    source = true,
+    prefix = '',
+    style = 'minimal',
+    border = 'none',
+  },
+  severity_sort = true,
+})

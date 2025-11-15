@@ -1,7 +1,7 @@
 -- lsp currently relies on '.git/' being present in root_markers.
 
---if true then  -- Error: Missing 'end' (uncomment to test)
---print("Hello")
+if true then  -- Error: Missing 'end' (uncomment to test)
+print("Hello")
 
 local a, b = 1 -- Error: unbalanced-assignments
 
