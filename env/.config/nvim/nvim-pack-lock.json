@@ -26,10 +26,6 @@
       "rev": "eb3ff49",
       "src": "https://github.com/rose-pine/neovim.git"
     },
-    "nightfox.nvim": {
-      "rev": "ba47d4b",
-      "src": "https://github.com/EdenEast/nightfox.nvim.git"
-    },
     "nvim-treesitter": {
       "rev": "42fc28ba",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
