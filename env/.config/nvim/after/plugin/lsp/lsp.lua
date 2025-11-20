@@ -8,6 +8,7 @@ vim.lsp.enable({
   'clangd',
   'eslint',
   'ts_ls',
+  'jsonls',
 });
 
 -- Global diagnostics configuration
