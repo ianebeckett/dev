@@ -1,0 +1,25 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": [],
+  "modules-right": ["battery", "battery#bat-adv360-l", "battery#bat-adv360-r", "clock"],
+  "sway/window": {
+    "max-length": 50
+  },
+  "battery": {
+   "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "battery#bat-adv360-l": {
+   "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "battery#bat-adv360-r": {
+   "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "format-alt": "{:%a, %d. %b  %H:%M}"
+  }
+}
