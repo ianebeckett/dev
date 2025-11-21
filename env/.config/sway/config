@@ -1,7 +1,9 @@
-# reload: super+shift+c
-
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
+
+# WIP: combine dev end reload commands into one
+# bindsym $mod SHIFT,D,exec,DEV_ENV=/home/ian/dev ~/dev/dev-env
+bindsym $mod+Shift+c reload
+bindsym $mod+w exec 'pkill waybar && waybar &'
 
 font pango:monospace 10
 
@@ -113,10 +115,7 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 
-# WIP: combine dev end reload commands into one
-# bindsym $mod SHIFT,D,exec,DEV_ENV=/home/ian/dev ~/dev/dev-env
-bindsym $mod+Shift+c reload
-bindsym $mod+w exec 'pkill waybar && waybar &'
+default_orientation horizontal
 
 bindsym $mod+b splith
 bindsym $mod+v splitv
@@ -167,10 +166,12 @@ mode "resize" {
 # stop going into full scren when I fat-finger my right thumb
 bindsym ctrl+return ""
 
-bar {
-    swaybar_command waybar
-}
-
+# I think this is cause the double-waybar bug. Does waybar start on its own?
+# If so, we can remove this.
+# bar {
+#     swaybar_command waybar
+# }
+#
 # configure touchpad features
 input "type:touchpad" {
   dwt enabled
