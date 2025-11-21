@@ -12,7 +12,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- high scrolloff minimizes vertical scanning with eyes
 -- if scrolloff is too high, we get screen jank when doing jkjkjkjk
-vim.opt.scrolloff = 18
+vim.opt.scrolloff = 16
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
