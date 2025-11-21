@@ -2,7 +2,7 @@
 
 * {
     font-family: JetbrainsMono Nerd Font, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 window#waybar {
@@ -84,4 +84,8 @@ button:hover {
 
 #battery.critical:not(.charging) {
     color: #ff3131;
+}
+
+#pulseaudio.muted {
+    color: #2a5c45;
 }
