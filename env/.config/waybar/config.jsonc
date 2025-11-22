@@ -14,7 +14,7 @@
   ],
   "clock": {
     "timezone": "America/Chicago",
-    "format": "{:%a %-d %b%l:%M %p}",
+    "format": "{:%a %-d %b : %l:%M %p}",
     "tooltip-format": ""
   },
   "sway/window": {
