@@ -48,6 +48,7 @@ addToPath $HOME/.local/scripts
 addToPath $HOME/.local/lua-language-server/bin
 addToPath /usr/lib/postgresql/18/bin
 addToPath /usr/local/go/bin
+addToPath $HOME/go/bin
 . "$HOME/.cargo/env" # rust
 
 # prompt customization
