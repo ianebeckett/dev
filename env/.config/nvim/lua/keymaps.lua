@@ -8,7 +8,6 @@ local map = function(keys, func, desc, mode)
 end
 
 vim.keymap.set('i', '<C-c>', '<esc>')
-vim.keymap.set('i', '<Esc>', '<nop>')
 vim.keymap.set('n', 'Q', '<nop>')
 
 --netrw window management
