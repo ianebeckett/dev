@@ -40,7 +40,6 @@ vim.opt.timeoutlen = 500
 vim.opt.colorcolumn = { '80' }
 vim.opt.signcolumn = 'yes'
 
---configure floating windows style
 vim.o.winborder = 'rounded'
 
 --NOTE: use shortmess when you remember what command you were trying to do

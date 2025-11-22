@@ -5,6 +5,7 @@ autocmd('FileType', {
   desc = 'Specify format options for all filetypes',
   pattern = '*',
   callback = function()
+    --only insert comment leader on newline by <Enter>, not via <o>
     vim.opt_local.formatoptions = 'rqj'
   end,
 })
