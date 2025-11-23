@@ -14,6 +14,14 @@ autocmd('FileType', {
 -- When I press enter at end of line in insert mode, I get a new commented line.
 -- When I press o in normal mode, I don't get a new commented line.
 
+autocmd({'BufEnter', 'BufWinEnter'}, {
+    desc = 'Disable completion in specific buffers',
+    pattern = {'*.txt', '*.md', '*.git/COMMIT_EDITMSG'},
+    callback = function()
+        vim.b.completion = false
+    end
+})
+
 autocmd('FileType', {
   desc = 'Disable features in big files',
   pattern = 'bigfile',
