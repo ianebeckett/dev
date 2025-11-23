@@ -16,3 +16,4 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 export ZDOTDIR="$HOME/dev/env/.config/zsh" # TODO: ensure that this isn't making a dir with all file permissions
 export SHELL_SESSIONS_DISABLE=1
+. "$HOME/.cargo/env"
