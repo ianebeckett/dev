@@ -10,6 +10,9 @@ end
 vim.keymap.set('i', '<C-c>', '<esc>')
 vim.keymap.set('n', 'Q', '<nop>')
 
+-- Ctrl+BS sends keycode ^H. depends on similar binding in tmux
+vim.keymap.set('i', '<C-H>', '<C-W>')
+
 --netrw window management
 vim.keymap.set('n', '<leader>nw', vim.cmd.Ex)  --'new' window, or 'netrw'
 vim.keymap.set('n', '<leader>vw', vim.cmd.Vex) --vertical window
