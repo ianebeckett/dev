@@ -4,7 +4,7 @@ set $alt Mod1
 # WIP: combine dev end reload commands into one
 # bindsym $mod SHIFT,D,exec,DEV_ENV=/home/ian/dev ~/dev/dev-env
 bindsym $mod+Shift+c reload
-bindsym $mod+w exec 'pkill waybar && waybar &'
+bindsym $mod+w exec 'pgrep waybar || waybar &'
 
 font pango:monospace 10
 
@@ -125,6 +125,7 @@ bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 bindsym $alt+6 exec pgrep wshowkeys && pkill wshowkeys || wshowkeys -a bottom -m 69 -a right -t 3 &
+bindsym $alt+0 exec gammastep -O 4000 &
 
 # Scratchpad:
 #
