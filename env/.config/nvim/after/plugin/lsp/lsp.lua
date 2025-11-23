@@ -92,7 +92,5 @@ autocmd('LspAttach', {
     --vim.lsp.buf.typehierarchy('supertypes', 'subtypes')
     --vim.lsp.codelens
     --vim.lsp.util.apply_workspace_edit
-
-    --make a playground for all these LSP features
   end
 })
