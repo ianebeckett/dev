@@ -2,8 +2,6 @@ unsetopt BEEP
 
 source $ZDOTDIR/.zsh_aliases
 source $ZDOTDIR/.zsh_functions
-source $HOME/.config/zsh/fzf.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
 
 # configure zsh history
 HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
@@ -16,6 +14,24 @@ setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first
 setopt SHARE_HISTORY # Share history between windows.
 setopt HIST_IGNORE_DUPS # Ignore duplicated commands history list.
 
+# configure completions
+autoload -U compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+_comp_options+=(globdots)		# Include hidden files.
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
+
+# fzf for back-i-search (must be sourced after completions)
+source $HOME/.config/zsh/fzf.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
 # enable vi mode to for traversing the command line
 # alt+b - back one word
 # alt+w - forward one word
@@ -24,23 +40,6 @@ setopt HIST_IGNORE_DUPS # Ignore duplicated commands history list.
 # and more
 bindkey -v
 export KEYTIMEOUT=1
-
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
-_comp_options+=(globdots)		# Include hidden files.
-
-# completion styling (order matters here)
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' menu select
-
-# Use vim keys in tab complete menu
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 
 setopt autocd
 
