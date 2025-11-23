@@ -41,20 +41,20 @@ autocmd('FileType', {
   end,
 })
 
+autocmd('FileType', {
+    desc = 'Disable completion in specific buffers',
+    pattern = {'text', 'markdown', 'gitcommit'},
+    callback = function()
+        vim.b.completion = false
+    end
+})
+
 autocmd('BufNew', {
   desc = 'Open help docs in right split',
   pattern = '*.txt',
   callback = function()
     vim.cmd('wincmd L')
   end
-})
-
-autocmd({'BufEnter', 'BufWinEnter'}, {
-    desc = 'Disable completion in specific buffers',
-    pattern = {'*.txt', '*.md', '*.git/COMMIT_EDITMSG'},
-    callback = function()
-        vim.b.completion = false
-    end
 })
 
 autocmd('BufReadPost', {
