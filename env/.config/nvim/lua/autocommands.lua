@@ -68,10 +68,16 @@ autocmd('BufReadPost', {
   end,
 })
 
-autocmd({'BufWritePre'}, {
-    desc = 'remove trailing whitespace before saving',
+autocmd('BufWritePre', {
+    desc = 'remove trailing whitespace before saving. Preserve search and cursor position.',
     pattern = '*',
-    command = [[%s/\s\+$//e]],
+    callback = function()
+        local search = vim.fn.getreg('/')
+        local current_position = vim.api.nvim_win_get_cursor(0)
+        vim.cmd [[%s/\s\+$//e]]
+        vim.fn.setreg('/', search)
+        vim.api.nvim_win_set_cursor(0, current_position)
+    end
 })
 
 autocmd('TextYankPost', {
