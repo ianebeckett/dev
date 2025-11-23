@@ -68,6 +68,12 @@ autocmd('BufReadPost', {
   end,
 })
 
+autocmd({'BufWritePre'}, {
+    desc = 'remove trailing whitespace before saving',
+    pattern = '*',
+    command = [[%s/\s\+$//e]],
+})
+
 autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   callback = function()
