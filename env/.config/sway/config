@@ -166,12 +166,6 @@ mode "resize" {
 # stop going into full scren when I fat-finger my right thumb
 bindsym ctrl+return ""
 
-# I think this is cause the double-waybar bug. Does waybar start on its own?
-# If so, we can remove this.
-# bar {
-#     swaybar_command waybar
-# }
-#
 # configure touchpad features
 input "type:touchpad" {
   dwt enabled
