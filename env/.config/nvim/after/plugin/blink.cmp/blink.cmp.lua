@@ -27,6 +27,11 @@ require('blink.cmp').setup {
     default = { 'lsp', 'snippets', 'path' },
     per_filetype = {
       sql = { 'dadbod' },
+      markdown= {},
+      gitcommit = {},
+      text = {},
+      mail = {},
+      none = {},
     },
     providers = {
       dadbod = { module = "vim_dadbod_completion.blink" },
