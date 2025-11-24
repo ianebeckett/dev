@@ -41,8 +41,7 @@
   },
   "cpu": {
     "interval": 1,
-    "format": " {icon0}{icon1}{icon2}{icon3}",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+    "format": " {usage}%"
   },
   "memory": {
     "interval": 30,

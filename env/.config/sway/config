@@ -4,7 +4,7 @@ set $alt Mod1
 # WIP: combine dev end reload commands into one
 # bindsym $mod SHIFT,D,exec,DEV_ENV=/home/ian/dev ~/dev/dev-env
 bindsym $mod+Shift+c reload
-bindsym $mod+w exec 'pgrep waybar || waybar &'
+bindsym $mod+w exec 'pkill waybar; waybar &'
 
 font pango:monospace 10
 
