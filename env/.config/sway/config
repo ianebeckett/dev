@@ -125,7 +125,8 @@ bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 bindsym $alt+6 exec pgrep wshowkeys && pkill wshowkeys || wshowkeys -a bottom -m 69 -a right -t 1 &
-bindsym $alt+0 exec gammastep -O 4000 &
+#bindsym $alt+0 exec gammastep -O 4000 & # keeps causing shutdown
+unbindsym $mod+a
 
 # Scratchpad:
 #
