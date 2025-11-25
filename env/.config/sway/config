@@ -8,13 +8,17 @@ bindsym $mod+w exec 'pkill waybar; waybar &'
 
 font pango:monospace 10
 
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+# startup routine
 exec --no-startup-id nm-applet
+# exec_always?
+exec --no-startup-id waybar
+workspace 2
+exec --no-startup-id zen
+workspace 3
+exec --no-startup-id ghostty
+workspace 6
+exec --no-startup-id gimp
+workspace 3
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -31,9 +35,6 @@ bindsym $mod+Return exec ghostty
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-# start the run launcher
-bindcode $mod+40 exec "wofi --show drun"
 
 # change focus
 bindsym $mod+h focus left
@@ -59,8 +60,15 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# enter fullscreen mode for the focused container
+bindsym $mod+q kill
+
+bindsym $mod+r exec "wofi --show drun"
 bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+# make one for file manager
+
+# I don't know what this is for, but I don't want it to happen accidentally
+#bindsym $mod+r mode "resize"
 
 # change container layout (stacked, tabbed, toggle split)
 # commented out to stop accidentally showing the title bar (stay in split layout)
@@ -70,17 +78,9 @@ bindsym $mod+s ""
 # bindsym $mod+w layout tabbed
 # bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -93,6 +93,7 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -104,6 +105,7 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -115,6 +117,7 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
 default_orientation horizontal
 
@@ -126,57 +129,41 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 bindsym $alt+6 exec pgrep wshowkeys && pkill wshowkeys || wshowkeys -a bottom -m 69 -a right -t 1 &
 #bindsym $alt+0 exec gammastep -O 4000 & # keeps causing shutdown
-unbindsym $mod+a
-
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+    bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
+# same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
+# back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
-
-# I don't know what this is for, but I don't want it to happen accidentally
-#bindsym $mod+r mode "resize"
 
 # stop going into full scren when I fat-finger my right thumb
 bindsym ctrl+return ""
 
 # configure touchpad features
 input "type:touchpad" {
-  dwt enabled
-  middle_emulation disabled
-  natural_scroll enabled
-  tap disabled
+    dwt enabled
+        middle_emulation disabled
+        natural_scroll enabled
+        tap disabled
 }
 
 # style borders
