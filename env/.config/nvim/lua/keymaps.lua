@@ -9,6 +9,8 @@ end
 
 vim.keymap.set('i', '<C-c>', '<esc>')
 vim.keymap.set('n', 'Q', '<nop>')
+vim.keymap.set('n', '<esc>', '<nop>')
+vim.keymap.set('i', '<esc>', '<nop>')
 
 -- Ctrl+BS sends keycode ^H. depends on similar binding in tmux
 vim.keymap.set('i', '<C-H>', '<C-W>')
