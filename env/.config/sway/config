@@ -155,6 +155,10 @@ mode "resize" {
 # stop going into full scren when I fat-finger my right thumb
 bindsym ctrl+return ""
 
+input type:keyboard {
+  xkb_options caps:none
+}
+
 # configure touchpad features
 input "type:touchpad" {
     dwt enabled
