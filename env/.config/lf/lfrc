@@ -1,0 +1,42 @@
+set hidden true
+set ignorecase true
+set mouse true
+set scrolloff 16
+set tabstop 4
+set info size
+set dircounts
+set scroll_offset 16
+set sort_directories_first true
+
+set preview_files true
+set preview_images true
+
+# Remove the username and hostname from the prompt.
+set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
+
+map <enter> open
+map D trash
+map delete trash
+map c cut
+map R rename
+map r
+
+# Remove mappings I don't use.
+map <down>
+map <end>
+map <home>
+map <left>
+map <pgdn>
+map <pgup>
+map <right>
+map <up>
+map ?
+map i
+
+cmd open ${{
+    case $(file --mime-type -Lb $f) in
+        text/*) nvim $fx;;
+        image/*) chromium-browser --new-window $fx;;
+        *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+    esac
+}}

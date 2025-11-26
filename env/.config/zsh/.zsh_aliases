@@ -1,5 +1,3 @@
-# aliases don't do arg substitution. Write a function for that.
-
 alias vim='nvim'
 
 alias gs='git status'
