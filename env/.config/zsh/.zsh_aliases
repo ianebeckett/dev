@@ -16,6 +16,5 @@ alias la='command ls -lha --color=auto --group-directories-first' # aliases are 
 alias path='<<<${(F)path}'
 alias mv='mv -i'
 alias rm='trash-put'
-alias trash='trash-put'
 
 alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"

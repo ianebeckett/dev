@@ -2,19 +2,24 @@
   "layer": "top",
   "position": "top",
   "modules-left": ["sway/workspaces"],
-  "modules-center": ["clock"],
+  "modules-center": [],
   "modules-right": [
+    "tray",
+    "bluetooth",
     "battery",
-    "backlight",
     "pulseaudio",
     "cpu",
     "memory",
-    "bluetooth",
-    "tray"
+    "clock"
   ],
+  "sway/workspaces": {
+      "on-click": "activate",
+      "disable-scroll": true,
+      "all-outputs": true
+  },
   "clock": {
     "timezone": "America/Chicago",
-    "format": "{:%a %-d %b : %l:%M %p}",
+    "format": " {:%a %-d %b %l:%M %p} ",
     "tooltip-format": ""
   },
   "sway/window": {
@@ -22,42 +27,39 @@
   },
   "battery": {
     "interval": 30,
-    "format": "{icon}{capacity}%",
+    "format": " {icon}{capacity}%",
+    "format-charging":"  {icon}{capacity}%",
+    "format-plugged":"  {icon}{capacity}%",
     "format-icons": [" ", " ", " ", " "],
     "states": {
       "warning": 30,
       "critical": 15
     }
   },
-  "backlight": {
-    "format": " {icon}",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
-  },
   "pulseaudio": {
-    "format": "󰕾 {icon}",
-    "format-muted": "󰝟 ▁",
-    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
-    "on-clicK": "pavucontrol"
+      "format": " 󰕾 {icon}",
+      "format-muted": "  ▁",
+      "on-clicK": "pavucontrol",
+      "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
+      "on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-",
+      "scroll-step": 5,
+      "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
   },
   "cpu": {
     "interval": 1,
-    "format": " {usage}%"
-  },
-  "memory": {
-    "interval": 30,
-    "format": " {used:0.1f}G"
+    "format": "  {usage}%"
   },
     "bluetooth": {
       "format": "{icon}",
       "format-alt": "bluetooth: {status}",
       "format-icons": {
-        "enabled": "",
-        "disabled": "󰂲"
+        "enabled": " ",
+        "disabled": " 󰂲"
       },
       "tooltip-format": "{}"
     },
     "tray": {
-      "icon-size": 21,
+      "icon-size": 12,
       "spacing": 10
     }
 }
