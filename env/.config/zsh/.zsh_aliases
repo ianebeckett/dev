@@ -6,6 +6,7 @@ alias gdb='gdb -quiet' #use cgdb/gf2?
 alias gs='git status'
 alias gb='git branch'
 alias gc='git checkout'
+alias gd='git diff'
 alias gl="git log --pretty=format:'%C(green)%h%Creset %an:%C(cyan)%d%Creset %s %Cgreen(%cr)'"
 alias gld="git log --pretty=format:'%C(green)%h%Creset %C(red)%ad%Creset %an:%C(cyan)%d%Creset %s %Cgreen(%cr)'"
 alias glg="git log --graph --pretty=format:'%C(green)%h%Creset %an:%C(cyan)%d%Creset %s %Cgreen(%cr)'"

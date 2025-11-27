@@ -14,7 +14,7 @@ vim.keymap.set('n', 'Q', '<nop>')
 vim.keymap.set('i', '<C-H>', '<C-W>')
 
 --netrw window management
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)  --'new' window, or 'netrw'
+vim.keymap.set('n', '<leader>nw', vim.cmd.Ex)  --'new' window, or 'netrw'
 
 --centered cursor for half-page jumping
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -35,10 +35,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>y', '\'+y')
 vim.keymap.set('n', '<leader>y', '\'+Y')
 
 --quickfix list navigation
-local telescope_builtin = require('telescope.builtin')
-map('qf', telescope_builtin.quickfix, '[Q]uick[Fix]')
-vim.keymap.set('n', '<C-j>', '<Cmd>cprev<CR>zz')
-vim.keymap.set('n', '<C-k>', '<Cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-j>', '<Cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-k>', '<Cmd>cprev<CR>zz')
 --jumplist navigation: C-i and C-o are prev and next
 --location list navigation (none)
 

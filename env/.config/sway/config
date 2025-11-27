@@ -59,13 +59,13 @@ bindsym $mod+Shift+Right move right
 
 bindsym $mod+q kill
 
-bindsym $mod+r exec "wofi --show drun"
+bindsym $mod+d exec "wofi --show drun"
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 # make one for file manager
 
 # I don't know what this is for, but I don't want it to happen accidentally
-#bindsym $mod+r mode "resize"
+bindsym $mod+r mode "resize"
 
 # change container layout (stacked, tabbed, toggle split)
 # commented out to stop accidentally showing the title bar (stay in split layout)

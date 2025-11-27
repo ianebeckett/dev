@@ -1,7 +1,10 @@
 {
   "layer": "top",
   "position": "top",
-  "modules-left": ["sway/workspaces"],
+  "modules-left": [
+      "sway/workspaces",
+      "sway/mode"
+  ],
   "modules-center": [],
   "modules-right": [
     "tray",
@@ -9,7 +12,6 @@
     "battery",
     "pulseaudio",
     "cpu",
-    "memory",
     "clock"
   ],
   "sway/workspaces": {
