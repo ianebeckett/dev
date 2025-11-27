@@ -16,8 +16,7 @@ vim.keymap.set('i', '<esc>', '<nop>')
 vim.keymap.set('i', '<C-H>', '<C-W>')
 
 --netrw window management
-vim.keymap.set('n', '<leader>nw', vim.cmd.Ex)  --'new' window, or 'netrw'
-vim.keymap.set('n', '<leader>vw', vim.cmd.Vex) --vertical window
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)  --'new' window, or 'netrw'
 
 --centered cursor for half-page jumping
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
