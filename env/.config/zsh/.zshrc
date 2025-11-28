@@ -66,11 +66,6 @@ PROMPT='%B%F{blue}%~%f%b${vcs_info_msg_0_}%b %(!.#.$) '
 # "user@host" version
 # PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
 
-# start ssh-agent (keyring already does this on ubuntu: $ ps -aux | grep ssh)
-# eval "$(ssh-agent -s)" > /dev/null
-# for file in .ssh:
-    # ssh-add -q ~/.ssh/foo
-
 addToPath $HOME/.local/bin
 addToPath $HOME/.local/scripts
 addToPath $HOME/.local/lua-language-server/bin
@@ -84,3 +79,6 @@ export EDITOR='vim'
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+eval "$(ssh-agent -s)" > /dev/null
+ssh-add -q ~/.ssh/gitlab ~/.ssh/id_ed25519
