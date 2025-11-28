@@ -1,2 +1,6 @@
 key_up=Control_L-p
+key_up=Control_R-p
 key_down=Control_L-n
+key_down=Control_R-n
+=Control_L-c
+=Control_R-c
