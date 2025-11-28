@@ -18,6 +18,9 @@ require('blink.cmp').setup {
     preset = 'default',
     ['<C-space>'] = {},
     ['<C-n>'] = { 'show', 'select_next' },
+    ['<C-p>'] = { 'show', 'select_prev' },
+    ['<C-d>'] = { 'show', 'scroll_documentation_down' },
+    ['<C-u>'] = { 'show', 'scroll_documentation_up' },
   },
 
   sources = {
