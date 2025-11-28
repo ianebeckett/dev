@@ -76,6 +76,10 @@ button:hover {
     margin-left: 0;
 }
 
+#bluetooth {
+    color: #0082FC;
+}
+
 #battery.charging, #battery.plugged {
     color: #32cd32;
 }
