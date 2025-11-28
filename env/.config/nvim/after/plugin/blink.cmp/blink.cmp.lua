@@ -13,7 +13,6 @@ require('blink.cmp').setup {
   },
 
   keymap = {
-    -- Please read `:help ins-completion`, it is really good!
     -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
     --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
     preset = 'default',
