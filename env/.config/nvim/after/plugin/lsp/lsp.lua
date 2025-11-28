@@ -52,15 +52,13 @@ autocmd('LspAttach', {
     map('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
     map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     map('<leader>vws', telescope_builtin.lsp_workspace_symbols, '[V]iew [W]orkspace [S]ymbols')
-    map(']d', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
-    map('[d', function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
-    map('vd', vim.diagnostic.open_float, '[V]iew [D]iagnostic')
+    map('tp', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
+    map('tn', function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
     map('vrr', telescope_builtin.lsp_references, '[V]iew [RR]eferences')
     map('vrn', vim.lsp.buf.rename, '[V]iew [R]e[N]ame')
     map('vca', vim.lsp.buf.code_action, '[V]iew [R]e[N]ame')
     map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls') -- has Telescope builtin
     map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls') -- has Telescope builtin
-    map('<C-h>', vim.lsp.buf.signature_help, 'Signature [H]elp', 'i')
 
     -- -- format on write.
     -- -- Usually not needed if server supports "textDocument/willSaveWaitUntil".

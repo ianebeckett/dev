@@ -33,9 +33,11 @@ telescope.setup {
         },
         git_commits = {
             layout_strategy = 'horizontal',
+            sorting_strategy = 'ascending',
         },
         git_bcommits = {
             layout_strategy = 'horizontal',
+            sorting_strategy = 'ascending',
         },
     },
 }

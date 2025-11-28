@@ -17,7 +17,6 @@ vim.pack.add({
         src = 'https://github.com/ThePrimeagen/harpoon',
         version = 'harpoon2',
     },
-    'https://github.com/folke/trouble.nvim.git',
     'https://github.com/saghen/blink.cmp.git',
     {
         src = 'https://github.com/L3MON4D3/LuaSnip.git',

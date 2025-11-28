@@ -38,10 +38,6 @@
       "rev": "0294ae3",
       "src": "https://github.com/nvim-telescope/telescope.nvim.git",
       "version": "'release'"
-    },
-    "trouble.nvim": {
-      "rev": "bd67efe",
-      "src": "https://github.com/folke/trouble.nvim.git"
     }
   }
 }

@@ -3,7 +3,7 @@
 if true then  -- Error: Missing 'end' (uncomment to test)
 print("Hello")
 
-local a, b = 1 -- Error: unbalanced-assignments
+local a,  b= 1 -- Error: unbalanced-assignments
 
 ---@type number
 local myNumber = "This will cause [assign-type-mismatch]."
@@ -20,4 +20,4 @@ outdated_function()
 
 -- Hint: Using an unused local variable
 -- The language server will hint that `unused_variable` is never used.
-local unused_variable = "This variable is not used."
+local unused_variable = "This variable is not used."<leader>

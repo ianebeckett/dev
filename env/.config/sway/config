@@ -59,7 +59,7 @@ bindsym $mod+Shift+Right move right
 
 bindsym $mod+q kill
 
-bindsym $mod+d exec "wofi --show drun"
+bindsym $mod+d exec "wofi -i --show=drun"
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 # make one for file manager
