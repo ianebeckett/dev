@@ -21,12 +21,14 @@ vim.diagnostic.config({
   },
   signs = true,
   float = {
-    header = '',
-    source = true,
-    prefix = '',
+    focusable = false,
     style = 'minimal',
-    border = 'none',
+    border = 'rounded',
+    source = true,
+    header = '',
+    prefix = '',
   },
+  update_in_insert = true,
   severity_sort = true,
 })
 
