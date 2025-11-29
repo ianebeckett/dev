@@ -55,3 +55,12 @@ vim.keymap.set('n', '<leader>u', vim.cmd.Undotree)
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
 
 vim.keymap.set('n', '<C-b>', '<C-a>', { desc = 'Increment number' })
+
+function Date()
+    local row = vim.api.nvim_get_current_line()
+    local col = vim.api.nvim_win_get_cursor(0)[2]
+    local date = row:sub(0, col) .. '# ' .. os.date('%a %d %b %Y')
+    vim.api.nvim_set_current_line(date)
+    vim.api.nvim_feedkeys('o', 'n', true)
+end
+vim.keymap.set('n', '<leader>d', '<cmd>lua Date()<cr>', { desc = 'insert [d]ate' })
