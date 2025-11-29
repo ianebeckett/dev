@@ -10,7 +10,8 @@ font pango:monospace 10
 
 # startup routine
 assign [app_id="zen"] workspace 2
-assign [app_id="ghostty"] workspace 3
+# reserve workspace 3 for testing, dev tools, etc
+assign [app_id="ghostty"] workspace 4
 exec --no-startup-id nm-applet
 exec --no-startup-id waybar
 exec --no-startup-id zen
