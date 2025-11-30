@@ -51,7 +51,7 @@ vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = 'search [p]roject 
 --finds
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = 'index neo[v]im [h]elp docs' })
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'index [p]roject [f]iles' })
-vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'index files in git repo' })
+vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'index [g]it [f]iles' })
 vim.keymap.set('n', '<leader>gl', builtin.git_commits, { desc = 'index [g]it [l]og' })
 vim.keymap.set('n', '<leader>gb', builtin.git_bcommits, { desc = 'index [g]it log for the current [b]uffer' })
 
