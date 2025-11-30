@@ -5,8 +5,8 @@ source $ZDOTDIR/.zsh_functions
 
 # configure zsh history
 HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
-HISTSIZE=10000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=100000
 setopt INC_APPEND_HISTORY # write to the history file immediately
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
