@@ -37,7 +37,7 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 500
 
-vim.opt.colorcolumn = { '80' }
+vim.opt.colorcolumn = { '89' }
 vim.opt.signcolumn = 'yes'
 
 vim.o.winborder = 'rounded'
