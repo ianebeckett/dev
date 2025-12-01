@@ -1,7 +1,6 @@
 # aliases don't do arg substitution. Write a function for that.
 
 alias vim='nvim'
-alias gdb='gdb -quiet' #use cgdb/gf2?
 
 alias gs='git status'
 alias gb='git branch'
