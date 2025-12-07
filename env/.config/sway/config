@@ -10,12 +10,11 @@ font pango:monospace 10
 
 # startup routine
 exec --no-startup-id nm-applet
-assign [app_id="zen"] workspace 2
+# assign [app_id="zen"] workspace 2
 assign [app_id="ghostty"] workspace 4
 assign [title="GNU Image Manipulation Program"] workspace 6
 exec --no-startup-id waybar
 workspace 2
-exec --no-startup-id zen
 exec --no-startup-id ghostty
 workspace 3
 
