@@ -50,3 +50,5 @@ vim.o.clipboard = 'unnamedplus'
 
 vim.opt.isfname:append('@-@') --include @ as a valid filename character
 require('vim._extui').enable({})
+
+vim.o.iskeyword = '@,48-57,_,192-255,-' -- Don't delimit `word` textobjects on dash
