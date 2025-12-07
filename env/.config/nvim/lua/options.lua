@@ -6,7 +6,7 @@ vim.g.netrw_winsize = 25
 vim.g.mapleader = " "
 vim.opt.guicursor = ""
 vim.opt.encoding = 'utf-8'
-vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'
+vim.opt.statusline = '%F %= %l,%c %P %{&fileencoding}'
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -37,7 +37,7 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 500
 
-vim.opt.colorcolumn = { '89' }
+vim.opt.colorcolumn = { '90' }
 vim.opt.signcolumn = 'yes'
 
 vim.o.winborder = 'rounded'
@@ -49,3 +49,4 @@ vim.o.winborder = 'rounded'
 vim.o.clipboard = 'unnamedplus'
 
 vim.opt.isfname:append('@-@') --include @ as a valid filename character
+require('vim._extui').enable({})

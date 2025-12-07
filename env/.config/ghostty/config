@@ -55,7 +55,7 @@ font-style-italic=false
 font-style-bold-italic=false
 # disable most ligatures: != == === << <<< <-- => ++
 font-feature = -calt, -liga, -dlig
-alpha-blending=linear
+alpha-blending = linear
 # Enables the ability to move the cursor at prompts by using alt+click on Linux and option+click on macOS.
 cursor-click-to-move = true
 mouse-hide-while-typing = true
@@ -66,4 +66,4 @@ desktop-notifications = false
 quit-after-last-window-closed = false
 # then we might also need:
 # systemctl reload --user app-com.mitchellh.ghostty.service
-
+clipboard-paste-protection = false

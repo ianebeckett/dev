@@ -39,17 +39,16 @@
     }
   },
   "pulseaudio": {
-      "format": " 󰕾 {icon}",
-      "format-muted": "  ▁",
+      "format": "󰕾",
+      "format-muted": "",
       "on-clicK": "pavucontrol",
       "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+",
       "on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-",
-      "scroll-step": 5,
-      "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+      "scroll-step": 5
   },
   "cpu": {
     "interval": 1,
-    "format": "  {usage}%"
+    "format": " {usage}%"
   },
     "bluetooth": {
       "format": "{icon}",

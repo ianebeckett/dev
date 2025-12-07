@@ -62,13 +62,15 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '%F{1}*'
 zstyle ':vcs_info:*' formats '%F{green} (%b%u%F{green})%f'
 
+# dir only version
 PROMPT='%B%F{blue}%~%f%b${vcs_info_msg_0_}%b %(!.#.$) '
 # "user@host" version
-# PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
+#PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
 
 addToPath $HOME/.local/bin
 addToPath $HOME/.local/scripts
 addToPath $HOME/.local/lua-language-server/bin
+addToPath $HOME/.local/zig-x86_64-linux-0.15.2
 addToPath /usr/lib/postgresql/18/bin
 addToPath /usr/local/go/bin
 addToPath $HOME/go/bin
