@@ -8,8 +8,6 @@
     email = ianedwardbeckett@gmail.com
 [pull]
 	rebase = false
-[init]
-	defaultBranch = main
 [branch]
     sort=-committerdate
 [tag]
