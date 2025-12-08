@@ -63,6 +63,13 @@ autocmd('BufWinEnter', {
   end
 })
 
+autocmd('TermOpen', {
+  desc = 'Open man pages in right split',
+  callback = function()
+    vim.cmd('wincmd L')
+  end
+})
+
 autocmd('BufReadPost', {
   desc = 'Go to the last location when opening a buffer',
   callback = function(args)
