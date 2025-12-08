@@ -12,7 +12,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 -- high scrolloff minimizes vertical scanning with eyes
 -- if scrolloff is too high, we get screen jank when doing jkjkjkjk
-vim.opt.scrolloff = 16
+vim.opt.scrolloff = 20
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -37,7 +37,7 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 500
 
-vim.opt.colorcolumn = { '90' }
+vim.opt.colorcolumn = { '100' }
 vim.opt.signcolumn = 'yes'
 
 vim.o.winborder = 'rounded'
@@ -51,4 +51,4 @@ vim.o.clipboard = 'unnamedplus'
 vim.opt.isfname:append('@-@') --include @ as a valid filename character
 require('vim._extui').enable({})
 
-vim.o.iskeyword = '@,48-57,_,192-255,-' -- Don't delimit `word` textobjects on dash
+--vim.o.iskeyword = '@,48-57,_,192-255,-' -- Don't delimit `word` textobjects on dash
