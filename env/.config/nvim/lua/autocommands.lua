@@ -70,6 +70,22 @@ autocmd('TermOpen', {
   end
 })
 
+autocmd('BufNewFile', {
+  desc = 'Create missing parent directories automatically',
+  callback = function(args)
+    autocmd('BufWritePre', {
+      buffer = args.buf,
+      once = true,
+      callback = function()
+        local dir = vim.fn.expand('%:h')
+        if vim.fn.isdirectory(dir) == 0 then
+          vim.fn.mkdir(dir, 'p')
+        end
+      end
+    })
+  end
+})
+
 autocmd('BufReadPost', {
   desc = 'Go to the last location when opening a buffer',
   callback = function(args)
