@@ -31,7 +31,7 @@ autocmd('FileType', {
 })
 
 autocmd('FileType', {
-  desc = 'Disable relative numver in qflist',
+  desc = 'Disable relative number in qflist',
   pattern = 'qf',
   command = 'setlocal nornu',
 })
@@ -55,7 +55,7 @@ autocmd('FileType', {
     end
 })
 
-autocmd('BufNew', {
+autocmd('BufWinEnter', {
   desc = 'Open help docs in right split',
   pattern = '*.txt',
   callback = function()
