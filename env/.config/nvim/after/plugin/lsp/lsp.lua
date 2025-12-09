@@ -6,7 +6,7 @@ vim.lsp.config('*', {
 vim.lsp.enable({
   'lua_ls',
   'clangd',
-  'eslint',
+  'quick_lint_js',
   'ts_ls',
   'jsonls',
   'gopls',
