@@ -14,7 +14,7 @@ vim.lsp.enable({
 
 -- Global diagnostics configuration
 vim.diagnostic.config({
-  underline = false,
+  underline = true,
   virtual_text = {
     enabled = true,
     virt_text_pos = 'eol',
