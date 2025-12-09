@@ -54,8 +54,6 @@ autocmd('LspAttach', {
     map('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
     map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     map('<leader>vws', telescope_builtin.lsp_workspace_symbols, '[V]iew [W]orkspace [S]ymbols')
-    -- map('tp', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
-    -- map('tn', function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
     map('[d', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
     map(']d', function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
     map('vrr', telescope_builtin.lsp_references, '[V]iew [RR]eferences')
