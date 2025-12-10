@@ -17,3 +17,5 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export ZDOTDIR="$HOME/dev/env/.config/zsh" # TODO: ensure that this isn't making a dir with all file permissions
 export SHELL_SESSIONS_DISABLE=1
 . "$HOME/.cargo/env"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
