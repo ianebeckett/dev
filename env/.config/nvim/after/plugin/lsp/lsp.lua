@@ -14,22 +14,25 @@ vim.lsp.enable({
 
 -- Global diagnostics configuration
 vim.diagnostic.config({
-  underline = true,
-  virtual_text = {
-    enabled = true,
-    virt_text_pos = 'eol',
-  },
-  signs = true,
-  float = {
-    focusable = false,
-    style = 'minimal',
-    border = 'rounded',
-    source = true,
-    header = '',
-    prefix = '',
-  },
-  update_in_insert = true,
-  severity_sort = true,
+    underline = true,
+    virtual_text = {
+        enabled = true,
+        virt_text_pos = 'eol',
+    },
+    signs = true,
+    float = {
+        focusable = false,
+        border = 'rounded',
+        header = '',
+        source = false,
+        format = function(diagnostic)
+            return string.format('%s\n%s: %s',
+            diagnostic.message, diagnostic.source, diagnostic.code)
+        end,
+        prefix = '',
+    },
+    update_in_insert = true,
+    severity_sort = true,
 })
 
 local autocmd = vim.api.nvim_create_autocmd
