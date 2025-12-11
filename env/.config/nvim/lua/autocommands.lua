@@ -89,6 +89,16 @@ autocmd('BufNewFile', {
 autocmd('BufReadPost', {
   desc = 'Go to the last location when opening a buffer',
   callback = function(args)
+    -- local excludes = {
+    --     '.*%.git/COMMIT_EDITMSG',
+    --     '.*%.git/rebase%-merge/git%-rebase%-todo',
+    -- }
+    -- local buf_name = vim.api.nvim_buf_get_name(args.buf)
+    -- for _, pattern in ipairs(excludes) do
+    --     if string.match(buf_name, pattern) then
+    --       return
+    --     end
+    -- end
     local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
     local line_count = vim.api.nvim_buf_line_count(args.buf)
     if mark[1] > 0 and mark[1] <= line_count then
