@@ -1,20 +1,16 @@
---toggle line comment: gcc
---toggle block comment: vapgc
---indent lines: =
-
-local map = function(keys, func, desc, mode)
-  mode = mode or 'n'
-  vim.keymap.set(mode, keys, func, { desc = desc })
-end
-
 vim.keymap.set('i', '<C-c>', '<esc>')
 vim.keymap.set('n', 'Q', '<nop>')
 
--- Ctrl+BS sends keycode ^H. depends on similar binding in tmux
+-- Ctrl+BS sends keycode ^H for deleting words in insert mode. depends on similar binding in tmux
 vim.keymap.set('i', '<C-H>', '<C-W>')
 
 --netrw window management
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)  --'new' window, or 'netrw'
+
+--vim split window management
+--if the cursor is not moving, you probably didn't press the keys quickly enough
+vim.keymap.set('n', '<C-w>v', '<C-w>v<C-w>l', { desc = 'Move cursor when splitting window'})
+vim.keymap.set('n', '<C-w>s', '<C-w>s<C-w>j', { desc = 'Move cursor when splitting window'})
 
 --centered cursor for half-page jumping
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
