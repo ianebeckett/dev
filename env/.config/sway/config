@@ -16,7 +16,6 @@ assign [title="GNU Image Manipulation Program"] workspace 6
 exec --no-startup-id waybar
 workspace 2
 exec --no-startup-id ghostty
-workspace 3
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
