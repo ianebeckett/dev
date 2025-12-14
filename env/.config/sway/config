@@ -118,8 +118,9 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 default_orientation horizontal
 
-bindsym $mod+b splith
-bindsym $mod+v splitv
+# swapped to match my intuition of "vertical split" from using vim and tmux
+bindsym $mod+v splith
+bindsym $mod+b splitv
 
 bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
