@@ -24,14 +24,20 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # start a terminal
 bindsym $mod+Return exec ghostty
 
-# kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+d exec "wofi -i --show=drun"
+bindsym $mod+v splith ; exec "wofi -i --show=drun"
+bindsym $mod+b splitv ; exec "wofi -i --show=drun"
+
+bindsym $mod+q kill
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Shift+space floating toggle
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
 
 # change focus
 bindsym $mod+h focus left
@@ -57,14 +63,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+q kill
-
-bindsym $mod+d exec "wofi -i --show=drun"
-bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+space floating toggle
-# make one for file manager
-
-# I don't know what this is for, but I don't want it to happen accidentally
 bindsym $mod+r mode "resize"
 
 # change container layout (stacked, tabbed, toggle split)
@@ -117,10 +115,6 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 default_orientation horizontal
-
-# swapped to match my intuition of "vertical split" from using vim and tmux
-bindsym $mod+v splith
-bindsym $mod+b splitv
 
 bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
