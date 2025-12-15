@@ -12,3 +12,5 @@
     sort=-committerdate
 [tag]
     sort=-version:refname
+[advice]
+	defaultBranchName = false
