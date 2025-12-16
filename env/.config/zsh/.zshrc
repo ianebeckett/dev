@@ -29,6 +29,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # fzf for back-i-search (must be sourced after completions)
+export FZF_DEFAULT_OPTS="--no-separator"
 source $HOME/.config/zsh/fzf.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
