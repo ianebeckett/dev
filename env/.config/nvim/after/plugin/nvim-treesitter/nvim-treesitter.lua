@@ -1,46 +1,57 @@
--- require 'nvim-treesitter'.setup {
---   -- A list of parser names, or 'all' (the first seven MUST always be installed)
---   -- for list of available parsers see https://github.com/nvim-treesitter/nvim-treesitter
---   ensure_installed = {
---     'c',
---     'lua',
---     'vim',
---     'vimdoc',
---     'query',
---     'markdown',
---     'markdown_inline',
---     'cpp',
---     'python',
---     'json',
---     'javascript',
---     'typescript',
---   },
---
---   -- Install parsers synchronously (only applied to `ensure_installed`)
---   sync_install = false,
---
---   -- Automatically install missing parsers when entering buffer
---   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
---   auto_install = true,
---
---   -- List of parsers to ignore installing (or 'all')
---   -- ignore_install = { 'javascript' },
---
---   highlight = {
---     enable = true,
---
---     --use this for didsabling in big files?
---     disable = function(lang, buf)
---         local max_filesize = 100 * 1024 -- 100 KB
---         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
---         if ok and stats and stats.size > max_filesize then
---             return true
---         end
---     end,
---
---     incremental_selection = { enable = true },
---     textobjects = { enable = true },
---   },
--- }
---
--- local ts_utils = require 'nvim-treesitter.ts_utils'
+local ts = require('nvim-treesitter')
+
+ts.install({
+    'bash',
+    'c',
+    'cpp',
+    'git_config',
+    'git_rebase',
+    'gitcommit',
+    'gitignore',
+    'html',
+    'json',
+    'javascript',
+    'latex',
+    'lua',
+    'make',
+    'markdown',
+    'markdown_inline',
+    'python',
+    'query',
+    'regex',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'xml',
+})
+
+local ignore_filetypes = {
+  'checkhealth',
+  'mason',
+}
+
+local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
+
+-- Auto-install parsers and enable highlighting on FileType
+vim.api.nvim_create_autocmd('FileType', {
+  group = group,
+  desc = 'Enable treesitter highlighting and indentation',
+  callback = function(event)
+    if vim.tbl_contains(ignore_filetypes, event.match) then
+      return
+    end
+
+    local lang = vim.treesitter.language.get_lang(event.match) or event.match
+    local buf = event.buf
+
+    -- Start highlighting immediately (works if parser exists)
+    pcall(vim.treesitter.start, buf, lang)
+
+    -- Enable treesitter indentation
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+    -- Install missing parsers (async, no-op if already installed)
+    ts.install({ lang })
+  end,
+})

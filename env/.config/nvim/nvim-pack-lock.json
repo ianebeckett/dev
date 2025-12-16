@@ -30,6 +30,10 @@
       "rev": "eb3ff49",
       "src": "https://github.com/rose-pine/neovim.git"
     },
+    "nvim-treesitter": {
+      "rev": "d3218d988f72ed34414959c9ccd802d393432d6e",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
+    },
     "plenary.nvim": {
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
