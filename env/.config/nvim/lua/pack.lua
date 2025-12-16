@@ -8,10 +8,10 @@ vim.pack.add(
         --colorschemes
         'https://github.com/rose-pine/neovim.git',
         'https://github.com/lewis6991/gitsigns.nvim.git',
-        {
-            src = 'https://github.com/nvim-treesitter/nvim-treesitter.git',
-            version = 'master',
-        },
+        -- {
+        --     src = 'https://github.com/nvim-treesitter/nvim-treesitter.git',
+        --     version = 'master',
+        -- },
         'https://github.com/nvim-lua/plenary.nvim.git',
         { --depends on plenary, ripgrep, fd
             src = 'https://github.com/nvim-telescope/telescope.nvim.git',
