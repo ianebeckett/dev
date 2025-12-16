@@ -46,13 +46,14 @@ telescope.setup {
 vim.keymap.set('n', '<leader>pws', function() local word = vim.fn.expand("<cword>") builtin.grep_string({ search = word }) end)
 vim.keymap.set('n', '<leader>pWs', function() local word = vim.fn.expand("<cWORD>") builtin.grep_string({ search = word }) end)
 vim.keymap.set('n', '<leader>gs', function() builtin.grep_string({ search = vim.fn.input("Grep > ") }) end)
-vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = 'search [p]roject for [s]tring' })
+vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = 'grep [p]roject for [s]tring' })
 
 --finds
-vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = 'index neo[v]im [h]elp docs' })
-vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'index [p]roject [f]iles' })
-vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'index [g]it [f]iles' })
-vim.keymap.set('n', '<leader>gl', builtin.git_commits, { desc = 'index [g]it [l]og' })
-vim.keymap.set('n', '<leader>gb', builtin.git_bcommits, { desc = 'index [g]it log for the current [b]uffer' })
+vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = 'neo[v]im [h]elp docs' })
+vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[p]roject [f]iles' })
+vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = '[g]it [f]iles' })
+vim.keymap.set('n', '<leader>gl', builtin.git_commits, { desc = '[g]it [l]og' })
+vim.keymap.set('n', '<leader>gb', builtin.git_bcommits, { desc = '[g]it log for the current [b]uffer' })
+vim.keymap.set('n', '<leader>bs', builtin.treesitter, { desc = '[B]uffer [S]ymbols' })
 
 vim.keymap.set('n', '<leader>qf', builtin.quickfix, { desc = '[Q]uick[Fix]' })
