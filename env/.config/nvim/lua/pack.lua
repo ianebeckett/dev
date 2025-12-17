@@ -5,11 +5,14 @@
 -- it will reinstall unless it's been removed from vim.pack.add()
 vim.pack.add(
     {
-        --colorschemes
         'https://github.com/rose-pine/neovim.git',
         'https://github.com/rebelot/kanagawa.nvim.git',
         'https://github.com/lewis6991/gitsigns.nvim.git',
         'https://github.com/nvim-treesitter/nvim-treesitter.git',
+        {
+            src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git',
+            version = 'main',
+        },
         'https://github.com/nvim-lua/plenary.nvim.git',
         { --depends on plenary, ripgrep, fd
             src = 'https://github.com/nvim-telescope/telescope.nvim.git',
