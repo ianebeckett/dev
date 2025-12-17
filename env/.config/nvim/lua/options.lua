@@ -51,4 +51,13 @@ vim.o.clipboard = 'unnamedplus'
 vim.opt.isfname:append('@-@') --include @ as a valid filename character
 require('vim._extui').enable({})
 
---vim.o.iskeyword = '@,48-57,_,192-255,-' -- Don't delimit `word` textobjects on dash
+-- add paths for gf
+vim.opt.path:append({
+    '/usr/include/c++/13',
+    '/usr/include/x86_64-linux-gnu/c++/13',
+    '/usr/include/c++/13/backward',
+    '/usr/lib/gcc/x86_64-linux-gnu/13/include',
+    '/usr/local/include',
+    '/usr/include/x86_64-linux-gnu',
+    '/usr/include',
+})
