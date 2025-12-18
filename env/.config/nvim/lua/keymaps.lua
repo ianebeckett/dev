@@ -4,9 +4,6 @@ vim.keymap.set('n', 'Q', '<nop>')
 -- Ctrl+BS sends keycode ^H for deleting words in insert mode. depends on similar binding in tmux
 vim.keymap.set('i', '<C-H>', '<C-W>')
 
---netrw window management
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)  --'new' window, or 'netrw'
-
 --vim split window management
 --if the cursor is not moving, you probably didn't press the keys quickly enough
 vim.keymap.set('n', '<C-w>v', '<C-w>v<C-w>l', { desc = 'Move cursor when splitting window'})
