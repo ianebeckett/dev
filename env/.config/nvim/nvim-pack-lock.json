@@ -26,10 +26,6 @@
       "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
       "src": "https://github.com/rebelot/kanagawa.nvim.git"
     },
-    "mini.files": {
-      "rev": "22c64f010eef047ed270e29e7cc266cd4740787e",
-      "src": "https://github.com/nvim-mini/mini.files.git"
-    },
     "neovim": {
       "rev": "eb3ff49",
       "src": "https://github.com/rose-pine/neovim.git"
