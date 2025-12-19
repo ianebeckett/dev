@@ -19,6 +19,7 @@ ts.install({
     'python',
     'query',
     'regex',
+    'rust',
     'tsx',
     'typescript',
     'vim',

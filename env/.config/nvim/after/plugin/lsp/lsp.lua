@@ -10,6 +10,7 @@ vim.lsp.enable({
   'ts_ls',
   'jsonls',
   'gopls',
+  'rust-analyzer',
 });
 
 -- Global diagnostics configuration
