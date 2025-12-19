@@ -22,7 +22,7 @@ vim.diagnostic.config({
     },
     signs = true,
     float = {
-        focusable = false,
+        focusable = true,
         border = 'rounded',
         header = '',
         source = false,
@@ -59,7 +59,7 @@ autocmd('LspAttach', {
     -- gi is "return to position where I last exited insert mode and return to insert mode"
     map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     map('<leader>vws', telescope_builtin.lsp_workspace_symbols, '[V]iew [W]orkspace [S]ymbols')
-    map('<leader>d', vim.diagnostic.open_float, 'show diagnostic')
+    map('<leader>dv', vim.diagnostic.open_float, 'show diagnostic')
     map('[d', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
     map(']d', function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
     map('vrr', telescope_builtin.lsp_references, '[V]iew [RR]eferences')

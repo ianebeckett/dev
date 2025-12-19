@@ -1,3 +1,5 @@
+local TERM_BG_COLOR = "#161616"
+
 require('rose-pine').setup({
   variant = 'moon',      -- auto, main, moon, or dawn
   dark_variant = 'moon', -- main, moon, or dawn
@@ -6,7 +8,7 @@ require('rose-pine').setup({
 
   enable = {
     terminal = true,
-    legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+    legacy_highlights = false, -- Improve compatibility for previous versions of Neovim
     migrations = true,        -- Handle deprecated options automatically
   },
 
@@ -19,7 +21,7 @@ require('rose-pine').setup({
   groups = {
     border = 'muted',
     link = 'iris',
-    panel = 'surface',
+    panel = 'surface', -- floating window bg, requires transparency == false
 
     error = 'love',
     warn = 'gold',
@@ -46,27 +48,26 @@ require('rose-pine').setup({
     h5 = 'pine',
     h6 = 'foam',
   },
-
-  palette = {
-    -- Override the builtin palette per variant
-    main = {
-      base = '#18191a',
-      surface = '#333333',
-      overlay = '#363738',
-      --muted = '#363738',
-      --subtle = '#ff00000',
-      --text = '#ff00000',
-      --love = '#ff00000',
-      --gold = '#ff00000',
-      --rose = '#ff00000',
-      --pine = '#ff00000',
-      --foam = '#ff00000',
-      --iris = '#ff00000',
-      --highlight_low = '#ff00000',
-      --highlight_med = '#ff00000',
-      --highlight_high = '#ff00000',
+    palette = {
+        -- Override the builtin palette per variant
+        moon = {
+            base = TERM_BG_COLOR,
+            surface = '#222222',
+            --overlay = '#ffffff',
+            --muted = '#363738',
+            --subtle = '#ff00000',
+            --text = '#ff00000',
+            --love = '#ff00000',
+            --gold = '#ff00000',
+            --rose = '#ff00000',
+            --pine = '#ff00000',
+            --foam = '#ff00000',
+            --iris = '#ff00000',
+            --highlight_low = '#ff00000',
+            --highlight_med = '#ff00000',
+            --highlight_high = '#ff00000',
+        },
     },
-  },
 
   -- NOTE: Highlight groups are extended (merged) by default. Disable this
   -- per group via `inherit = false`

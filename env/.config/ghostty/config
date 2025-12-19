@@ -48,7 +48,7 @@
 #
 # ============================================================================
 
-background = #1b1b1b
+background = #161616
 theme = Brogrammer
 cursor-style-blink = true
 font-style-italic=false
