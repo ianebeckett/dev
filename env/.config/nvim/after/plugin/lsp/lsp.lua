@@ -1,3 +1,6 @@
+--lsp logs to ~/.local/state/nvim/lsp.log
+--vim.lsp.log.set_level('debug')
+
 vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(),
   root_markers = { '.git/', },

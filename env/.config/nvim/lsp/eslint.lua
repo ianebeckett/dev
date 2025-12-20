@@ -1,6 +1,3 @@
---lsp logs to ~/.local/state/nvim/lsp.log
---vim.lsp.log.set_level('debug') require('vim.lsp.log').set_format_func(vim.inspect)
-
 --- See [vscode-eslint](https://github.com/microsoft/vscode-eslint/blob/55871979d7af184bf09af491b6ea35ebd56822cf/server/src/eslintServer.ts#L216-L229) for configuration options.
 
 --- Messages handled in lspconfig: `eslint/openDoc`, `eslint/confirmESLintExecution`, `eslint/probeFailed`, `eslint/noLibrary`
