@@ -1,12 +1,12 @@
 {
   "plugins": {
     "LuaSnip": {
-      "rev": "3732756",
+      "rev": "5a1e39223db9a0498024a77b8441169d260c8c25",
       "src": "https://github.com/L3MON4D3/LuaSnip.git",
       "version": "2.4.1 - 3.0.0"
     },
     "blink.cmp": {
-      "rev": "40380e7",
+      "rev": "37ce860d8eeeee92d60b9a72db21e369d97e6a75",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
     "friendly-snippets": {
@@ -14,7 +14,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "gitsigns.nvim": {
-      "rev": "20ad441",
+      "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "harpoon": {
@@ -27,15 +27,15 @@
       "src": "https://github.com/rebelot/kanagawa.nvim.git"
     },
     "neovim": {
-      "rev": "eb3ff49",
+      "rev": "cf2a288696b03d0934da713d66c6d71557b5c997",
       "src": "https://github.com/rose-pine/neovim.git"
     },
     "nvim-treesitter": {
-      "rev": "d3218d988f72ed34414959c9ccd802d393432d6e",
+      "rev": "8cdffc6d334731ce3703b6d870a5a34fd878208a",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "0d7c800fadcfe2d33089f5726cb8907fc846eece",
+      "rev": "e91c585ac0ee760198dabc1fad2e6227effdcd5e",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git",
       "version": "'main'"
     },
@@ -44,7 +44,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim.git"
     },
     "telescope.nvim": {
-      "rev": "0294ae3",
+      "rev": "e69b434b968a33815e2f02a5c7bd7b8dd4c7d4b2",
       "src": "https://github.com/nvim-telescope/telescope.nvim.git",
       "version": "0.2.0 - 0.3.0"
     }

@@ -162,3 +162,17 @@ autocmd('CmdlineLeave', {
     vim.o.hlsearch = false
   end,
 })
+
+autocmd('InsertEnter', {
+    desc = 'Use absolute line numbers in insert mode',
+    callback = function()
+        vim.opt.relativenumber = false
+    end,
+})
+
+autocmd('InsertLeave', {
+    desc = 'Return to relative line numbers in normal mode',
+    callback = function()
+        vim.opt.relativenumber = true
+    end,
+})
