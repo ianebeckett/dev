@@ -31,12 +31,6 @@ autocmd('FileType', {
 })
 
 autocmd('FileType', {
-  desc = 'Disable relative number in qflist',
-  pattern = 'qf',
-  command = 'setlocal nornu',
-})
-
-autocmd('FileType', {
   desc = 'Fuzzy-find manpages with Telescope',
   pattern = 'man',
   callback = function()
