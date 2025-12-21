@@ -25,12 +25,6 @@ autocmd('FileType', {
 })
 
 autocmd('FileType', {
-  desc = 'Disable cursorline in netrw',
-  pattern = 'netrw',
-  command = 'setlocal nocursorline',
-})
-
-autocmd('FileType', {
   desc = 'Fuzzy-find manpages with Telescope',
   pattern = 'man',
   callback = function()
