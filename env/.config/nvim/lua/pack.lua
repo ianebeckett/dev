@@ -28,6 +28,7 @@ vim.pack.add(
             version = vim.version.range( '^2.4.1'),
         },
         'https://github.com/rafamadriz/friendly-snippets',
+        'https://github.com/lervag/vimtex.git',
     },
     { confirm = false }
 )

@@ -4,6 +4,7 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_winsize = 25
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.opt.guicursor = ""
 vim.opt.encoding = 'utf-8'
 vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'

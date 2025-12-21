@@ -47,6 +47,10 @@
       "rev": "e69b434b968a33815e2f02a5c7bd7b8dd4c7d4b2",
       "src": "https://github.com/nvim-telescope/telescope.nvim.git",
       "version": "0.2.0 - 0.3.0"
+    },
+    "vimtex": {
+      "rev": "c6e2162066db4ceb44774f9bfb79fe97a4c25e71",
+      "src": "https://github.com/lervag/vimtex.git"
     }
   }
 }
