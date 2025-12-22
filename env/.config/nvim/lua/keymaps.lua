@@ -12,10 +12,12 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)  --'new' window, or 'netrw'
 vim.keymap.set('n', '<C-w>v', '<C-w>v<C-w>l', { desc = 'Move cursor when splitting window'})
 vim.keymap.set('n', '<C-w>s', '<C-w>s<C-w>j', { desc = 'Move cursor when splitting window'})
 
---centered cursor for half-page jumping
+--center cursor after jumping
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
---...and for jumping between search results
+vim.keymap.set('n', '<C-o>', '<C-o>zz')
+vim.keymap.set('n', '<C-i>', '<C-i>zz')
+vim.keymap.set('n', '<C-]>', '<C-d>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
