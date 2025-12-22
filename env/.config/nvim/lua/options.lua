@@ -24,6 +24,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+vim.opt.showbreak = "~ "
 
 --use undofile and undotree intead of swapfile
 vim.opt.swapfile = false

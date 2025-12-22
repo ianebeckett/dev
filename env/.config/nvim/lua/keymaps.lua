@@ -21,9 +21,6 @@ vim.keymap.set('n', '<C-]>', '<C-d>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
---delete without overwriting clipboard
-vim.keymap.set({ 'n', 'v' }, '<leader>d', '\'_d')
-
 --replace selected text with clipboard contents
 --try with ve<leader>p to replace a word
 vim.keymap.set('x', '<leader>p', '\'_dP')
@@ -56,6 +53,9 @@ vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
 
 vim.keymap.set('n', '<C-b>', '<C-a>', { desc = 'Increment number' })
 
+--delete without overwriting clipboard
+--vim.keymap.set({ 'n', 'v' }, '<leader>d', '\'_d')
+
 function Date()
     local row = vim.api.nvim_get_current_line()
     local col = vim.api.nvim_win_get_cursor(0)[2]
@@ -63,7 +63,7 @@ function Date()
     vim.api.nvim_set_current_line(date)
     vim.api.nvim_feedkeys('o', 'n', true)
 end
-vim.keymap.set('n', '<leader>d', '<cmd>lua Date()<cr>', { desc = 'insert [d]ate' })
+vim.keymap.set('n', '<leader>dl', '<cmd>lua Date()<cr>', { desc = '[d]ate [l]ine' })
 
 -- stay in in visual mode when adjusting indentation
 vim.keymap.set("v", "<", "<gv")
@@ -94,10 +94,10 @@ vim.keymap.set("n", "<leader>yf", function()
 end, { desc = "Yank the current file path" })
 
 -- vim.keymap.set("n", "<leader>tc", function()
--- 	local cur_colorschema = vim.trim(vim.fn.execute("colorscheme"))
--- 	if cur_colorschema == "cobalt" then
+-- 	local colorscheme = vim.trim(vim.fn.execute("colorscheme"))
+-- 	if colorscheme == "rose-pine" then
 -- 		vim.cmd.colorscheme("tokyonight-day")
--- 	elseif cur_colorschema == "tokyonight-day" then
+-- 	elseif colorschema == "tokyonight-day" then
 -- 		vim.cmd.colorscheme("cobalt")
 -- 	end
--- end, { desc = "Toggle light/dark colorscheme" })
+-- end, { desc = "[T]oggle [c]olorscheme" })

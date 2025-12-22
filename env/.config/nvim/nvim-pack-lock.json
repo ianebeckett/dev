@@ -6,7 +6,7 @@
       "version": "2.4.1 - 3.0.0"
     },
     "blink.cmp": {
-      "rev": "37ce860d8eeeee92d60b9a72db21e369d97e6a75",
+      "rev": "ceed1545929b74cf79b5a8950e7c415683bf690b",
       "src": "https://github.com/saghen/blink.cmp.git"
     },
     "friendly-snippets": {
@@ -27,7 +27,7 @@
       "src": "https://github.com/rose-pine/neovim.git"
     },
     "nvim-treesitter": {
-      "rev": "8cdffc6d334731ce3703b6d870a5a34fd878208a",
+      "rev": "6e42d823ce0a5a76180c473c119c7677738a09d1",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
     },
     "nvim-treesitter-textobjects": {
@@ -45,7 +45,7 @@
       "version": "0.2.0 - 0.3.0"
     },
     "vimtex": {
-      "rev": "c6e2162066db4ceb44774f9bfb79fe97a4c25e71",
+      "rev": "f5c37462c690da9a0d05cd12a7b9595b10b56200",
       "src": "https://github.com/lervag/vimtex.git"
     }
   }
