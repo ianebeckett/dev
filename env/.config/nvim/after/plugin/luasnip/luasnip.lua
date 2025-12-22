@@ -17,12 +17,16 @@ ls.setup({
 -- https://ejmastnak.com/tutorials/vim-latex/luasnip/#what-snippets-do
 vim.cmd[[
     imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
+    smap <silent><expr> <Tab> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Tab>'
     imap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
     smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
-    smap <silent><expr> <Tab> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Tab>'
-    smap <silent><expr> <C-p> luasnip#choice_active() ? '<Plug>luasnip-prev-choice' : '<C-p>'
     imap <silent><expr> <C-n> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-n>'
+    smap <silent><expr> <C-p> luasnip#choice_active() ? '<Plug>luasnip-prev-choice' : '<C-p>'
 ]]
+
+--useful for jumping to end of nested snippets
+--the silly jump to the line start via ^ is a hack to ensure cursor exits a possible UltiSnips snippet scope
+vim.keymap.set('n', '<C-L>', '<ESC>^$a')
 
 -- ls.filetype_extend("javascript", { "jsdoc" })
 -- vim.keymap.set({"i"}, "<C-s>e", function() ls.expand() end, {silent = true})
