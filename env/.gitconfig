@@ -1,13 +1,23 @@
 [core]
-    editor = "nvim"
-	pager = /usr/bin/less
+    editor = nvim
+	pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  line-numbers = true
+  syntax-theme = gruvbox
+  side-by-side = true
 [diff]
 	colorMoved = zebra
+[merge]
+    conflictStyle = zdiff3
 [user]
     name = Ian Beckett
     email = ianedwardbeckett@gmail.com
 [pull]
-	rebase = false
+	rebase = true
+[rebase]
+  autoStash = true
 [branch]
     sort=-committerdate
 [tag]
