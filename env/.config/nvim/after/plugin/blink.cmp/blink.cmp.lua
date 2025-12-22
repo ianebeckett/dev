@@ -28,10 +28,10 @@ require('blink.cmp').setup {
     -- so you don't need to define them in `sources.providers`
     default = { 'lsp', 'snippets', 'path' },
     per_filetype = {
-      sql = { 'dadbod' },
+      --sql = { 'dadbod' },
     },
     providers = {
-      dadbod = { module = "vim_dadbod_completion.blink" },
+      --dadbod = { module = "vim_dadbod_completion.blink" },
     },
   },
 
