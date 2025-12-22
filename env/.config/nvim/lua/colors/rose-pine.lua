@@ -52,7 +52,7 @@ require('rose-pine').setup({
         -- Override the builtin palette per variant
         moon = {
             base = TERM_BG_COLOR,
-            surface = '#222222',
+            --surface = '#222222',
             --overlay = '#ffffff',
             --muted = '#363738',
             --subtle = '#ff00000',

@@ -35,14 +35,16 @@ vim.keymap.set('n', '<leader>y', '\'+Y')
 --quickfix list navigation
 vim.keymap.set('n', '<C-j>', '<Cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-k>', '<Cmd>cprev<CR>zz')
---jumplist navigation: C-i and C-o are prev and next
---location list navigation (none)
 
 --edit all instances of cursor word in file
 vim.keymap.set('n', '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>')
 
 --chmod +x current file without leaving vim
-vim.keymap.set('n', '<leader>x', '<Cmd>!chmod +x %<cr>', { silent = true })
+vim.keymap.set('n', '<leader>ch', '<Cmd>!chmod +x %<cr>', { silent = true })
+
+-- Source stuff
+vim.keymap.set("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
 vim.keymap.set('n', '<C-f>', '<Cmd>silent !tmux neww tmux-sessionizer<CR>')
 vim.keymap.set('n', '<C-t>', '<Cmd>silent !tmux neww tmux-todo-finder<CR>')
@@ -62,3 +64,40 @@ function Date()
     vim.api.nvim_feedkeys('o', 'n', true)
 end
 vim.keymap.set('n', '<leader>d', '<cmd>lua Date()<cr>', { desc = 'insert [d]ate' })
+
+-- stay in in visual mode when adjusting indentation
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+-- --these could be useful for git diffs
+-- set("n", "<M-j>", function()
+--   if vim.opt.diff:get() then
+--     vim.cmd [[normal! ]c]]
+--   else
+--     vim.cmd [[m .+1<CR>==]]
+--   end
+-- end)
+
+-- set("n", "<M-k>", function()
+--   if vim.opt.diff:get() then
+--     vim.cmd [[normal! [c]]
+--   else
+--     vim.cmd [[m .-2<CR>==]]
+--   end
+-- end)
+
+-- Use a vertical split instead of the default horizontal split for <c-w><c-f>
+vim.keymap.set("n", "<c-w><c-f>", [[:vsplit<cr>gF]], { desc = "Open file under cursor" })
+
+vim.keymap.set("n", "<leader>yf", function()
+	vim.fn.setreg("+", vim.fn.expand("%"))
+end, { desc = "Yank the current file path" })
+
+-- vim.keymap.set("n", "<leader>tc", function()
+-- 	local cur_colorschema = vim.trim(vim.fn.execute("colorscheme"))
+-- 	if cur_colorschema == "cobalt" then
+-- 		vim.cmd.colorscheme("tokyonight-day")
+-- 	elseif cur_colorschema == "tokyonight-day" then
+-- 		vim.cmd.colorscheme("cobalt")
+-- 	end
+-- end, { desc = "Toggle light/dark colorscheme" })

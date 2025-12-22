@@ -36,10 +36,19 @@ autocmd('FileType', {
 })
 
 autocmd('FileType', {
-    desc = 'Disable completion in specific buffers',
+    desc = 'Set options for text, markdown, git commit',
     pattern = {'text', 'markdown', 'gitcommit'},
     callback = function()
         vim.b.completion = false
+		vim.opt_local.wrap = true
+    end
+})
+
+autocmd('FileType', {
+    desc = 'Set options for text, git commit',
+    pattern = {'text', 'gitcommit'},
+    callback = function()
+        vim.opt_local.spell = true
     end
 })
 
@@ -52,10 +61,16 @@ autocmd('BufWinEnter', {
 })
 
 autocmd('TermOpen', {
-  desc = 'Open man pages in right split',
+  desc = 'Open terminal and man pages in right split',
   callback = function()
     vim.cmd('wincmd L')
   end
+})
+
+autocmd("VimResized", {
+	desc = "Auto-resize splits",
+	pattern = "*",
+	command = "wincmd =",
 })
 
 autocmd('BufNewFile', {

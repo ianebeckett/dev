@@ -5,6 +5,7 @@ vim.g.netrw_winsize = 25
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+vim.opt.conceallevel = 0
 vim.opt.guicursor = ""
 vim.opt.encoding = 'utf-8'
 vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'
@@ -46,8 +47,8 @@ vim.o.winborder = 'rounded'
 --NOTE: use shortmess when you remember what command you were trying to do
 --without 'hit enter' prompt
 
--- Sync clipboard between the OS and Neovim.
-vim.o.clipboard = 'unnamedplus'
+-- Scheduling as this can impact startup time
+vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 vim.opt.isfname:append('@-@') --include @ as a valid filename character
 require('vim._extui').enable({})
