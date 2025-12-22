@@ -1,7 +1,9 @@
+local ls = require("luasnip")
 require('blink.cmp').setup {
 
   completion = {
-    menu = { auto_show = true,
+    menu = {
+      auto_show = true,
       draw = {
         columns = { { "label", "label_description", gap = 1 }, { "source_name", gap = 1, "kind" } },
       },
@@ -21,6 +23,25 @@ require('blink.cmp').setup {
     ['<C-p>'] = { 'show', 'select_prev' },
     ['<C-d>'] = { 'show', 'scroll_documentation_down' },
     ['<C-u>'] = { 'show', 'scroll_documentation_up' },
+
+    ['<c-k>'] = {function()
+            if ls.expand_or_jumpable(1) then
+                ls.expand_or_jump()
+            end
+        end, {silent = true}},
+
+    ['<c-j>'] = {function()
+        if ls.jumpable(-1) then
+            ls.jump(-1)
+        end
+    end, {silent = true}},
+
+    ["<c-l>"] = {function()
+        if ls.choice_active() then
+            ls.change_choice(1)
+        end
+    end}
+
   },
 
   sources = {
