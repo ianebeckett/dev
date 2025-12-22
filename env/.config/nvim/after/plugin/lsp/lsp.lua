@@ -55,7 +55,7 @@ autocmd('LspAttach', {
 
     -- use Telescope for any supported list that benefits from fuzzy finding
     local telescope_builtin = require('telescope.builtin')
-    map('<leader>f', function() vim.lsp.buf.format({ async = true }) end, '[F]ormat')
+    map('<leader>ff', function() vim.lsp.buf.format({ async = true }) end, '[F]ormat [F]ile')
     map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     map('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')

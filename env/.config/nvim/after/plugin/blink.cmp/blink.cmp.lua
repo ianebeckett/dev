@@ -1,4 +1,3 @@
-local ls = require("luasnip")
 require('blink.cmp').setup {
 
   completion = {
@@ -14,36 +13,15 @@ require('blink.cmp').setup {
     accept = { auto_brackets = { enabled = false }, },
   },
 
-  keymap = {
-    -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-    --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+  keymap = { -- these keymaps are for the completion menu only
     preset = 'default',
     ['<C-space>'] = {},
-    ['<C-n>'] = { 'show', 'select_next' },
-    ['<C-p>'] = { 'show', 'select_prev' },
-    ['<C-d>'] = { 'show', 'scroll_documentation_down' },
-    ['<C-u>'] = { 'show', 'scroll_documentation_up' },
-
-    ['<c-k>'] = {function()
-            if ls.expand_or_jumpable(1) then
-                ls.expand_or_jump()
-            end
-        end, {silent = true}},
-
-    ['<c-j>'] = {function()
-        if ls.jumpable(-1) then
-            ls.jump(-1)
-        end
-    end, {silent = true}},
-
-    ["<c-l>"] = {function()
-        if ls.choice_active() then
-            ls.change_choice(1)
-        end
-    end}
-
+    ['<C-n>'] = { 'select_next', 'fallback' },
+    ['<C-p>'] = { 'select_prev', 'fallback' },
+    ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+    ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+    ['<C-k>'] = { 'accept', 'fallback' } -- delegate snippets to luasnip
   },
-
   sources = {
     -- `lsp`, `buffer`, `snippets`, `path` and `omni` are built-in
     -- so you don't need to define them in `sources.providers`
