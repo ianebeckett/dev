@@ -51,7 +51,7 @@
 background = #161616
 theme = Brogrammer
 cursor-style-blink = true
-font-style-italic=false
+font-style-italic=true
 font-style-bold-italic=false
 # disable most ligatures: != == === << <<< <-- => ++
 font-feature = -calt, -liga, -dlig
