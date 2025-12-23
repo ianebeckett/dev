@@ -1,17 +1,14 @@
 local ls = require("luasnip")
 
-ls.config.set_config({
-    history = true,
+ls.setup({
+    update_events = "TextChanged,TextChangedI",
+    cut_selection_keys = '<Tab>', -- if not used, disable this by deleting the line
     enable_autosnippets = true,
-    updateevents = "TextChanged,TextChangedI",
-    store_selection_keys = '<Tab>',
 })
 
-ls.setup({
-    require("luasnip.loaders.from_vscode").lazy_load(),
-    require("luasnip.loaders.from_lua").lazy_load({
-        paths = { "$XDG_CONFIG_HOME/nvim/LuaSnip/", }
-    }),
+require("luasnip.loaders.from_vscode").load()
+require("luasnip.loaders.from_lua").load({
+    paths = { "~/dev/env/.config/nvim/LuaSnip/", }
 })
 
 vim.keymap.set({'i','s'}, "<c-k>", function()
