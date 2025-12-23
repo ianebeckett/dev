@@ -10,9 +10,7 @@ ls.config.set_config({
 ls.setup({
     require("luasnip.loaders.from_vscode").lazy_load(),
     require("luasnip.loaders.from_lua").lazy_load({
-        paths = {
-            "~/dev/env/.config/nvim/after/plugin/luasnip/",
-        }
+        paths = { "$XDG_CONFIG_HOME/nvim/LuaSnip/", }
     }),
 })
 

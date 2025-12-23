@@ -1,6 +1,3 @@
----@diagnostic disable: unused-local
-require("luasnip.session.snippet_collection").clear_snippets("all")
-
 local ls = require("luasnip")
 local s = ls.snippet
 local sn = ls.snippet_node
@@ -30,16 +27,13 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
-ls.add_snippets("all", {
-    s("hi",
-        { t("Hello, world!") }
-    ),
+require("luasnip.session.snippet_collection").clear_snippets("tex")
 
-    s("trig", {
-        i(1), t"text", i(2), t"text again", i(3)
-    }),
-
-    s("foo",
-        { t("Another snippet.") }
-    ),
-})
+return {
+    {
+        s({ trig = "hi" }, {
+            t("Hello, world!")
+        }),
+    },
+    {}
+}
