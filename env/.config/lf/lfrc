@@ -15,8 +15,7 @@ set preview_images true
 set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
 
 map <enter> open
-map D trash
-map delete trash
+map D :delete
 map c cut
 map R rename
 map r
