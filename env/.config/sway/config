@@ -121,9 +121,9 @@ bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # center version, for typing practice and layout testing
-bindsym $alt+6 exec pgrep wshowkeys && pkill wshowkeys || wshowkeys &
+# bindsym $alt+6 exec pgrep wshowkeys && pkill wshowkeys || wshowkeys &
 # bottom-left version, for presenting
-#bindsym $alt+6 exec pgrep wshowkeys && pkill wshowkeys || wshowkeys -a bottom -m 69 -a right -t 1 &
+bindsym $alt+6 exec pgrep wshowkeys && pkill wshowkeys || wshowkeys -a bottom -m 69 -a right -t 1 &
 
 #bindsym $alt+0 exec gammastep -O 4000 & # keeps causing shutdown
 

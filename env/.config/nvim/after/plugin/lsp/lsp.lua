@@ -66,8 +66,8 @@ autocmd('LspAttach', {
     map(']d', function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
     map('[d', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
     map('vrr', telescope_builtin.lsp_references, '[V]iew [RR]eferences')
-    map('vrn', vim.lsp.buf.rename, '[V]iew [R]e[N]ame')
-    map('vca', vim.lsp.buf.code_action, '[V]iew [R]e[N]ame')
+    map('vrn', vim.lsp.buf.rename, '[V]im [R]e[N]ame')
+    map('vca', vim.lsp.buf.code_action, '[V]im [C]ode [A]ction')
     map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls') -- has Telescope builtin
     map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls') -- has Telescope builtin
 

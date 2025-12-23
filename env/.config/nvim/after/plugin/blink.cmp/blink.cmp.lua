@@ -12,7 +12,6 @@ require('blink.cmp').setup {
     documentation = { auto_show = true, auto_show_delay_ms = 1 },
     accept = { auto_brackets = { enabled = false }, },
   },
-
   keymap = { -- these keymaps are for the completion menu only
     preset = 'default',
     ['<C-space>'] = {},
@@ -20,7 +19,7 @@ require('blink.cmp').setup {
     ['<C-p>'] = { 'select_prev', 'fallback' },
     ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
     ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-    ['<C-k>'] = { 'accept', 'fallback' } -- delegate snippets to luasnip
+    ['<C-k>'] = { 'fallback' } -- delegate snippets to luasnip
   },
   sources = {
     -- `lsp`, `buffer`, `snippets`, `path` and `omni` are built-in

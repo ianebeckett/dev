@@ -42,6 +42,20 @@ telescope.setup {
     },
 }
 
+
+-- other mnemonic keymap schemes
+-- "search..."
+-- sw - search word
+-- sW - search WORD
+-- sgs - search grep string
+-- ss - search string
+-- sh - search help
+-- s(p/f) - search (project/files)
+-- sgl - search git log
+-- sbc - search buffer commits
+-- sgb - search git blame
+-- s(ts/bs) - search (treesitter/buffer symbols)
+
 --greps, in order of specificity
 vim.keymap.set('n', '<leader>pws', function() local word = vim.fn.expand("<cword>") builtin.grep_string({ search = word }) end)
 vim.keymap.set('n', '<leader>pWs', function() local word = vim.fn.expand("<cWORD>") builtin.grep_string({ search = word }) end)
@@ -57,3 +71,4 @@ vim.keymap.set('n', '<leader>gb', builtin.git_bcommits, { desc = '[g]it log for 
 vim.keymap.set('n', '<leader>bs', builtin.treesitter, { desc = '[B]uffer [S]ymbols' })
 
 vim.keymap.set('n', '<leader>qf', builtin.quickfix, { desc = '[Q]uick[Fix]' })
+vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })

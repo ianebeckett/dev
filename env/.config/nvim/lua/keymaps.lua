@@ -34,14 +34,15 @@ vim.keymap.set('n', '<C-j>', '<Cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-k>', '<Cmd>cprev<CR>zz')
 
 --edit all instances of cursor word in file
-vim.keymap.set('n', '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>')
+--superceded by "vrn" -> lsp buf rename
+--vim.keymap.set('n', '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>')
 
 --chmod +x current file without leaving vim
 vim.keymap.set('n', '<leader>ch', '<Cmd>!chmod +x %<cr>', { silent = true })
 
 -- Source stuff
-vim.keymap.set("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
-vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
+vim.keymap.set("n", "<leader>xl", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+vim.keymap.set("n", "<leader>xf", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
 vim.keymap.set('n', '<C-f>', '<Cmd>silent !tmux neww tmux-sessionizer<CR>')
 vim.keymap.set('n', '<C-t>', '<Cmd>silent !tmux neww tmux-todo-finder<CR>')
