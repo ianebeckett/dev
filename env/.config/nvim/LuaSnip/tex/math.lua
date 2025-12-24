@@ -1,6 +1,4 @@
 ---@diagnostic disable: unused-local
-require("luasnip.session.snippet_collection").clear_snippets("tex")
-
 local ls = require("luasnip")
 local s = ls.snippet
 local sn = ls.snippet_node
@@ -30,5 +28,10 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
--- ls.add_snippets({"tex", }, {
--- })
+local snippets = {
+}
+
+local autosnippets = {
+}
+
+return snippets, autosnippets

@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 local ls = require("luasnip")
 local s = ls.snippet
 local sn = ls.snippet_node
@@ -27,13 +28,17 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
-require("luasnip.session.snippet_collection").clear_snippets("tex")
-
-return {
-    {
-        s({ trig = "hi" }, {
-            t("Hello, world!")
-        }),
-    },
-    {}
+local snippets = {
+    s({ trig = "hi" },
+        { t("Hello, world!") }
+    ),
 }
+
+local autosnippets = {
+    -- s({ trig = "hi" },
+    --     { t("Hello, world!") }
+    -- ),
+}
+
+return snippets, autosnippets
+

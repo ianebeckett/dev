@@ -26,7 +26,6 @@ vim.pack.add(
             src = 'https://github.com/L3MON4D3/LuaSnip.git',
             version = vim.version.range( '^2.4.1'),
         },
-        'https://github.com/rafamadriz/friendly-snippets',
         'https://github.com/lervag/vimtex.git',
     },
     { confirm = false }

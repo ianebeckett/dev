@@ -15,7 +15,7 @@ require('blink.cmp').setup {
   },
   keymap = {
     preset = 'none',
-    ['<C-y>'] = { 'accept' },
+    ['<C-y>'] = { 'accept', 'fallback' },
     ['<C-n>'] = { 'select_next', 'fallback' },
     ['<C-p>'] = { 'select_prev', 'fallback' },
     ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },

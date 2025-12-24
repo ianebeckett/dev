@@ -1,0 +1,2 @@
+--html5
+--tags? (do they work in jsx/tsx? I could put htem in 'all' if needed)

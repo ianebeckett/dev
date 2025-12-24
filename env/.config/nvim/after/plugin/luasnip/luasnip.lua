@@ -2,7 +2,7 @@ local ls = require("luasnip")
 
 ls.setup({
     update_events = "TextChanged,TextChangedI",
-    cut_selection_keys = '<Tab>', -- if not used, disable this by deleting the line
+    --cut_selection_keys = '<Tab>', -- if not used, disable this to aid performance
     enable_autosnippets = true,
 })
 

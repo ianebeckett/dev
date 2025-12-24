@@ -27,18 +27,9 @@ local types = require("luasnip.util.types")
 local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
+require("luasnip.session.snippet_collection").clear_snippets("cpp")
 
-local snippets = {
-    s({ trig = "hi" },
-        { t("Hello, world!") }
-    ),
-}
-
-local autosnippets = {
-    -- s({ trig = "hi" },
-    --     { t("Hello, world!") }
-    -- ),
-}
-
-return snippets, autosnippets
-
+-- custom lambda
+-- sort with custom lamda
+-- cp template
+-- aoc template
