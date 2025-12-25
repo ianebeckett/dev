@@ -29,6 +29,7 @@ local ms = ls.multi_snippet
 local k = require("luasnip.nodes.key_indexer").new_key
 
 local snippets = {
+
 }
 
 local autosnippets = {
