@@ -2,11 +2,18 @@
     editor = nvim
 	pager = delta
 [interactive]
-  diffFilter = delta --color-only
+    diffFilter = delta --color-only
 [delta]
-  line-numbers = true
-  syntax-theme = gruvbox
-  side-by-side = true
+    syntax-theme = none
+    line-numbers = true
+    side-by-side = false
+    keep-plus-minus-markers = false
+    hunk-header-style = omit
+[pager]
+    blame  = delta
+    diff   = delta
+    reflog = delta
+    show   = delta
 [diff]
 	colorMoved = zebra
 [merge]
@@ -17,7 +24,7 @@
 [pull]
 	rebase = true
 [rebase]
-  autoStash = true
+    autoStash = true
 [branch]
     sort=-committerdate
 [tag]
