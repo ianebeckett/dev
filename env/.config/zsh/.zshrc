@@ -82,7 +82,10 @@ addToPath $HOME/go/bin
 . "$HOME/.cargo/env"
 addToPath $HOME/.cargo/bin
 
-export EDITOR='vim'
+export EDITOR='nvim'
+export PAGER="less -R --use-color -Dd+r -Du+b"
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export GROFF_NO_SGR=1
 
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
