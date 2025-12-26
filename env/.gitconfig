@@ -9,6 +9,7 @@
     side-by-side = false
     keep-plus-minus-markers = false
     hunk-header-style = omit
+    ; file-decoration-style = blue
 [pager]
     blame  = delta
     diff   = delta
