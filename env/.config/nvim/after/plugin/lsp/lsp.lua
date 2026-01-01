@@ -26,7 +26,7 @@ vim.diagnostic.config({
     signs = true,
     float = {
         focusable = true,
-        border = 'rounded',
+        border = 'none',
         header = '',
         source = false,
         format = function(diagnostic)

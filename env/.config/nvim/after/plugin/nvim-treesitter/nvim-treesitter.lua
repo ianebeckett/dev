@@ -27,9 +27,10 @@ ts.install({
     'xml',
 })
 
+-- ignore file types where I do not want treesitter highlighting.
 local ignore_filetypes = {
   'checkhealth',
-  'mason',
+  'qf'
 }
 
 local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })

@@ -43,7 +43,7 @@ vim.opt.timeoutlen = 500
 vim.opt.colorcolumn = { '90' }
 vim.opt.signcolumn = 'yes'
 
-vim.o.winborder = 'rounded'
+vim.o.winborder = 'none'
 
 --NOTE: use shortmess when you remember what command you were trying to do
 --without 'hit enter' prompt
