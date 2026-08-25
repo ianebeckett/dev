@@ -67,3 +67,5 @@ quit-after-last-window-closed = false
 # then we might also need:
 # systemctl reload --user app-com.mitchellh.ghostty.service
 clipboard-paste-protection = false
+window-decoration = client
+gtk-titlebar = true
