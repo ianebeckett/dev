@@ -5,7 +5,7 @@ vim.keymap.set('n', 'Q', '<nop>')
 vim.keymap.set('i', '<C-H>', '<C-W>')
 
 --netrw window management
-vim.keymap.set('n', '<leader>nw', vim.cmd.Ex)  --'new' window, or 'netrw'
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)  --'new' window, or 'netrw'
 
 --vim split window management
 --if the cursor is not moving, you probably didn't press the keys quickly enough
