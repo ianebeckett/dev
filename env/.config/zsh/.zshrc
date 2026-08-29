@@ -1,5 +1,7 @@
 unsetopt BEEP
 
+export ZDOTDIR="$HOME/dev/env/.config/zsh"
+
 source $ZDOTDIR/.zsh_aliases
 source $ZDOTDIR/.zsh_functions
 
