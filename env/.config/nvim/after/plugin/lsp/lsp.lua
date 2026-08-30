@@ -14,6 +14,7 @@ vim.lsp.enable({
   'jsonls',
   'gopls',
   'rust-analyzer',
+  'ruby_lsp',
 });
 
 -- Global diagnostics configuration

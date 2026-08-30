@@ -84,6 +84,9 @@ addToPath $HOME/go/bin
 . "$HOME/.cargo/env"
 addToPath $HOME/.cargo/bin
 
+# ruby version manager
+eval "$(rbenv init -)"
+
 export EDITOR='nvim'
 export PAGER="less -R --use-color -Dd+r -Du+b"
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
