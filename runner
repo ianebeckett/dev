@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 filter=""
-dry="$0"
+dry=""
 
 while [[ $# > 0 ]]; do
     if [[ "$1" == "--dry-run" ]]; then
@@ -30,16 +30,19 @@ execute() {
     "$@"
 }
 
-log "$script_dir -- $filter"
+log "Running scripts from $script_dir/runs with filter: '$filter'"
 
-cd $script_dir
+cd "$script_dir"
 scripts=$(find ./runs -maxdepth 1 -mindepth 1 -executable -type f)
 
 for script in $scripts; do
-    if echo "$script" | grep -qv "$filter"; then
-        log "filtering $script"
-        continue
+    # If filter is provided, only run scripts that match
+    if [[ -n "$filter" ]]; then
+        if ! echo "$script" | grep -q "$filter"; then
+            log "filtering out: $script"
+            continue
+        fi
     fi
 
-    execute ./$script
- done
+    execute "$script"
+done
