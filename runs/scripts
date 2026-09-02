@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-ln -s "$HOME/dev/env/.local/scripts" "$HOME/.local/scripts"
+set -e
+
+# Ensure parent directory exists
+mkdir -p "$HOME/.local"
+
+# Link scripts directory
+ln -sf "$HOME/dev/env/.local/scripts" "$HOME/.local/scripts"
