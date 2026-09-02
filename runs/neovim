@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
-git clone -b release-0.12 git@github.com:neovim/neovim.git $HOME/.local/neovim
-sudo apt install cmake gettext lua5.1 liblua5.1.0-dev #etc
+set -e
 
-cd $HOME/personal/neovim
-make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo make install
+# Add neovim PPA if not already added
+if ! grep -q "neovim-ppa/unstable" /etc/apt/sources.list.d/* 2>/dev/null; then
+    sudo add-apt-repository -y ppa:neovim-ppa/unstable
+fi
 
-ln -s "$HOME/dev/env/.config/nvim" "$HOME/.config/nvim"
+# Install neovim from PPA
+sudo apt-get update
+sudo apt-get install -y neovim
+
+# Link neovim config
+ln -sf "$HOME/dev/env/.config/nvim" "$HOME/.config/nvim"
