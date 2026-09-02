@@ -81,7 +81,7 @@ addToPath /usr/local/go/bin
 addToPath $HOME/go/bin
 
 # rust
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 addToPath $HOME/.cargo/bin
 
 # ruby version manager
