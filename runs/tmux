@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-ln -s "$HOME/dev/env/.config/tmux" "$HOME/.config/tmux"
+set -e
+
+ln -sf "$HOME/dev/env/.config/tmux" "$HOME/.config/tmux"
