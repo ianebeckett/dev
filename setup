@@ -1,17 +1,36 @@
 #!/usr/bin/env bash
+
+set -e
+
+REPO_URL="https://github.com/ianebeckett/dev"
+REPO_DIR="$HOME/dev"
+
+# Install dependencies first
 sudo apt -y update
 
 if ! command -v git &> /dev/null; then
     sudo apt -y install git
 fi
 
-ln -s "$HOME/dev/env/.gitconfig" "$HOME/.gitconfig"
-
-if [ ! -d $HOME/dev]; then
-    mkdir $HOME/dev
+# Clone repo if not already present
+if [ ! -d "$REPO_DIR/.git" ]; then
+    echo "Cloning dev repository to $REPO_DIR..."
+    git clone "$REPO_URL" "$REPO_DIR"
+    cd "$REPO_DIR"
+else
+    echo "Repository already exists at $REPO_DIR"
+    cd "$REPO_DIR"
 fi
 
-git clone https://github.com//dev https://github.com/ianedwardbeckett/dev $HOME/dev
-# TODO: set up ssh key
+# Update the repository to latest
+echo "Updating repository..."
+git pull
 
-./run
+# Link gitconfig
+ln -sf "$HOME/dev/env/.gitconfig" "$HOME/.gitconfig"
+
+# Run the runner script to configure all tools
+echo "Running configuration scripts..."
+"$HOME/dev/runner"
+
+echo "Setup complete!"
