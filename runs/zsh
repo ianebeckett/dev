@@ -1,9 +1,17 @@
 #!/usr/bin/env bash
 
-ln -s "$HOME/dev/env/.config/zsh" "$HOME/.config/zsh"
-ln -s "$HOME/dev/env/.config/zsh/.zshrc" "$HOME/.zshrc"
+set -e
 
-mkdir -p $XDG_CACHE_HOME/zsh
-touch $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
-mkdir -p $XDG_STATE_HOME/zsh
-touch $XDG_STATE_HOME/zsh/zsh_history
+# Ensure XDG directories are set (also defined in .zshenv but needed here during setup)
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+# Link zsh configuration
+ln -sf "$HOME/dev/env/.config/zsh" "$HOME/.config/zsh"
+ln -sf "$HOME/dev/env/.config/zsh/.zshrc" "$HOME/.zshrc"
+
+# Create and initialize cache/state directories
+mkdir -p "$XDG_CACHE_HOME/zsh"
+touch "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+mkdir -p "$XDG_STATE_HOME/zsh"
+touch "$XDG_STATE_HOME/zsh/zsh_history"
