@@ -13,7 +13,7 @@ fi
 # Update Homebrew
 brew update
 
-packages="gdb git curl neovim tmux fzf ripgrep tldr yt-dlp clang tree"
+packages="gdb git curl neovim tmux fzf ripgrep yt-dlp clang tree"
 
 for package in $packages; do
     if brew list "$package" &>/dev/null; then
@@ -22,6 +22,3 @@ for package in $packages; do
         brew install "$package"
     fi
 done
-
-# Update tldr database
-tldr --update

@@ -9,7 +9,7 @@ fi
 
 sudo apt-get update
 
-packages="gdb libstdc++ git curl neovim tmux fzf ripgrep tldr yt-dlp clang tree"
+packages="gdb libstdc++ git curl neovim tmux fzf ripgrep yt-dlp clang tree"
 
 for package in $packages; do
     sudo apt-get install -y "$package"
@@ -18,4 +18,3 @@ done
 # Disable apport (Ubuntu crash reporting)
 sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
 
-tldr --update
