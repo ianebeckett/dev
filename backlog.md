@@ -8,7 +8,7 @@
 
 **Tasks:**
 - [ ] Add explicit `$HOME/dev/runs/installs` call to `setup` BEFORE calling `runner`
-- [ ] Remove old static `installs` file (no longer needed)
+- [x] Remove old static `installs` file (no longer needed)
 - [ ] Test that packages are installed before configs are linked
 
 ---
