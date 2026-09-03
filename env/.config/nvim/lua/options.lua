@@ -11,7 +11,7 @@ vim.opt.encoding = 'utf-8'
 vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'
 
 vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 -- high scrolloff minimizes vertical scanning with eyes
 -- if scrolloff is too high, we get screen jank when doing jkjkjkjk
 vim.opt.scrolloff = 20
