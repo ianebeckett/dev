@@ -38,11 +38,11 @@ vim.keymap.set('n', '<C-k>', '<Cmd>cprev<CR>zz')
 --vim.keymap.set('n', '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>')
 
 --chmod +x current file without leaving vim
-vim.keymap.set('n', '<leader>ch', '<Cmd>!chmod +x %<cr>', { silent = true })
+vim.keymap.set('n', '<leader>x', '<Cmd>!chmod +x %<cr>', { silent = true })
 
 -- Source stuff
-vim.keymap.set("n", "<leader>xl", "<cmd>.lua<CR>", { desc = "Execute the current line" })
-vim.keymap.set("n", "<leader>xf", "<cmd>source %<CR>", { desc = "Execute the current file" })
+--vim.keymap.set("n", "<leader>xl", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+--vim.keymap.set("n", "<leader>xf", "<cmd>source %<CR>", { desc = "Execute the current file" })
 
 vim.keymap.set('n', '<C-f>', '<Cmd>silent !tmux neww tmux-sessionizer<CR>')
 vim.keymap.set('n', '<C-t>', '<Cmd>silent !tmux neww tmux-todo-finder<CR>')
