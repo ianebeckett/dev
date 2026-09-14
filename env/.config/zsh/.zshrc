@@ -97,4 +97,4 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 eval "$(ssh-agent -s)" > /dev/null
-ssh-add -q ~/.ssh/gitlab ~/.ssh/id_ed25519
+# ssh-add -q ~/.ssh/gitlab ~/.ssh/id_ed25519

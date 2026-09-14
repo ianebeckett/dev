@@ -67,7 +67,7 @@ vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = 'neo[v]im [h]elp d
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[p]roject [f]iles' })
 vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = '[g]it [f]iles' })
 vim.keymap.set('n', '<leader>gl', builtin.git_commits, { desc = '[g]it [l]og' })
-vim.keymap.set('n', '<leader>gb', builtin.git_bcommits, { desc = '[g]it log for the current [b]uffer' })
+--vim.keymap.set('n', '<leader>gb', builtin.git_bcommits, { desc = '[g]it log for the current [b]uffer' })
 vim.keymap.set('n', '<leader>bs', builtin.treesitter, { desc = '[B]uffer [S]ymbols' })
 
 vim.keymap.set('n', '<leader>qf', builtin.quickfix, { desc = '[Q]uick[Fix]' })
