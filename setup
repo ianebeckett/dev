@@ -9,7 +9,7 @@ REPO_DIR="$HOME/dev"
 if [[ "$OSTYPE" == "darwin"* ]]; then
     OS="macos"
     PKG_MANAGER="brew"
-    
+
     # Detect architecture
     if [[ $(uname -m) == "arm64" ]]; then
         HOMEBREW_PATH="/opt/homebrew/bin"
@@ -18,25 +18,25 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         HOMEBREW_PATH="/usr/local/bin"
         ARCH="Intel"
     fi
-    
+
     echo "Detected OS: macOS ($ARCH)"
-    
+
     # Install Homebrew if not present
     if ! command -v brew &> /dev/null; then
         echo "Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        
+
         # Add Homebrew to PATH for this session
         export PATH="$HOMEBREW_PATH:$PATH"
     else
         echo "Homebrew already installed"
     fi
-    
+
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     OS="linux"
     PKG_MANAGER="apt"
     echo "Detected OS: Linux"
-    
+
     # Ensure sudo available
     sudo apt -y update
 else
@@ -49,6 +49,8 @@ if ! command -v git &> /dev/null; then
     echo "Installing git..."
     if [[ "$OS" == "macos" ]]; then
         brew install git
+        echo ".DS_Store" >> ~/.gitignore_global
+        git config --global core.excludesfile ~/.gitignore_global
     else
         sudo apt-get install -y git
     fi
