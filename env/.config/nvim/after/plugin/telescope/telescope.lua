@@ -57,10 +57,17 @@ telescope.setup {
 -- s(ts/bs) - search (treesitter/buffer symbols)
 
 --greps, in order of specificity
+--grep for all instances of word under the cursor
 vim.keymap.set('n', '<leader>pws', function() local word = vim.fn.expand("<cword>") builtin.grep_string({ search = word }) end)
+--grep for all instances of WORD under the cursor
 vim.keymap.set('n', '<leader>pWs', function() local word = vim.fn.expand("<cWORD>") builtin.grep_string({ search = word }) end)
 vim.keymap.set('n', '<leader>ps', function() builtin.grep_string({ search = vim.fn.input("Grep > ") }) end)
 vim.keymap.set('n', '<leader>pg', builtin.live_grep, { desc = '[p]roject [g]rep' })
+
+-- Symbol Navigation
+vim.keymap.set('n', '<leader>ts', builtin.treesitter, { desc = '[T]ree-[s]itter Buffer Symbols' })
+vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = '[D]ocument [S]ymbols (LSP)' })
+vim.keymap.set('n', '<leader>ws', builtin.lsp_dynamic_workspace_symbols, { desc = '[W]orkspace [S]ymbols (LSP)' })
 
 --finds
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = 'neo[v]im [h]elp docs' })
