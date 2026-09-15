@@ -2,11 +2,11 @@ unsetopt BEEP
 
 export ZDOTDIR="$HOME/dev/env/.config/zsh"
 
-source $ZDOTDIR/.zsh_aliases
-source $ZDOTDIR/.zsh_functions
+source "$ZDOTDIR/.zsh_aliases"
+source "$ZDOTDIR/.zsh_functions"
 
 # configure zsh history
-HISTFILE=$XDG_STATE_HOME/zsh/zsh_history
+HISTFILE="$XDG_STATE_HOME/zsh/zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
 setopt INC_APPEND_HISTORY # write to the history file immediately
@@ -20,7 +20,7 @@ setopt HIST_IGNORE_DUPS # Ignore duplicated commands history list.
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION
+compinit -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 _comp_options+=(globdots)		# Include hidden files.
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu select
@@ -32,7 +32,7 @@ bindkey -v '^?' backward-delete-char
 
 # fzf for back-i-search (must be sourced after completions)
 export FZF_DEFAULT_OPTS="--no-separator"
-source $HOME/.config/zsh/fzf.zsh
+source "$ZDOTDIR/fzf.zsh"
 source /usr/share/doc/fzf/examples/completion.zsh
 
 # enable vi mode to for traversing the command line
