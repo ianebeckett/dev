@@ -4,10 +4,10 @@ set -e
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     # macOS
-    "$HOME/dev/runs/installs-macos"
+    "$HOME/dev/runs/installers/macos"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Linux
-    "$HOME/dev/runs/installs-linux"
+    "$HOME/dev/runs/installers/linux"
 else
     echo "Unsupported OS: $OSTYPE"
     exit 1
