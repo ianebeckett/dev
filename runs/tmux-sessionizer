@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
-ln -sf "$HOME/dev/env/.config/tmux-sessionizer" "$XDG_CONFIG_HOME/tmux-sessionizer"
-ln -sf "$HOME/dev/env/.cache/tmux-sessionizer" "$XDG_CACHE_HOME/tmux-sessionizer"
+source "$HOME/dev/lib/links.sh"
+
+link_config "$HOME/dev/env/.config/tmux-sessionizer" "$XDG_CONFIG_HOME/tmux-sessionizer"
+
+# Replace the old checkout-linked cache with a runtime directory.
+cache_dir="$XDG_CACHE_HOME/tmux-sessionizer"
+if [[ -L "$cache_dir" && "$(readlink "$cache_dir")" == "$HOME/dev/env/.cache/tmux-sessionizer" ]]; then
+    rm "$cache_dir"
+fi
+mkdir -p "$cache_dir"

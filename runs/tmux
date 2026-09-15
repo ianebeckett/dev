@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
-ln -sf "$HOME/dev/env/.config/tmux" "$HOME/.config/tmux"
+source "$HOME/dev/lib/links.sh"
+
+link_config "$HOME/dev/env/.config/tmux" "$XDG_CONFIG_HOME/tmux"

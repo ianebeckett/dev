@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
-ln -sf "$HOME/dev/env/.config/sway" "$HOME/.config/sway"
+source "$HOME/dev/lib/links.sh"
+
+link_config "$HOME/dev/env/.config/sway" "$XDG_CONFIG_HOME/sway"

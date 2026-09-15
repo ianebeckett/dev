@@ -2,8 +2,7 @@
 
 set -e
 
-# Ensure parent directory exists
-mkdir -p "$HOME/.local"
+source "$HOME/dev/lib/links.sh"
 
 # Link scripts directory
-ln -sf "$HOME/dev/env/.local/scripts" "$HOME/.local/scripts"
+link_config "$HOME/dev/env/.local/scripts" "$HOME/.local/scripts"

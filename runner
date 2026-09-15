@@ -63,6 +63,8 @@ collect_scripts() {
 log "Running scripts from $script_dir/runs with filter: '$filter'"
 
 cd "$script_dir" || exit 1
+# Initialize the environment before any run scripts use it.
+source ./env/.config/zsh/.zshenv || exit 1
 collect_scripts
 
 for script in "${scripts[@]}"; do

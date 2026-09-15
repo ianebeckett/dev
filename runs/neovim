@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
+
+source "$HOME/dev/lib/links.sh"
 
 # Link neovim config
-ln -sf "$HOME/dev/env/.config/nvim" "$HOME/.config/nvim"
+link_config "$HOME/dev/env/.config/nvim" "$XDG_CONFIG_HOME/nvim"

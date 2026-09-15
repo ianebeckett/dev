@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
-# Ensure XDG directories are set (also defined in .zshenv but needed here during setup)
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+source "$HOME/dev/lib/links.sh"
 
 # Link zsh configuration
-ln -sf "$HOME/dev/env/.config/zsh" "$HOME/.config/zsh"
-ln -sf "$HOME/dev/env/.config/zsh/.zshrc" "$HOME/.zshrc"
+link_config "$HOME/dev/env/.config/zsh" "$XDG_CONFIG_HOME/zsh"
+link_config "$HOME/dev/env/.config/zsh/.zshenv" "$HOME/.zshenv"
+link_config "$HOME/dev/env/.config/zsh/.zshrc" "$HOME/.zshrc"
 
 # Zsh creates its own completion dump and history files.
 mkdir -p "$XDG_CACHE_HOME/zsh" "$XDG_STATE_HOME/zsh"

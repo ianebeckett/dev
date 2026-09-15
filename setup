@@ -70,8 +70,10 @@ fi
 echo "Updating repository..."
 git pull
 
+source "$REPO_DIR/lib/links.sh"
+
 # Link gitconfig
-ln -sf "$HOME/dev/env/.gitconfig" "$HOME/.gitconfig"
+link_config "$REPO_DIR/env/.gitconfig" "$HOME/.gitconfig"
 
 # Run the runner script to configure all tools
 echo "Running configuration scripts..."
