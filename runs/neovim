@@ -2,14 +2,5 @@
 
 set -e
 
-# Add neovim PPA if not already added
-if ! grep -q "neovim-ppa/unstable" /etc/apt/sources.list.d/* 2>/dev/null; then
-    sudo add-apt-repository -y ppa:neovim-ppa/unstable
-fi
-
-# Install neovim from PPA
-sudo apt-get update
-sudo apt-get install -y neovim
-
 # Link neovim config
 ln -sf "$HOME/dev/env/.config/nvim" "$HOME/.config/nvim"
