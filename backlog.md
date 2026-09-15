@@ -1,92 +1,78 @@
 # Dev Repo Backlog
 
-## Improvements to Implement
+## First Milestone
 
-### 4. Missing installs Script Integration
-**Status:** Partially done
-**Description:** `runs/installs` exists and works, but `setup` doesn't call it explicitly. It's only called if `runner` happens to run it before other scripts.
+### 4. Installer Integration
+**Status:** Completed
 
-**Tasks:**
-- [ ] Add explicit `$HOME/dev/runs/installs` call to `setup` BEFORE calling `runner`
-- [x] Remove old static `installs` file (no longer needed)
-- [ ] Test that packages are installed before configs are linked
+- [x] Make the dispatcher and platform installers executable.
+- [x] Keep platform helpers under `runs/installers/`, outside runner discovery.
+- [x] Run the selected dispatcher first; Neovim installation lives in the platform installer.
+- [x] Remove the old static `installs` file.
 
 ---
 
-### 5. No Dependency Between Run Scripts ⚠️ CRITICAL
-**Status:** Not started
-**Description:** Run scripts have no ordering guarantees. If `runs/tmux` runs before `runs/installs`, it will fail. Currently no way to specify dependencies.
+### 5. Execution Order
+**Status:** Completed
 
-**Tasks:**
-- [ ] Ensure `runs/installs` ALWAYS runs first (add to top of `setup`)
-- [ ] Document script dependencies (which scripts need what installed)
-- [ ] Option A: Hard-code install-first approach in `setup`
-  - [ ] Call `runs/installs` explicitly at start
-  - [ ] Then call `runner` for all config scripts
-- [ ] Option B: Add dependency tracking to `runner` script
-  - [ ] Create a manifest of script dependencies
-  - [ ] Make `runner` execute in dependency order
-- [ ] Test on both Linux and macOS
+- [x] Load `.zshenv` before any run script, with no per-script XDG fallbacks.
+- [x] Run installation first when selected, followed by configuration scripts in filename order.
+- [x] Preserve targeted configuration runs that skip installation.
+- [x] Cover ordering and platform dispatch with stub installers in `tests/smoke.sh`.
 
 ---
 
 ### 6. Error Recovery
-**Status:** Not started
-**Description:** If a run script fails halfway through, there's no way to know which step failed or how to resume. Setup just stops.
+**Status:** Basic handling completed; further diagnostics pending
 
-**Tasks:**
-- [ ] Add better logging to `setup` and `runner` scripts
-- [ ] Log which script failed and at what line
-- [ ] Provide guidance on how to resume or fix
-- [ ] Consider creating a `setup.log` file for debugging
-- [ ] Add checkpoints or resume capability
+- [x] Stop at the first failed script, report its path, and return its exit status.
+- [x] Document full and filtered retries in `README.md`.
+- [x] Cover failure propagation in the smoke check.
+- [ ] Add line-level diagnostics or a persistent setup log if needed.
+- [ ] Consider checkpoints if targeted retries become insufficient.
 
 ---
 
 ### 7. No Uninstall/Cleanup Script
 **Status:** Not started
-**Description:** If you need to remove all the symlinks cleanly, there's no tool for it. You'd have to manually delete them.
 
-**Tasks:**
-- [ ] Create `runs/cleanup` script that:
-  - [ ] Removes all symlinks created by other `runs/` scripts
-  - [ ] Asks before removing (safety check)
-  - [ ] Logs what was removed
-  - [ ] Leaves git repo intact (don't delete `$HOME/dev`)
-- [ ] Add `./runner --cleanup` option
-- [ ] Test that re-running setup after cleanup works
+- [ ] Add an explicit cleanup command outside auto-discovered `runs/` scripts.
+- [ ] Remove only expected repository-owned symlinks and report what was removed.
+- [ ] Preserve the checkout and unrelated user configuration.
+- [ ] Verify setup can recreate links after cleanup.
 
 ---
 
-### 8. Missing Config Files
-**Status:** Not started
-**Description:** The `runs/` scripts link to configs that may not exist in `env/.config/`. No validation that they're there before linking.
+### 8. Configuration Linking
+**Status:** Completed
 
-**Tasks:**
-- [ ] Add pre-link validation to all `runs/*` scripts
-- [ ] Check that config files/directories exist before symlinking
-- [ ] Provide helpful error message if missing
-- [ ] List which configs are expected vs. missing
-- [ ] Consider creating placeholder configs if needed
+- [x] Validate sources and create destination parents through `lib/links.sh`.
+- [x] Skip correct links, replace stale symlinks, and report real-file/directory conflicts.
+- [x] Link `~/.zshenv` for shell startup.
+- [x] Keep runtime caches outside the checkout and stop tracking cache placeholders.
+- [x] Cover fresh-home configuration and reruns in the smoke check.
 
 ---
 
 ### 9. Dry-run Output Could Be Better
-**Status:** Not started
-**Description:** `runner --dry-run` works but doesn't show what files would be linked or what the final state would be.
+**Status:** Script-level preview completed; link-level preview pending
 
-**Tasks:**
-- [ ] Update `runner --dry-run` to show:
-  - [ ] What configs would be linked
-  - [ ] Source and destination paths for each symlink
-  - [ ] Whether config files exist
-  - [ ] What would be created vs. skipped
-- [ ] Make output clear and actionable
-- [ ] Add summary at end of dry-run
+- [x] Show selected scripts in execution order without running their bodies.
+- [x] Cover dry-run filtering in the smoke check.
+- [ ] Show source/destination paths and missing sources or destination conflicts.
+- [ ] Report what would be created, replaced, or skipped, with a summary.
 
 ---
 
-## Completed ✅
-- [x] Documentation (README.md exists)
-- [x] macOS support (Linux + macOS both working)
-- [x] OS detection (Linux and macOS with architecture detection)
+## Remaining Platform and Dependency Work
+
+- [ ] Validate full package installation on a clean Ubuntu machine.
+- [ ] Inventory dependencies used by shell/editor integrations, including `delta`,
+  `trash-put`, `rbenv`, and configured language servers.
+- [ ] Add a read-only dependency/configuration `doctor` command.
+- [ ] Improve macOS compatibility and verify installation there; currently best-effort.
+
+## Completed Documentation and Bootstrap Work
+
+- [x] Document installation, selective runs, environment initialization, retries, and checks.
+- [x] Detect Linux/macOS and macOS architecture during bootstrap.
