@@ -1,44 +1,79 @@
 #!/usr/bin/env bash
 
-script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) || exit 1
 filter=""
 dry=""
 
-while [[ $# > 0 ]]; do
+while [[ $# -gt 0 ]]; do
     if [[ "$1" == "--dry-run" ]]; then
         dry="1"
-    else 
+    else
         filter="$1"
     fi
     shift
 done
 
+# Reject invalid regexes before executing any scripts.
+if [[ -n "$filter" ]]; then
+    grep -q -- "$filter" </dev/null
+    status=$?
+    if [[ $status -gt 1 ]]; then
+        printf 'Error: invalid script filter: %s\n' "$filter" >&2
+        exit "$status"
+    fi
+fi
+
 log() {
     if [[ $dry == "1" ]]; then
-        echo "[dry-run]: $@"
-    else 
-        echo "$@"
+        printf '[dry-run]: %s\n' "$*"
+    else
+        printf '%s\n' "$*"
     fi
 }
 
 execute() {
-    log "execute $@"
+    log "execute $*"
     if [[ $dry == "1" ]]; then
-        return
+        return 0
     fi
 
-    "$@"
+    if "$@"; then
+        return 0
+    else
+        local status=$?
+        printf 'Error: %s failed (exit status %s)\n' "$1" "$status" >&2
+        exit "$status"
+    fi
+}
+
+collect_scripts() {
+    local LC_ALL=C
+    local script
+
+    # Install first; glob expansion gives the remaining scripts a stable order.
+    scripts=(./runs/installs)
+    shopt -s dotglob nullglob
+    for script in ./runs/*; do
+        if [[ "$script" != ./runs/installs ]]; then
+            scripts+=("$script")
+        fi
+    done
 }
 
 log "Running scripts from $script_dir/runs with filter: '$filter'"
 
-cd "$script_dir"
-scripts=$(find ./runs -maxdepth 1 -mindepth 1 -executable -type f)
+cd "$script_dir" || exit 1
+collect_scripts
 
-for script in $scripts; do
+for script in "${scripts[@]}"; do
+    # Match the previous discovery rule: executable regular files, not symlinks.
+    if [[ ! -f "$script" || ! -x "$script" || -L "$script" ]]; then
+        continue
+    fi
+
     # If filter is provided, only run scripts that match
     if [[ -n "$filter" ]]; then
-        if ! echo "$script" | grep -q "$filter"; then
+        if ! printf '%s\n' "$script" | grep -q -- "$filter"; then
             log "filtering out: $script"
             continue
         fi
