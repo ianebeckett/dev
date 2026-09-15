@@ -98,3 +98,6 @@ export NVM_DIR="$HOME/.config/nvm"
 
 eval "$(ssh-agent -s)" > /dev/null
 # ssh-add -q ~/.ssh/gitlab ~/.ssh/id_ed25519
+
+# opencode
+export PATH=/home/ian/.opencode/bin:$PATH

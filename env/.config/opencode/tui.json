@@ -1,0 +1,9 @@
+{
+"keybinds": {
+    "leader_timeout": "1000",
+    "model_cycle_recent": "f2",
+},
+"plugin": [
+  "@leohenon/opencode-vim-plugin"
+]
+}
