@@ -4,6 +4,7 @@ web_search = "live"
 service_tier = "priority"
 model = "gpt-6-astra"
 model_reasoning_effort = "high"
+#fast_mode = "false"
 model_verbosity = "low"
 personality = "pragmatic"
 sandbox_mode = "workspace-write"
@@ -25,3 +26,7 @@ gpt-6-astra = 4
 
 [tui]
 animations = false
+status_line = []
+terminal_title = ["project"]
+notifications = false
+#show_tooltips = false
