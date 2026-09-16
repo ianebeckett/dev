@@ -1,3 +1,19 @@
+approval_policy = "on-request"
+# default_permissions = "workspace-web"
+web_search = "live"
+service_tier = "priority"
+model = "gpt-6-astra"
+model_reasoning_effort = "high"
+model_verbosity = "low"
+personality = "pragmatic"
+sandbox_mode = "workspace-write"
+model_context_window = 1000000
+model_auto_compact_token_limit = 900000
+
+[permissions.workspace-web]
+description = "Low-interruption development: active-workspace edits, bounded source reads, and common public development network."
+extends = ":workspace"
+
 [projects."/home/ian"]
 trust_level = "trusted"
 
