@@ -32,3 +32,5 @@
     sort=-version:refname
 [advice]
 	defaultBranchName = false
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
