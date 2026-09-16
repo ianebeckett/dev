@@ -1,0 +1,11 @@
+[projects."/home/ian"]
+trust_level = "trusted"
+
+[projects."/home/ian/dev"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+gpt-6-astra = 4
+
+[tui]
+animations = false

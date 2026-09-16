@@ -14,12 +14,14 @@ mkdir -p "$dev/runs/installers" "$dev/lib" "$dev/env/.config/zsh" "$dev/env/.loc
 cp "$repo_dir/runner" "$dev/runner"
 cp "$repo_dir/lib/links.sh" "$dev/lib/links.sh"
 cp "$repo_dir/env/.config/zsh/.zshenv" "$repo_dir/env/.config/zsh/.zshrc" "$dev/env/.config/zsh/"
-for script in installs neovim scripts sway tmux tmux-sessionizer zsh; do
+for script in agents codex installs neovim scripts sway tmux tmux-sessionizer zsh; do
     cp "$repo_dir/runs/$script" "$dev/runs/$script"
 done
-for config in nvim sway tmux tmux-sessionizer; do
+for config in agents codex nvim sway tmux tmux-sessionizer; do
     mkdir -p "$dev/env/.config/$config"
 done
+printf 'Fixture instructions\n' > "$dev/env/.config/agents/AGENTS.md"
+printf '[tui]\nanimations = false\n' > "$dev/env/.config/codex/config.toml"
 
 # Stub package installers; the real dispatcher and configuration scripts run.
 printf '%s\n' \
@@ -46,15 +48,29 @@ output=$("$dev/runner" --dry-run '/tmux$')
 [[ ! -e "$HOME/events" && ! -d "$HOME/.config" ]]
 printf 'PASS: dry-run selection\n'
 
+# Existing agent links are replaced; Codex runtime data stays outside the repo.
+mkdir -p "$HOME/.codex" "$HOME/.claude" "$HOME/.config/opencode"
+printf 'Fixture runtime data\n' > "$HOME/.codex/history.jsonl"
+for destination in "$HOME/.codex/AGENTS.md" "$HOME/.claude/CLAUDE.md" "$HOME/.config/opencode/AGENTS.md"; do
+    ln -s "$HOME/.config/agents/AGENTS.md" "$destination"
+done
+
 # Installation precedes configuration; a second run preserves correct links.
 for attempt in 1 2; do
     : > "$HOME/events"
     "$dev/runner" >/dev/null
     [[ "$(<"$HOME/events")" == "$platform"$'\nconfig' ]]
-    for config in nvim sway tmux tmux-sessionizer zsh; do
+    for config in agents nvim sway tmux tmux-sessionizer zsh; do
         [[ "$(readlink "$HOME/.config/$config")" == "$dev/env/.config/$config" ]]
         [[ ! -L "$dev/env/.config/$config/$config" ]]
     done
+    for destination in "$HOME/.codex/AGENTS.md" "$HOME/.claude/CLAUDE.md" "$HOME/.config/opencode/AGENTS.md"; do
+        [[ "$(readlink "$destination")" == "$dev/env/.config/agents/AGENTS.md" ]]
+        [[ -f "$destination" ]]
+    done
+    [[ "$(readlink "$HOME/.codex/config.toml")" == "$dev/env/.config/codex/config.toml" ]]
+    [[ ! -L "$HOME/.codex" && "$(<"$HOME/.codex/history.jsonl")" == 'Fixture runtime data' ]]
+    [[ ! -e "$dev/env/.config/codex/history.jsonl" ]]
     [[ "$(readlink "$HOME/.local/scripts")" == "$dev/env/.local/scripts" ]]
     [[ "$(readlink "$HOME/.zshenv")" == "$dev/env/.config/zsh/.zshenv" ]]
     [[ "$(readlink "$HOME/.zshrc")" == "$dev/env/.config/zsh/.zshrc" ]]

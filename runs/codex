@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+source "$HOME/dev/lib/links.sh"
+
+link_config "$HOME/dev/env/.config/codex/config.toml" "$HOME/.codex/config.toml"

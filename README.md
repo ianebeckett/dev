@@ -41,6 +41,13 @@ It does not validate package commands or destination conflicts.
 ## Configuration and reruns
 
 - Edit configuration sources under `env/`.
+- `link_config SOURCE DESTINATION` creates a link at the installed destination
+  pointing directly to its source in this checkout.
+- `runs/agents` links the shared `env/.config/agents/AGENTS.md` directly into
+  OpenCode, Codex, and Claude.
+- `runs/codex` links `env/.config/codex/config.toml` to `~/.codex/config.toml`,
+  keeping Codex runtime data outside the checkout. Apply just this link with
+  `./runner '/codex$'`.
 - XDG paths are defined in `env/.config/zsh/.zshenv`. Use `runner` so these variables
   are initialized before configuration scripts run. `runs/zsh` also links
   `~/.zshenv` for future shell sessions.

@@ -35,6 +35,9 @@
   conflicts. Keep this helper focused on linking, without environment initialization.
 - `runs/tmux-sessionizer` creates its runtime cache directory and detaches the old
   checkout-linked cache if present. Cache/state files are not configuration sources.
+- `runs/agents` links shared agent instructions directly from the checkout.
+  `runs/codex` separately links `env/.config/codex/config.toml` to
+  `~/.codex/config.toml`; keep the rest of `~/.codex` outside the checkout.
 - Neovim uses native `vim.pack` and `vim.lsp` APIs. Plugin declarations live in
   `env/.config/nvim/lua/pack.lua`, with revisions in `nvim-pack-lock.json` beside
   `init.lua`. Preserve the initialization order in `init.lua`.
