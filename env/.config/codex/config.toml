@@ -4,7 +4,7 @@ web_search = "live"
 service_tier = "priority"
 model = "gpt-6-astra"
 model_reasoning_effort = "high"
-#fast_mode = "false"
+fast_mode = "false"
 model_verbosity = "low"
 personality = "pragmatic"
 sandbox_mode = "workspace-write"
@@ -21,12 +21,18 @@ trust_level = "trusted"
 [projects."/home/ian/dev"]
 trust_level = "trusted"
 
+[projects."/home/ian/school/csce-606/project-1"]
+trust_level = "trusted"
+
+[projects."/home/ian/school/research"]
+trust_level = "trusted"
+
 [tui.model_availability_nux]
 gpt-6-astra = 4
 
 [tui]
 animations = false
-status_line = []
+status_line = ["model-with-reasoning"]
 terminal_title = ["project"]
 notifications = false
 #show_tooltips = false
