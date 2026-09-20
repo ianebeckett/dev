@@ -11,7 +11,7 @@ vim.opt.encoding = 'utf-8'
 vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'
 
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 -- high scrolloff minimizes vertical scanning with eyes
 -- if scrolloff is too high, we get screen jank when doing jkjkjkjk
 vim.opt.scrolloff = 20
@@ -43,7 +43,7 @@ vim.opt.timeoutlen = 500
 vim.opt.colorcolumn = { '90' }
 vim.opt.signcolumn = 'yes'
 
-vim.o.winborder = 'none'
+vim.o.winborder = 'rounded'
 
 --NOTE: use shortmess when you remember what command you were trying to do
 --without 'hit enter' prompt
