@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -eu
+
+packages="gdb git-delta curl neovim tree-sitter-cli tmux fzf fd-find ripgrep yt-dlp clang tree trash-cli"
+
+case "$OSTYPE" in
+    linux-gnu*)
+
+        packages += "zsh"
+
+        sudo apt-get update
+        sudo apt-get upgrade
+
+        # Disable apport (Ubuntu crash reporting)
+        sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+        ;;
+
+        for package in $packages; do
+            if dpkg -s "$package" &>/dev/null; then
+                echo "$package already installed"
+            else
+                echo -n "installing $package..."
+                apt-get install "$package"
+                echo "done."
+            fi
+        done
+
+    darwin*)
+
+        if ! command -v brew &> /dev/null; then
+            echo "Installing Homebrew..."
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        else
+            echo "Homebrew already installed"
+        fi
+
+        brew update
+        ;;
+
+        for package in $packages; do
+            if brew list "$package" &>/dev/null; then
+                echo "$package already installed"
+            else
+                echo -n "installing $package..."
+                brew install "$package"
+                echo "done."
+            fi
+        done
+
+    *)
+        printf 'Unsupported platform: %s\n' "$OSTYPE" >&2; exit 1 ;;
+esac
