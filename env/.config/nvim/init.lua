@@ -14,3 +14,5 @@ require('colors.rose-pine')
 
 -- Interactive textual undotree
 vim.cmd.packadd 'nvim.undotree'
+
+vim.opt.shortmess:append('I')
