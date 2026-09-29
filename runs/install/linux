@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
 # Add neovim PPA
 if ! grep -q "neovim-ppa/unstable" /etc/apt/sources.list.d/* 2>/dev/null; then
@@ -10,12 +10,17 @@ fi
 sudo apt-get update
 sudo apt-get upgrade
 
-packages="zsh gdb git-delta curl neovim tmux fzf fd-find ripgrep yt-dlp clang tree"
+packages="zsh gdb git-delta curl neovim tree-sitter-cli tmux fzf fd-find ripgrep clang tree"
 
 for package in $packages; do
-    sudo apt-get install -y "$package"
+    if dpkg -s "$package" &>/dev/null; then
+        echo "$package already installed"
+    else
+        echo -n "installing $package..."
+        apt-get install "$package"
+        echo "done."
+    fi
 done
 
 # Disable apport (Ubuntu crash reporting)
 sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
-

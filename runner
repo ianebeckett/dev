@@ -39,12 +39,14 @@ cd "$script_dir" || exit 1
 source ./env/.config/zsh/.zshenv || exit 1
 
 scripts=("agents" "codex" "neovim" "scripts" "tmux" "tmux-sessionizer" "zsh")
-log "Running scripts from $script_dir/runs"
+log "linking and configuring tools via $script_dir/configure"
 for script in "${scripts[@]}"; do
+    echo -n "running $script..."
     # Match the previous discovery rule: executable regular files, not symlinks.
     if [[ ! -f "$script" || ! -x "$script" || -L "$script" ]]; then
         continue
     fi
+    echo "done."
 
     execute "$script"
 done

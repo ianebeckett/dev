@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+source "$REPO_DIR/lib/linker.sh"
+
+link_config "$REPO_DIR/env/.gitconfig" "$HOME/.gitconfig"

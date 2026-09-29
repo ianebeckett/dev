@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    "$HOME/dev/runs/installers/macos"
+    "$HOME/dev/runs/install/macos"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    "$HOME/dev/runs/installers/linux"
+    "$HOME/dev/runs/install/linux"
 else
     echo "Unsupported OS: $OSTYPE"
     exit 1

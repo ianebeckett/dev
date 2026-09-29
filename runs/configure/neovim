@@ -2,7 +2,7 @@
 
 set -eu
 
-source "$HOME/dev/lib/links.sh"
+source "$HOME/dev/lib/linker.sh"
 
 # Link neovim config
 link_config "$HOME/dev/env/.config/nvim" "$XDG_CONFIG_HOME/nvim"

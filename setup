@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu
 
 REPO_URL="https://github.com/ianebeckett/dev"
 REPO_DIR="$HOME/dev"
@@ -69,11 +69,6 @@ fi
 # Update the repository to latest
 echo "Updating repository..."
 git pull
-
-source "$REPO_DIR/lib/links.sh"
-
-# Link gitconfig
-link_config "$REPO_DIR/env/.gitconfig" "$HOME/.gitconfig"
 
 # Run the runner script to configure all tools
 echo "Running configuration scripts..."

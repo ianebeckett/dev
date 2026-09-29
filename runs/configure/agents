@@ -2,7 +2,7 @@
 
 set -eu
 
-source "$HOME/dev/lib/links.sh"
+source "$HOME/dev/lib/linker.sh"
 
 link_config "$HOME/dev/env/.config/agents" "$XDG_CONFIG_HOME/agents"
 link_config "$HOME/dev/env/.config/agents/AGENTS.md" "$XDG_CONFIG_HOME/opencode/AGENTS.md"
