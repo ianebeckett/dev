@@ -1,27 +1,14 @@
 #!/usr/bin/env bash
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) || exit 1
-filter=""
 dry=""
 
 while [[ $# -gt 0 ]]; do
     if [[ "$1" == "--dry-run" ]]; then
         dry="1"
-    else
-        filter="$1"
     fi
     shift
 done
-
-# Reject invalid regexes before executing any scripts.
-if [[ -n "$filter" ]]; then
-    grep -q -- "$filter" </dev/null
-    status=$?
-    if [[ $status -gt 1 ]]; then
-        printf 'Error: invalid script filter: %s\n' "$filter" >&2
-        exit "$status"
-    fi
-fi
 
 log() {
     if [[ $dry == "1" ]]; then
@@ -46,39 +33,17 @@ execute() {
     fi
 }
 
-collect_scripts() {
-    local LC_ALL=C
-    local script
-
-    # Install first; glob expansion gives the remaining scripts a stable order.
-    scripts=(./runs/installs)
-    shopt -s dotglob nullglob
-    for script in ./runs/*; do
-        if [[ "$script" != ./runs/installs ]]; then
-            scripts+=("$script")
-        fi
-    done
-}
-
-log "Running scripts from $script_dir/runs with filter: '$filter'"
-
 cd "$script_dir" || exit 1
+
 # Initialize the environment before any run scripts use it.
 source ./env/.config/zsh/.zshenv || exit 1
-collect_scripts
 
+scripts=("agents" "codex" "neovim" "scripts" "tmux" "tmux-sessionizer" "zsh")
+log "Running scripts from $script_dir/runs"
 for script in "${scripts[@]}"; do
     # Match the previous discovery rule: executable regular files, not symlinks.
     if [[ ! -f "$script" || ! -x "$script" || -L "$script" ]]; then
         continue
-    fi
-
-    # If filter is provided, only run scripts that match
-    if [[ -n "$filter" ]]; then
-        if ! printf '%s\n' "$script" | grep -q -- "$filter"; then
-            log "filtering out: $script"
-            continue
-        fi
     fi
 
     execute "$script"
