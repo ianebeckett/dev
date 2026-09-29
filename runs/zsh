@@ -11,3 +11,5 @@ link_config "$HOME/dev/env/.config/zsh/.zshrc" "$HOME/.zshrc"
 
 # Zsh creates its own completion dump and history files.
 mkdir -p "$XDG_CACHE_HOME/zsh" "$XDG_STATE_HOME/zsh"
+
+chsh -s "$(command -v zsh)"

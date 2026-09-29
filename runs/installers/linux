@@ -9,7 +9,7 @@ fi
 
 sudo apt-get update
 
-packages="gdb libstdc++ git curl neovim tmux fzf ripgrep yt-dlp clang tree"
+packages="zsh gdb git-delta curl neovim tmux fzf ripgrep yt-dlp clang tree"
 
 for package in $packages; do
     sudo apt-get install -y "$package"
