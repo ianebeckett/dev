@@ -7,24 +7,25 @@ packages="gdb git-delta curl neovim tree-sitter-cli tmux fzf fd-find ripgrep yt-
 case "$OSTYPE" in
     linux-gnu*)
 
-        packages += "zsh"
+        packages+=" zsh"
 
+        echo "upgrading apt packages..."
         sudo apt-get update
         sudo apt-get upgrade
 
         # Disable apport (Ubuntu crash reporting)
         sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
-        ;;
 
+        echo "installing packages..."
         for package in $packages; do
+            echo -n "$package:"
             if dpkg -s "$package" &>/dev/null; then
-                echo "$package already installed"
+                echo " already installed"
             else
-                echo -n "installing $package..."
-                apt-get install "$package"
-                echo "done."
+                sudo apt-get install "$package"
             fi
         done
+        ;;
 
     darwin*)
 
@@ -36,17 +37,15 @@ case "$OSTYPE" in
         fi
 
         brew update
-        ;;
 
         for package in $packages; do
             if brew list "$package" &>/dev/null; then
                 echo "$package already installed"
             else
-                echo -n "installing $package..."
                 brew install "$package"
-                echo "done."
             fi
         done
+        ;;
 
     *)
         printf 'Unsupported platform: %s\n' "$OSTYPE" >&2; exit 1 ;;

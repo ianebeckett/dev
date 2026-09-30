@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd) || exit 1
-dry=""
-
 while [[ $# -gt 0 ]]; do
     if [[ "$1" == "--dry-run" ]]; then
         dry="1"
@@ -10,16 +7,7 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-log() {
-    if [[ $dry == "1" ]]; then
-        printf '[dry-run]: %s\n' "$*"
-    else
-        printf '%s\n' "$*"
-    fi
-}
-
 execute() {
-    log "execute $*"
     if [[ $dry == "1" ]]; then
         return 0
     fi
@@ -33,20 +21,22 @@ execute() {
     fi
 }
 
-cd "$script_dir" || exit 1
-
 # Initialize the environment before any run scripts use it.
 source ./env/.config/zsh/.zshenv || exit 1
 
-scripts=("agents" "codex" "neovim" "scripts" "tmux" "tmux-sessionizer" "zsh")
-log "linking and configuring tools via $script_dir/configure"
-for script in "${scripts[@]}"; do
-    echo -n "running $script..."
+runs_dir='./runs/'
+
+install_script="./runs/install_packages"
+execute "$install_script"
+
+echo "Linking and configuring tools..."
+config_scripts=("agents" "codex" "neovim" "scripts" "tmux" "tmux-sessionizer" "zsh")
+
+for script in "${config_scripts[@]}"; do
     # Match the previous discovery rule: executable regular files, not symlinks.
     if [[ ! -f "$script" || ! -x "$script" || -L "$script" ]]; then
         continue
     fi
-    echo "done."
 
     execute "$script"
 done

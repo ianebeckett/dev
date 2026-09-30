@@ -5,11 +5,13 @@ primary target; macOS support is best-effort.
 
 ## Installation
 
+First, set up a new SSH key for your device
+
 The checkout must be at `$HOME/dev`. On Ubuntu, setup assumes Bash, Git, `sudo`,
 `apt`, and `add-apt-repository` are available.
 
 ```bash
-git clone https://github.com/ianebeckett/dev "$HOME/dev"
+git clone git@github.com:ianebeckett/dev.git "$HOME/dev"
 cd "$HOME/dev"
 ./setup
 ```
