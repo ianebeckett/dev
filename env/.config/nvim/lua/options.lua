@@ -52,7 +52,7 @@ vim.o.winborder = 'rounded'
 vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 vim.opt.isfname:append('@-@') --include @ as a valid filename character
-require('vim._core.ui2').enable({})
+require("vim._extui").enable({})
 
 -- add paths for gf
 vim.opt.path:append({
