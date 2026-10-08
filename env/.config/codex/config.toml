@@ -20,17 +20,25 @@ trust_level = "trusted"
 [projects."/home/ian/dev"]
 trust_level = "trusted"
 
-[projects."/home/ian/school/csce-606/project-1"]
+[projects."/home/ian/Documents"]
+trust_level = "trusted"
+
+[projects."/home/ian/Downloads"]
 trust_level = "trusted"
 
 [projects."/home/ian/school/research"]
 trust_level = "trusted"
 
-[projects."/home/ian/Documents"]
+[projects."/home/ian/school/csce-606/activities"]
 trust_level = "trusted"
 
-=======
-[projects."/home/ian/school/csce-606/activities"]
+[projects."/home/ian/school/csce-606/project-1"]
+trust_level = "trusted"
+
+[projects."/home/ian/school/csce-671/team-project"]
+trust_level = "trusted"
+
+[projects."/home/ian/school/csce-606/pa2-hello-rails-rottenpotatoes"]
 trust_level = "trusted"
 
 [projects."/home/ian/personal/leetcode"]
@@ -39,16 +47,7 @@ trust_level = "trusted"
 [projects."/home/ian/personal/gym"]
 trust_level = "trusted"
 
-[projects."/home/ian/school/csce-671/team-project"]
-trust_level = "trusted"
-
 [projects."/home/ian/personal/time-management-coach"]
-trust_level = "trusted"
-
-[projects."/home/ian/Downloads"]
-trust_level = "trusted"
-
-[projects."/home/ian/school/csce-606/pa2-hello-rails-rottenpotatoes"]
 trust_level = "trusted"
 
 [tui]
