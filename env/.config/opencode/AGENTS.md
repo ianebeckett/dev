@@ -1,1 +1,1 @@
-/home/ian/.config/agents/AGENTS.md
+/home/ian/dev/env/.config/agents/AGENTS.md

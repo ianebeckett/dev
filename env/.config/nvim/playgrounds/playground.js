@@ -94,7 +94,9 @@ const isEqual = 1 == '1'; // should use ===
 const notEqual = 1 != '1'; // should use !==
 
 // 18. No-eval
-const result = eval('2 + 2');
+const eval_result = eval('2 + 2');
+
+const result = 4;
 
 // 19. No-implied-eval
 setTimeout('alert("Hello")', 1000); // string as first argument

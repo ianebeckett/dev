@@ -1,50 +1,40 @@
 #!/usr/bin/env bash
 
-set -eu
+set -euo pipefail
 
-packages="gdb git-delta curl neovim tree-sitter-cli tmux fzf fd-find ripgrep yt-dlp clang tree trash-cli"
+packages=(gdb git-delta curl neovim tree-sitter-cli tmux fzf ripgrep yt-dlp tree trash-cli)
 
 case "$OSTYPE" in
     linux-gnu*)
 
-        packages+=" zsh"
+        packages+=(zsh fd-find clang clangd nodejs npm ruby ruby-dev ruby-bundler build-essential libyaml-dev python3 ca-certificates)
 
-        echo "upgrading apt packages..."
+        echo "updating apt package lists..."
         sudo apt-get update
-        sudo apt-get upgrade
 
         # Disable apport (Ubuntu crash reporting)
-        sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+        if [[ -f /etc/default/apport ]]; then
+            sudo sed -i 's/enabled=1/enabled=0/g' /etc/default/apport
+        fi
 
         echo "installing packages..."
-        for package in $packages; do
-            echo -n "$package:"
-            if dpkg -s "$package" &>/dev/null; then
-                echo " already installed"
-            else
-                sudo apt-get install "$package"
-            fi
-        done
+        sudo apt-get install -y --no-upgrade "${packages[@]}"
         ;;
 
     darwin*)
 
+        packages+=(fd llvm node ruby python uv lua-language-server)
+
         if ! command -v brew &> /dev/null; then
             echo "Installing Homebrew..."
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         else
             echo "Homebrew already installed"
         fi
 
         brew update
 
-        for package in $packages; do
-            if brew list "$package" &>/dev/null; then
-                echo "$package already installed"
-            else
-                brew install "$package"
-            fi
-        done
+        HOMEBREW_NO_INSTALL_UPGRADE=1 brew install "${packages[@]}"
         ;;
 
     *)

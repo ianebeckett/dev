@@ -3,38 +3,45 @@
 
 vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(),
-  root_markers = { '.git/', },
+  root_markers = { '.git' },
 })
 
 vim.lsp.enable({
   'lua_ls',
+  'basedpyright',
   'clangd',
   'quick_lint_js',
-  'ts_ls',
   'jsonls',
-  'gopls',
-  'rust-analyzer',
   'ruby_lsp',
-});
+})
 
 -- Global diagnostics configuration
 vim.diagnostic.config({
     underline = true,
     virtual_text = {
-        enabled = true,
         virt_text_pos = 'eol',
     },
     signs = true,
     float = {
         focusable = true,
-        border = 'none',
+        border = 'rounded',
         header = '',
-        source = false,
+        source = 'if_many',
         format = function(diagnostic)
-            return string.format('%s\n%s: %s',
-            diagnostic.message, diagnostic.source, diagnostic.code)
+            local details = {}
+            if diagnostic.source then
+                details[#details + 1] = diagnostic.source
+            end
+            if diagnostic.code then
+                details[#details + 1] = tostring(diagnostic.code)
+            end
+            if #details == 0 then
+                return diagnostic.message
+            end
+            return diagnostic.message .. '\n' .. table.concat(details, ': ')
         end,
         prefix = '',
+        suffix = '',
     },
     update_in_insert = true,
     severity_sort = true,
@@ -43,7 +50,7 @@ vim.diagnostic.config({
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local lspAttachGroup = augroup('lsp-attach', { clear = true })
-local formatOnWriteGroup = augroup('format-on-write', { clear = false })
+-- local formatOnWriteGroup = augroup('format-on-write', { clear = false })
 
 autocmd('LspAttach', {
   desc = 'Set LSP keymaps upon attaching to a buffer',
@@ -68,7 +75,7 @@ autocmd('LspAttach', {
     map('[d', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
     map('vrr', telescope_builtin.lsp_references, '[V]iew [RR]eferences')
     map('vrn', vim.lsp.buf.rename, '[V]im [R]e[N]ame')
-    map('vca', vim.lsp.buf.code_action, '[V]im [C]ode [A]ction')
+    map('vca', vim.lsp.buf.code_action, '[V]im [C]ode [A]ction', { 'n', 'x' })
     map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls') -- has Telescope builtin
     map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls') -- has Telescope builtin
 

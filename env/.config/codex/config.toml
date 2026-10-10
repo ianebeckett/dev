@@ -50,6 +50,9 @@ trust_level = "trusted"
 [projects."/home/ian/personal/time-management-coach"]
 trust_level = "trusted"
 
+[projects."/home/ian/school/cluster"]
+trust_level = "trusted"
+
 [tui]
 animations = false
 status_line = ["model-with-reasoning"]

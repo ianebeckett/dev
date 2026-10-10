@@ -1,0 +1,6 @@
+{
+  "description": "jsonls: duplicate key diagnostic below; try formatting this file.",
+  "name": "first",
+  "name": "duplicate",
+  "items": [1,2,3]
+}

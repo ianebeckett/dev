@@ -16,11 +16,21 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export ZDOTDIR="$HOME/dev/env/.config/zsh"
 export SHELL_SESSIONS_DISABLE=1
 
+# User-installed tools must also be visible to non-interactive setup scripts.
+case ":$PATH:" in
+    *":$HOME/.local/bin:"*) ;;
+    *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+case ":$PATH:" in
+    *":$HOME/.local/lua-language-server/bin:"*) ;;
+    *) export PATH="$HOME/.local/lua-language-server/bin:$PATH" ;;
+esac
+
 # Add Homebrew to PATH on macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     if [[ $(uname -m) == "arm64" ]]; then
-        export PATH="/opt/homebrew/bin:$PATH"
+        export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/opt/llvm/bin:/opt/homebrew/bin:$PATH"
     else
-        export PATH="/usr/local/bin:$PATH"
+        export PATH="/usr/local/opt/ruby/bin:/usr/local/opt/llvm/bin:/usr/local/bin:$PATH"
     fi
 fi

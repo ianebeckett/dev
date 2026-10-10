@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+set -eu
+
+cd "$(dirname "$0")"
+dry="0"
+
 while [[ $# -gt 0 ]]; do
     if [[ "$1" == "--dry-run" ]]; then
         dry="1"
@@ -9,6 +14,7 @@ done
 
 execute() {
     if [[ $dry == "1" ]]; then
+        printf 'Would run: %s\n' "$*"
         return 0
     fi
 
@@ -24,15 +30,15 @@ execute() {
 # Initialize the environment before any run scripts use it.
 source ./env/.config/zsh/.zshenv || exit 1
 
-runs_dir='./runs/'
-
 install_script="./runs/install_packages"
 execute "$install_script"
+execute ./runs/install_language_servers
 
 echo "Linking and configuring tools..."
 config_scripts=("agents" "codex" "neovim" "scripts" "tmux" "tmux-sessionizer" "zsh")
 
 for script in "${config_scripts[@]}"; do
+    script="./runs/configure/$script"
     # Match the previous discovery rule: executable regular files, not symlinks.
     if [[ ! -f "$script" || ! -x "$script" || -L "$script" ]]; then
         continue
