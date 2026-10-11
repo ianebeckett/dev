@@ -76,6 +76,9 @@ addToPath $HOME/.local/lua-language-server/bin
 addToPath $HOME/.local/zig-x86_64-linux-0.15.2
 addToPath /usr/lib/postgresql/18/bin
 
+# python
+alias python=python3
+
 # go
 addToPath /usr/local/go/bin
 addToPath $HOME/go/bin
