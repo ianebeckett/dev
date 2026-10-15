@@ -106,3 +106,14 @@ eval "$(ssh-agent -s)" > /dev/null
 
 # opencode
 export PATH=/home/ian/.opencode/bin:$PATH
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/ian/.local/.juliaup/bin' $path)
+export PATH
+# Tab completion for juliaup and julia channel selection
+[ -f "/home/ian/.julia/juliaup/completions/zsh.zsh" ] && source "/home/ian/.julia/juliaup/completions/zsh.zsh"
+
+# <<< juliaup initialize <<<
