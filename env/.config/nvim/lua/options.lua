@@ -10,6 +10,13 @@ vim.opt.guicursor = ""
 vim.opt.encoding = 'utf-8'
 vim.opt.statusline = '%F %= %n %l,%c %P %{&fileencoding}'
 
+-- Let tmux name the window after the active buffer, including netrw.
+if vim.env.TMUX then
+    vim.opt.title = true
+    vim.opt.titlelen = 0
+    vim.opt.titlestring = "%{&filetype == 'netrw' ? 'netrw' : (expand('%:t') == '' ? '[No Name]' : expand('%:t'))}"
+end
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 -- high scrolloff minimizes vertical scanning with eyes
