@@ -17,20 +17,16 @@ let g:vimtex_quickfix_ignore_filters = [
       \ 'Package hyperref Warning: Token not allowed in a PDF string',
       \]
 
-"let g:vimtex_view_method = 'zathura'
-"try this if the above is not working on wayland
-let g:vimtex_view_method = 'zathura_simple'
-"refs:
-"https://ejmastnak.com/tutorials/vim-latex/pdf-reader/#zathura
-"https://github.com/lervag/vimtex/pull/2639
+" Autocommands share one managed viewer per PDF and close it with its buffers.
+let g:vimtex_view_method = 'managed'
 
-" Don't automatically open PDF viewer after first compilation
+" lua/tex_viewer.lua owns startup, including the first successful compilation.
 let g:vimtex_view_automatic = 0
 
 let g:vimtex_compiler_latexmk = {
     \ 'build_dir' : '',
     \ 'callback' : 1,
-    \ 'continuous' : 0,
+    \ 'continuous' : 1,
     \ 'executable' : 'latexmk',
     \ 'hooks' : [],
     \ 'options' : [

@@ -1,0 +1,108 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Essential Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm, mathtools} % For advanced math
+\usepackage{graphicx}                            % For including figures
+\usepackage{algorithm, algpseudocode}            % For pseudocode algorithms
+\usepackage{listings}                            % For source code listings
+\usepackage{xcolor}                              % For colors in code/listings
+\usepackage{hyperref}                            % For clickable links
+
+% --- Theorem and Proof Environments ---
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% --- Code Listing Styling ---
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red}
+}
+
+\title{Computer Science Research Document: Math, Algorithms, and Figures}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document demonstrates how to typeset mathematics, pseudocode, program source code, and figures in LaTeX.
+\end{center}
+\end{abstract}
+
+\section{Introduction and Math Notation}
+LaTeX provides robust tools for mathematical expressions. You can write inline equations like $f(n) = O(n \log n)$ or use display math:
+
+\begin{equation}
+    T(n) = 2T\left(\frac{n}{2}\right) + \Theta(n)
+    \label{eq:master_theorem}
+\end{equation}
+
+By the Master Theorem, the solution to Equation~(\ref{eq:master_theorem}) is $T(n) = \Theta(n \log n)$.
+
+\section{Algorithms}
+You can write structured pseudocode using the [algpseudocode](https://www.overleaf.com/learn/latex/Algorithms) package:
+
+\begin{algorithm}
+\caption{Binary Search Algorithm}
+\begin{algorithmic}[1]
+\Require Sorted array $A$ of size $n$, target value $t$
+\Ensure Index of $t$ if found, else $-1$
+\State $low \gets 0$
+\State $high \gets n - 1$
+\While{$low \le high$}
+    \State $mid \gets \lfloor (low + high) / 2 \rfloor$
+    \If{$A[mid] = t$}
+        \State \textbf{return} $mid$
+    \ElsIf{$A[mid] < t$}
+        \State $low \gets mid + 1$
+    \Else
+        \State $high \gets mid - 1$
+    \EndIf
+\EndWhile
+\State \textbf{return} $-1$
+\end{algorithmic}
+\label{alg:binary_search}
+\end{algorithm}
+
+\section{Computer Science Source Code}
+To include actual programming code, use the `listings` package:
+
+\begin{lstlisting}[language=Python, caption={Python implementation of Binary Search}]
+def binary_search(A, t):
+    low, high = 0, len(A) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if A[mid] == t:
+            return mid
+        elif A[mid] < t:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+\end{lstlisting}
+
+\section{Figures and Graphics}
+Figures are handled via the `graphicx` package. Place your image file (e.g., `diagram.png`) in your project folder:
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{diagram.png}
+    \caption{An architectural overview of the system flow.}
+    \label{fig:architecture}
+\end{figure}
+
+As shown in Figure~\ref{fig:architecture}, the data flows directly from the input layer to the processing node.
+
+\end{document}
+

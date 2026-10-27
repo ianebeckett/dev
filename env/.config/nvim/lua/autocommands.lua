@@ -1,6 +1,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+require('tex_viewer').setup()
+
 autocmd('FileType', {
   desc = 'Specify format options for all filetypes',
   pattern = '*',
