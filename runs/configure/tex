@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+case "$OSTYPE" in
+    linux-gnu*) ;;
+    *) echo "Skipping TeX desktop setup: automatic window placement requires Ubuntu GNOME."; exit 0 ;;
+esac
+
+# The runtime viewer uses the distro Python, whose PyGObject bindings apt installs.
+exec /usr/bin/python3 "$(dirname "$0")/../../lib/configure_tex.py" "$@"
