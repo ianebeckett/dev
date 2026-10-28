@@ -1,0 +1,200 @@
+*tex-snippets*  Local LaTeX snippets
+
+These LuaSnip snippets load for TeX buffers. VimTeX supplies syntax/context
+information. Math snippets expand only in math, excluding comments, verbatim,
+and text inside \text{...}. Typing a literal command such as \sum is preserved.
+
+Navigation ~
+    CTRL-K      Expand a manual snippet, or jump to the next placeholder.
+    CTRL-J      Jump to the previous placeholder.
+
+Most triggers below expand automatically as soon as you type them. Letter-only
+triggers require a word boundary. The ; symbols, __ and ^^ also work directly
+after a variable. You supply spaces and punctuation after leaving inline math.
+
+Math entry and delimiters ~
+    mk          $...$                       In prose
+    dm          \[ ... \]                   At the start of a prose line
+    lr          \left(...\right)            In math
+
+Math structures (automatic, in math) ~
+    ff          \frac{numerator}{denominator}
+    sr          \sqrt{...}
+    __          _{...}                      For example, x__
+    ^^          ^{...}                      For example, x^^
+    sum         \sum_{i=1}^{n} ...           Limits are editable
+    int         \int_{a}^{b} ...\,\mathrm{d}x
+    lim         \lim_{n \to \infty} ...
+    tt          \text{...}
+    mat         Two-by-two pmatrix
+    cases       Two-row cases environment
+
+Greek alphabet (automatic, in math) ~
+    ;al / ;Al  alpha / Alpha       ;be / ;Be  beta / Beta
+    ;ga / ;Ga  gamma / Gamma       ;de / ;De  delta / Delta
+    ;ep / ;Ep  epsilon / Epsilon   ;ze / ;Ze  zeta / Zeta
+    ;et / ;Et  eta / Eta           ;th / ;Th  theta / Theta
+    ;io / ;Io  iota / Iota         ;ka / ;Ka  kappa / Kappa
+    ;la / ;La  lambda / Lambda     ;mu / ;Mu  mu / Mu
+    ;nu / ;Nu  nu / Nu             ;xi / ;Xi  xi / Xi
+    ;oc / ;Oc  omicron / Omicron   ;pi / ;Pi  pi / Pi
+    ;rh / ;Rh  rho / Rho           ;si / ;Si  sigma / Sigma
+    ;ta / ;Ta  tau / Tau           ;up / ;Up  upsilon / Upsilon
+    ;ph / ;Ph  phi / Phi           ;ch / ;Ch  chi / Chi
+    ;ps / ;Ps  psi / Psi           ;om / ;Om  omega / Omega
+
+Every uppercase trigger also has an unprefixed manual alias: Th CTRL-K inserts
+\Theta, Ga CTRL-K inserts \Gamma, etc. These aliases appear in completion.
+The ;ep trigger keeps its existing \varepsilon shape. Lowercase omicron is o.
+Capitals with Latin-shaped glyphs use \mathrm{A}, \mathrm{B}, etc.; this avoids
+undefined commands such as \Alpha in standard LaTeX.
+
+Other symbols (automatic, in math) ~
+    ;in in        ;le leq       ;ge geq       ;ne neq
+    ;to to        ;iff iff      ;oo infty
+
+Symbol expansions include a trailing space to terminate the TeX command.
+
+Number sets and fonts (in math) ~
+    RR NN ZZ QQ CC      Automatic: \mathbb{R}, etc.
+    bb CTRL-K          Manual: \mathbb{...}
+    cal CTRL-K         Manual: \mathcal{...}
+
+Environments (at the beginning of a prose line, indentation allowed) ~
+    ali                 Automatic: a two-row align* environment
+    beg CTRL-K          Manual: \begin{...} / \end{...}, with mirrored names
+
+Data-science course notation                                      *tex-data-science*
+
+These additions target probability, sketching/streaming, geometry, linear
+algebra, optimization, privacy, attention, and distributed algorithms.
+They are available in all TeX math buffers. Defaults are editable placeholders;
+repeated variables in longer formulas update together. CTRL-K advances and
+CTRL-J moves backward. See LuaSnip/tex/data_science.lua to customize notation.
+
+Automatic probability notation ~
+    prb         \Pr[A]                         Probability of an event
+    prx         \Pr_{h\sim\mathcal{H}}[A]       Randomness in the subscript
+    cpr         \Pr[A | B]                     Conditional probability
+    exv         \mathbb{E}[X]                  Expectation
+    cex         \mathbb{E}[X | Y]              Conditional expectation
+    var         \operatorname{Var}[X]          Variance
+    cov         \operatorname{Cov}(X,Y)        Covariance
+    ind         \mathbf{1}_{\{A\}}             Indicator (no extra font package)
+
+Automatic geometry, sets, and estimates ~
+    nrm         p-norm; default index 2 is editable
+    nr2         Squared Euclidean norm
+    nrF         Frobenius norm
+    abs         Absolute value or cardinality
+    inn         Inner product of two editable expressions
+    set         Braced set
+    sbt         Set builder: {element | condition}
+    ceil / flr  Ceiling / floor
+    idx         [n], with editable n
+    vct         \boldsymbol{x}; also works for Greek letters
+    hat / til   \widehat{x} / \widetilde{x}
+    prod        Product with editable lower limit, upper limit, and body
+
+Additional automatic symbols ~
+    ;fa forall     ;ex exists     ;ni notin      ;sb subseteq
+    ;cu cup        ;ca cap        ;es emptyset   ;cd cdot
+    ;tm times      ;ot otimes     ;ap approx     ;sm sim
+    ;sc succeq     ;pc preceq     ;as gets       ;pt propto
+    ;nb nabla      ;pd partial    ;ell ell      ;df := (relation spacing)
+    ;iid          iid sampling relation (iid above \sim)
+
+The following groups are MANUAL: type the trigger, then CTRL-K, or accept the
+completion. Short autosnippets do not intercept these longer trigger names.
+
+Complexity and combinatorics (manual) ~
+    bigO / bigOmega / bigTheta      O(...), \Omega(...), \Theta(...)
+    littleo / littleomega           o(...), \omega(...)
+    softO                           \widetilde{O}(...) (hidden log factors)
+    logb                            Logarithm with editable base and argument
+    binom                           Binomial coefficient, n choose k
+
+Distributions (manual) ~
+    normal      Normal: mean and variance (or vector mean and covariance)
+    bern        Bernoulli: success probability
+    binomial    Binomial: number of trials and success probability
+    poisson     Poisson: rate
+    laplace     Laplace: location and scale, initially 0 and b
+    uniform     Uniform: support set or interval
+
+Linear algebra and optimization (manual) ~
+    trans / pinv       Transpose / pseudoinverse
+    rank / trace       Matrix rank / trace
+    diag / span        Diagonal matrix / linear span
+    supp / nnz         Support / number of nonzero entries
+    argmin / argmax    Optimizing variable/domain and objective
+    grad / pdv         Gradient / partial derivative
+    proj               Projection onto an editable set
+    opt                Aligned objective and constraints for LP/SDP or other
+                       optimization problems; replace the example constraint
+    lsq                Least-squares argmin ||Ax-b||_2^2
+    svd                A = U Sigma V^T; edit factors for a rank-k approximation
+    gdstep             x_{t+1} = x_t - eta_t grad f(x_t)
+    sgdstep            x_{t+1} = x_t - eta_t g_t
+    regret             External regret against the best fixed action in X
+
+Course expressions (manual) ~
+    fmom        Frequency moment: sum |f_i|^p over nonzero coordinates
+    lsh         Probability over h that h(x) = h(y)
+    jl          Two-sided squared-distance preservation inequality
+    relerr      (1-epsilon) C <= C_hat <= (1+epsilon) C
+    streamwin   Ordered window (x_{t-w+1}, ..., x_t)
+    dpineq      Pr[M(D) in S] <= exp(epsilon) Pr[M(D') in S] + delta
+    sens        Global p-norm sensitivity; p defaults to 1
+    softmax     Softmax applied to an expression
+    attn        Unmasked scaled dot-product attention: softmax(QK^T/sqrt(d_k)) V
+
+For streaming, heavy hitters, and MPC resource bounds, combine fmom, supp, nrm,
+prb/prx, exv, and the complexity templates. For coresets use relerr with the two
+cost expressions; for adversarial perturbations use nrm, sbt, argmax, and grad.
+
+Formula assumptions ~
+These templates type notation; they do not establish a theorem's hypotheses.
+    markov      Pr[X >= a] <= E[X]/a. Requires X >= 0 and a > 0.
+    cheby       Pr[|X-E[X]| >= a] <= Var[X]/a^2. Requires finite variance,
+                a > 0.
+    chernoff    Pr[X >= (1+delta)mu] <= exp(-delta^2 mu/3). Requires X to be
+                a sum of independent Bernoulli variables, mu = E[X], and
+                0 < delta <= 1. This is the upper-tail form only.
+    jl          Requires an embedding satisfying the displayed guarantee for
+                the point pairs in question (and 0 < epsilon < 1).
+    relerr      A template for a proved/required relative-error guarantee;
+                use a nonnegative cost and 0 <= epsilon < 1. For a coreset,
+                specify the quantification over all relevant queries/centers.
+    dpineq      The DP condition must hold for every adjacent dataset pair and
+                output event S; define adjacency in your notes.
+    sens        D ~ D' denotes that chosen dataset-adjacency relation.
+    fmom        Uses nonzero coordinates so p=0 counts distinct elements
+                without evaluating 0^0; the usual moments have p >= 0.
+    sgdstep     g_t denotes the chosen stochastic gradient estimator.
+    attn        Softmax is row-wise; add a mask separately when required.
+
+Notation references ~
+    Differential privacy: Dwork and Roth, Definition 2.4
+    https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf
+    Attention: Vaswani et al., equation (1)
+    https://arxiv.org/html/1706.03762v7#S3.SS2.SSS1
+    Streaming: MIT 6.854, lecture 5
+    https://courses.csail.mit.edu/6.854/16/Notes/n5-streaming.html
+
+All constructs use standard LaTeX or amsmath/amssymb. Add this to a document's
+preamble when testing the full set: >tex
+    \usepackage{amsmath,amssymb}
+<
+Example ~
+In insert mode type mk, then ff, then x. Press CTRL-K, type y, then press CTRL-K
+twice to leave both the fraction and inline math. The result is: >tex
+    $\frac{x}{y}$
+<
+Snippet definitions live in LuaSnip/tex/. Context checks live in
+lua/tex_context.lua. Tests use the installed plugins and type actual keys: >sh
+    nvim --headless -u NONE -i NONE -l tests/test_tex_snippets.lua
+<
+Tests keep their output under /tmp/nvim-tex-snippets-* and never start a viewer.
+
+vim:tw=78:ts=4:ft=help:norl:

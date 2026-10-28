@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1793141616.88204 "example.tex" "example.pdf" "example" 1793141617.17108 2
+["pdflatex"] 1793148752.49863 "example.tex" "example.pdf" "example" 1793148752.8054 2
   "/etc/texmf/web2c/texmf.cnf" 1793135362.71029 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -104,9 +104,9 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1793135370 165211 6b08d096f3d0fe5ff6b266061a2b45e0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1793135382 2265691 b05485cd2b13ccd8dc2bd346cb761383 ""
   "diagram.png" 0 -1 0 ""
-  "example.aux" 1793141617.14393 1316 5916127ac4928bcdb04e7e2025c3cb9e "pdflatex"
-  "example.out" 1793141617.14426 636 7dfd715adb5422d1ec12d67ff2a69fbb "pdflatex"
-  "example.tex" 1793141614.91271 3343 62d794837a8bba3f49fbb093fe6246f8 ""
+  "example.aux" 1793148752.77735 1316 5916127ac4928bcdb04e7e2025c3cb9e "pdflatex"
+  "example.out" 1793148752.77757 636 7dfd715adb5422d1ec12d67ff2a69fbb "pdflatex"
+  "example.tex" 1793148751.89902 3343 62d794837a8bba3f49fbb093fe6246f8 ""
   (generated)
   "example.aux"
   "example.log"
