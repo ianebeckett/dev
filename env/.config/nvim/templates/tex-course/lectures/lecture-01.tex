@@ -1,0 +1,77 @@
+% !TeX root = ../main.tex
+\lecture{1}{YYYY-MM-DD}{Probability basics}
+\label{lec:probability}
+
+\noindent\emph{Template example: replace this material with your lecture notes.}
+
+\subsection{Random variables and indicators}
+
+Let $A$ be an event in a probability space. Its indicator is a random variable
+that records whether $A$ occurs.
+\begin{definition}[Indicator]
+\label{def:indicator}
+\[
+    \mathbf{1}_{\{A\}} =
+    \begin{cases}
+        1 & \text{if $A$ occurs},\\
+        0 & \text{otherwise}.
+    \end{cases}
+\]
+\end{definition}
+Its expectation equals the probability of the event:
+\begin{equation}
+    \mathbb{E}\left[\mathbf{1}_{\{A\}}\right] = \Pr[A].
+    \label{eq:indicator-expectation}
+\end{equation}
+
+\subsection{A first concentration bound}
+
+\begin{theorem}[Markov's inequality]
+\label{thm:markov}
+Let $X$ be a nonnegative random variable with finite expectation, and let $a>0$
+be a threshold. Then
+\begin{equation}
+    \Pr[X\geq a] \leq \frac{\mathbb{E}[X]}{a}.
+    \label{eq:markov}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Pointwise, $a\mathbf{1}_{\{X\geq a\}}\leq X$. Take expectations, apply
+Equation~\eqref{eq:indicator-expectation}, and divide by $a>0$.
+\end{proof}
+
+\begin{example}
+If $\mathbb{E}[X]=2$, Theorem~\ref{thm:markov} gives $\Pr[X\geq 10]\leq 1/5$.
+\end{example}
+\begin{exercise}
+Construct a nonnegative random variable for which the bound in the preceding
+example is attained.
+\end{exercise}
+
+\subsection{Pseudocode}
+
+Let $x_1,\ldots,x_n$ be a nonempty stream, where $n$ is its length. The index $t$
+counts the items processed, $J$ is a fresh uniform random index, and $s$ is the
+stored sample. Algorithm~\ref{alg:reservoir} keeps one sample in constant space.
+
+\begin{algorithm}[htbp]
+\caption{Reservoir sampling of one item}
+\label{alg:reservoir}
+\begin{algorithmic}[1]
+    \Require Nonempty stream $x_1,\ldots,x_n$
+    \Ensure A uniformly sampled stream position's value
+    \State $s\gets x_1$
+    \For{$t=2,\ldots,n$}
+        \State Draw $J$ uniformly from $\{1,\ldots,t\}$
+        \If{$J=1$}
+            \State $s\gets x_t$
+        \EndIf
+    \EndFor
+    \State \Return $s$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{remark}
+Each of the $n$ stream positions has probability $1/n$ of being sampled. If a
+value occurs at $k$ positions, its probability of being returned is $k/n$.
+\end{remark}
