@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.10.27)  27 OCT 2026 19:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.10.27)  27 OCT 2026 20:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -433,34 +433,34 @@ l.41 \end{abstract}
 Things are pretty mixed up, but I think the worst is over.
 
 
-Overfull \hbox (5.56403pt too wide) in paragraph at lines 51--52
+Overfull \hbox (5.56403pt too wide) in paragraph at lines 56--57
 []\OT1/cmr/m/n/10.95 By the Mas-ter The-o-rem, the so-lu-tion to Equa-tion ([]2[]) is $\OML/cmm/m/it/10.95 T\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n\OT1/cmr/m/n/10.95 ) = ^^B(\OML/cmm/m/it/10.95 n [] n\OT1/cmr/m/n/10.95 )$. 
  []
 
 
-Overfull \hbox (185.91902pt too wide) in paragraph at lines 54--55
+Overfull \hbox (185.91902pt too wide) in paragraph at lines 59--60
 \OT1/cmr/m/n/10.95 You can write struc-tured pseu-docode us-ing the [al-gpseu-docode](https://www.overleaf.com/learn/latex/Algorithms)
  []
 
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 57.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 62.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 81.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 86.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: File `diagram.png' not found on input line 100.
+LaTeX Warning: File `diagram.png' not found on input line 105.
 
 
-./example.tex:100: Package pdftex.def Error: File `diagram.png' not found: using draft setting.
+./example.tex:105: Package pdftex.def Error: File `diagram.png' not found: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.100 ...raphics[width=0.6\textwidth]{diagram.png}
+l.105 ...raphics[width=0.6\textwidth]{diagram.png}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -480,19 +480,16 @@ Package rerunfilecheck Info: File `example.out' has not changed.
 Here is how much of TeX's memory you used:
  13366 strings out of 469438
  200051 string characters out of 5468409
- 887632 words of memory out of 5000000
+ 868735 words of memory out of 5000000
  41846 multiletter control sequences out of 15000+600000
  636069 words of font info for 72 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 75i,6n,79p,544b,1338s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{equation.2} has been referenced but does not exist, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on example.pdf (3 pages, 139871 bytes).
+ 75i,6n,79p,544b,2180s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on example.pdf (3 pages, 156641 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 125 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
  24 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

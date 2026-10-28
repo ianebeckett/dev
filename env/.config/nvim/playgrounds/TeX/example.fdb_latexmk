@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1793148752.49863 "example.tex" "example.pdf" "example" 1793148752.8054 2
+["pdflatex"] 1793151422.27569 "example.tex" "example.pdf" "example" 1793151422.56934 2
   "/etc/texmf/web2c/texmf.cnf" 1793135362.71029 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -33,8 +33,10 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1248133631 32362 179c33bbf43f19adbb3825bb4e36e57a ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1248133631 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1248133631 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -104,9 +106,9 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1793135370 165211 6b08d096f3d0fe5ff6b266061a2b45e0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1793135382 2265691 b05485cd2b13ccd8dc2bd346cb761383 ""
   "diagram.png" 0 -1 0 ""
-  "example.aux" 1793148752.77735 1316 5916127ac4928bcdb04e7e2025c3cb9e "pdflatex"
-  "example.out" 1793148752.77757 636 7dfd715adb5422d1ec12d67ff2a69fbb "pdflatex"
-  "example.tex" 1793148751.89902 3343 62d794837a8bba3f49fbb093fe6246f8 ""
+  "example.aux" 1793151422.54086 1399 a1cb7ffb4cb21e455c618837aef9dd5a "pdflatex"
+  "example.out" 1793151422.54132 636 7dfd715adb5422d1ec12d67ff2a69fbb "pdflatex"
+  "example.tex" 1793151420.88052 3444 55bee796bb063a0843c0fd407027d580 ""
   (generated)
   "example.aux"
   "example.log"

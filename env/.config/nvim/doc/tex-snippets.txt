@@ -29,6 +29,30 @@ Math structures (automatic, in math) ~
     mat         Two-by-two pmatrix
     cases       Two-row cases environment
 
+Slash fractions (automatic, in math) ~
+    //                  \frac{}{}                Start in the numerator
+    3/                  \frac{3}{}               Start in the denominator
+    4\pi^2/             \frac{4\pi^2}{}
+    (1 + 2 + 3)/        \frac{1 + 2 + 3}{}
+    (1+(2+3)/)          (1+\frac{2+3}{})
+    (1 + (2+3))/        \frac{1 + (2+3)}{}
+
+The examples show the slash typed immediately before the cursor; any closing
+parentheses already to its right stay in place. Existing whitespace is kept.
+CTRL-J revisits the captured numerator; CTRL-K returns to the denominator and
+then exits the fraction. The ff trigger remains available as well.
+
+A single slash captures the adjacent term on the current line: numbers, Latin
+letters, TeX commands, subscripts/superscripts, and balanced (), [], or {} groups.
+Only an outer pair of plain parentheses is stripped. Function calls and sized
+parentheses such as \left(...\right) retain their delimiters. For example,
+a+b/ wraps only b, whereas (a+b)/ wraps the sum. Group expressions containing
+spaces before applying the slash.
+
+A space before the slash keeps literal division: 3 / 4. Unmatched/escaped groups
+and multi-line numerators are not captured automatically. Comments, verbatim,
+and prose are excluded by the same context checks as the other math snippets.
+
 Greek alphabet (automatic, in math) ~
     ;al / ;Al  alpha / Alpha       ;be / ;Be  beta / Beta
     ;ga / ;Ga  gamma / Gamma       ;de / ;De  delta / Delta

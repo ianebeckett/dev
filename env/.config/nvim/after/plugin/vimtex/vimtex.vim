@@ -1,5 +1,10 @@
 let g:vimtex_imaps_enabled = 0
-let g:vimtex_syntax_conceal_disable = 1
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+let g:vimtex_syntax_conceal_disable = 0
+set conceallevel=1
+let g:tex_conceal='abdmg'
 
 " Default is 500 lines and lags on missed key presses
 let g:vimtex_delim_stopline = 5
