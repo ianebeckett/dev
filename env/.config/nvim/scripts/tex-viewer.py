@@ -153,9 +153,22 @@ def monitor_rectangles(bus, monitor):
         )[0]
     except GLib.Error as error:
         raise RuntimeError("Enable Desktop Icons NG to read GNOME's monitor and dock geometry") from error
+    dock_margin = None
+    source = Gio.SettingsSchemaSource.get_default()
+    schema = source.lookup("org.gnome.shell.extensions.dash-to-dock", True) if source else None
+    if schema:
+        settings = Gio.Settings.new_full(schema, None, None)
+        # DING reserves icon space even for an auto/intelligently hidden dock.
+        # Only a fixed dock reserves window space. Keep the top margin because
+        # DING combines it with the GNOME panel and cannot separate the two.
+        if not settings.get_boolean("dock-fixed"):
+            dock_margin = {"LEFT": "marginLeft", "RIGHT": "marginRight",
+                           "BOTTOM": "marginBottom"}.get(settings.get_string("dock-position"))
     for area in description[2][0]:
         if area["monitorIndex"] != monitor:
             continue
+        if dock_margin:
+            area = {**area, dock_margin: 0}
         x, y, width, height = (round(area[key]) for key in ("x", "y", "width", "height"))
         midpoint = x + width // 2
         left = x + math.ceil(area["marginLeft"])
