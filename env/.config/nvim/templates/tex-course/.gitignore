@@ -1,0 +1,11 @@
+# LaTeX build products. Keep source figures, including imported PDFs, trackable.
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+/main.pdf

@@ -29,7 +29,10 @@ ts.install({
 
 local ignore_filetypes = {
   'checkhealth',
-  'qf'
+  'qf',
+  -- VimTeX's syntax groups drive context-aware TeX snippets and text objects.
+  'tex',
+  'plaintex',
 }
 
 local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })

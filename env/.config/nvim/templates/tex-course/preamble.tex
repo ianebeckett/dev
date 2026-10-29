@@ -1,0 +1,54 @@
+% !TeX root = main.tex
+% Shared by all lecture files through main.tex.
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in,headheight=14pt]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{figures/}}
+\setlist{nosep}
+\setlength{\emergencystretch}{2em}
+
+% A shared theorem counter makes references unambiguous within each lecture.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+% The proof environment is provided by amsthm.
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+\numberwithin{algorithm}{section}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\coursecode}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+
+% Usage: \lecture{number}{date}{topic}. Standard sectioning supplies TOC entries,
+% hyperlink targets, and counter resets. Use \subsection inside a lecture.
+\newcommand{\lecture}[3]{%
+    \clearpage
+    \setcounter{section}{\numexpr#1-1\relax}%
+    \section{#3}%
+    \noindent\textbf{Lecture #1}\hfill\textbf{#2}\par\medskip
+}

@@ -38,9 +38,6 @@ trust_level = "trusted"
 [projects."/home/ian/school/csce-671/team-project"]
 trust_level = "trusted"
 
-[projects."/home/ian/school/csce-606/pa2-hello-rails-rottenpotatoes"]
-trust_level = "trusted"
-
 [projects."/home/ian/personal/leetcode"]
 trust_level = "trusted"
 
@@ -56,13 +53,7 @@ trust_level = "trusted"
 [projects."/home/ian/school/csce-606/csce-606-project-2"]
 trust_level = "trusted"
 
-[projects."/home/ian/personal/gs-cram"]
-trust_level = "trusted"
-
 [projects."/home/ian/school/csce-606/codecoach"]
-trust_level = "trusted"
-
-[projects."/home/ian/school/csce-606/hw-acceptance-unit-test-cycle"]
 trust_level = "trusted"
 
 [tui]

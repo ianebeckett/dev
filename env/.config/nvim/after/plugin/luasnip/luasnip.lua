@@ -8,7 +8,7 @@ ls.setup({
 
 require("luasnip.loaders.from_vscode").load()
 require("luasnip.loaders.from_lua").load({
-    paths = { "~/dev/env/.config/nvim/LuaSnip/", }
+    paths = { vim.fn.stdpath('config') .. '/LuaSnip' }
 })
 
 vim.keymap.set({'i','s'}, "<c-k>", function()

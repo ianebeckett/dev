@@ -63,6 +63,9 @@ if name == 'sudo':
             install(package)
     elif args[:2] != ['apt-get', 'update'] and args[0] != 'sed':
         raise RuntimeError(args)
+elif name == 'apt-cache':
+    assert args == ['show', 'gnome-shell-ubuntu-extensions']
+    sys.exit(1 if os.environ.get('DEV_TEST_LEGACY_GNOME') else 0)
 elif name == 'brew':
     assert args[0] in ('install', 'update')
     if args[0] == 'install':
@@ -141,7 +144,7 @@ class InstallerTests(unittest.TestCase):
         (self.root / 'state.json').write_text(json.dumps({'packages': []}))
         (self.root / 'calls').touch()
         (self.root / 'mock').write_text(f'#!{sys.executable}\n' + MOCK)
-        for command in ('sudo', 'uname', 'curl', 'installer', 'sha256sum'):
+        for command in ('sudo', 'apt-cache', 'uname', 'curl', 'installer', 'sha256sum'):
             self.mock(command)
         for command in ('bash', 'sh', 'dirname', 'mkdir', 'mktemp', 'rm', 'cp', 'tar', 'gzip'):
             (self.bin / command).symlink_to(shutil.which(command))
@@ -197,7 +200,28 @@ class InstallerTests(unittest.TestCase):
         for command in ('npm', 'gem', 'uv'):
             self.assertTrue(any(c[0] == command and 'install' in c for c in calls))
         self.assertTrue((self.root / 'home/.local/lua-language-server/bin/lua-language-server').is_file())
+        packages = json.loads((self.root / 'state.json').read_text())['packages']
+        for package in ('latexmk', 'texlive-latex-recommended', 'texlive-latex-extra',
+                        'texlive-fonts-recommended', 'texlive-science', 'zathura',
+                        'zathura-pdf-poppler', 'python3-gi', 'gir1.2-glib-2.0',
+                        'libglib2.0-bin', 'gnome-shell-ubuntu-extensions'):
+            self.assertIn(package, packages)
+        self.assertNotIn('wmctrl', packages)
         self.assert_repeat_install()
+
+    def test_legacy_ubuntu_extension_packages(self):
+        self.env['DEV_TEST_LEGACY_GNOME'] = '1'
+        self.run_script('runs/install_packages')
+        packages = json.loads((self.root / 'state.json').read_text())['packages']
+        self.assertIn('gnome-shell-extension-desktop-icons-ng', packages)
+        self.assertIn('gnome-shell-extension-ubuntu-dock', packages)
+        self.assertNotIn('gnome-shell-ubuntu-extensions', packages)
+
+    def test_tex_configuration_skips_macos(self):
+        self.env['OSTYPE'] = 'darwin'
+        result = self.run_script('runs/configure/tex')
+        self.assertIn('requires Ubuntu GNOME', result.stdout)
+        self.assertEqual(self.calls(), [])
 
     def test_linux_arm64_release(self):
         self.env['DEV_TEST_ARCH'] = 'aarch64'
@@ -255,6 +279,7 @@ class InstallerTests(unittest.TestCase):
         result = self.run_script('runner', '--dry-run')
         self.assertIn('Would run: ./runs/install_language_servers', result.stdout)
         self.assertIn('Would run: ./runs/configure/neovim', result.stdout)
+        self.assertIn('Would run: ./runs/configure/tex', result.stdout)
         self.assertEqual(self.calls(), [])
 
     def test_macos_arm64_bootstrap_and_repeat(self):
@@ -268,7 +293,7 @@ class InstallerTests(unittest.TestCase):
         shutil.copyfile(REPO / 'runner', checkout / 'runner')
         scripts = [
             'runs/install_packages', 'runs/install_language_servers',
-            'runs/configure/neovim',
+            'runs/configure/neovim', 'runs/configure/tex',
         ]
         for script in scripts:
             path = checkout / script

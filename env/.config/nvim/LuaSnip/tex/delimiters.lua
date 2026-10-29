@@ -1,44 +1,13 @@
----@diagnostic disable: unused-local
-local ls = require("luasnip")
-local s = ls.snippet
-local sn = ls.snippet_node
-local isn = ls.indent_snippet_node
-local t = ls.text_node
-local i = ls.insert_node
-local f = ls.function_node
-local c = ls.choice_node
-local d = ls.dynamic_node
-local r = ls.restore_node
-local events = require("luasnip.util.events")
-local ai = require("luasnip.nodes.absolute_indexer")
---local opt = require("luasnip.nodes.optional_arg")
-local extras = require("luasnip.extras")
-local l = extras.lambda
-local rep = extras.rep
-local p = extras.partial
-local m = extras.match
-local n = extras.nonempty
-local dl = extras.dynamic_lambda
-local fmt = require("luasnip.extras.fmt").fmt
-local fmta = require("luasnip.extras.fmt").fmta
-local conds = require("luasnip.extras.expand_conditions")
-local postfix = require("luasnip.extras.postfix").postfix
-local types = require("luasnip.util.types")
-local parse = require("luasnip.util.parser").parse_snippet
-local ms = ls.multi_snippet
-local k = require("luasnip.nodes.key_indexer").new_key
+local ls = require('luasnip')
+local s, i = ls.snippet, ls.insert_node
+local fmta = require('luasnip.extras.fmt').fmta
+local context = require('tex_context')
 
-local snippets = {
-    s({ trig = "hi" },
-        { t("Hello, world!") }
-    ),
+return {}, {
+    s({ trig = 'mk', name = 'Inline math', condition = context.text, show_condition = context.text },
+        fmta('$<>$<>', { i(1), i(0) })),
+    s({ trig = 'dm', name = 'Display math', condition = context.text_line, show_condition = context.text },
+        fmta('\\[\n    <>\n\\]\n<>', { i(1), i(0) })),
+    s({ trig = 'lr', name = 'Sized parentheses', condition = context.math, show_condition = context.math },
+        fmta('\\left(<>\\right)<>', { i(1), i(0) })),
 }
-
-local autosnippets = {
-    -- s({ trig = "hi" },
-    --     { t("Hello, world!") }
-    -- ),
-}
-
-return snippets, autosnippets
-
