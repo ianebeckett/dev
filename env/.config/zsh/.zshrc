@@ -111,9 +111,9 @@ export PATH=/home/ian/.opencode/bin:$PATH
 
 # !! Contents within this block are managed by juliaup !!
 
-path=('/home/ian/.local/.juliaup/bin' $path)
+path=("${HOME}/.local/.juliaup/bin" $path)
 export PATH
 # Tab completion for juliaup and julia channel selection
-[ -f "/home/ian/.julia/juliaup/completions/zsh.zsh" ] && source "/home/ian/.julia/juliaup/completions/zsh.zsh"
+[ -f "${HOME}/.julia/juliaup/completions/zsh.zsh" ] && source "${HOME}/.julia/juliaup/completions/zsh.zsh"
 
 # <<< juliaup initialize <<<

@@ -53,12 +53,25 @@ trust_level = "trusted"
 [projects."/home/ian/school/cluster"]
 trust_level = "trusted"
 
+[projects."/home/ian/school/csce-606/csce-606-project-2"]
+trust_level = "trusted"
+
+[projects."/home/ian/personal/gs-cram"]
+trust_level = "trusted"
+
+[projects."/home/ian/school/csce-606/codecoach"]
+trust_level = "trusted"
+
+[projects."/home/ian/school/csce-606/hw-acceptance-unit-test-cycle"]
+trust_level = "trusted"
+
 [tui]
 animations = false
 status_line = ["model-with-reasoning"]
 terminal_title = ["project"]
 notifications = false
 screen_reader_detection_done = true
+session_picker_view = "comfortable"
 
 [tui.model_availability_nux]
 gpt-6-astra = 4
