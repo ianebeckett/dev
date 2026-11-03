@@ -63,6 +63,7 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/ian/school/csce-606/hw-acceptance-unit-test-cycle"]
+[projects."/home/ian/school/csce-671/AgentConversationRecall"]
 trust_level = "trusted"
 
 [tui]
@@ -79,4 +80,10 @@ gpt-6-astra = 4
 #show_tooltips = false
 
 [features]
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.create_issue"]
+approval_mode = "approve"
+
+[apps.connector_76869538009648d5b282a4bb21c3d157.tools."github.update_issue"]
+approval_mode = "approve"
 #fast_mode = false

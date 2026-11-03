@@ -7,3 +7,5 @@ env/.cache/*
 env/.local/state/*
 !env/.cache/.gitkeep
 !env/.local/state/.gitkeep
+
+.nvimlog
