@@ -72,15 +72,10 @@ return {
 
               on_dir(project_root)
             end,
-            -- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.--ian-fix
             settings = {
               debug = false,
               validate = 'on',
-              packageManager = nil,--ian-fix
               useESLintClass = true,
-              experimental = {--ian-fix
-                useFlatConfig = true
-              },
               codeActionOnSave = {
                 enable = false,
                 mode = 'all',
@@ -96,8 +91,7 @@ return {
               -- nodePath configures the directory in which the eslint server should start its node_modules resolution.
               -- This path is relative to the workspace folder (root dir) of the server instance.
               nodePath = '',
-              -- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
-              workingDirectory = { mode = 'auto' },--ian-fix
+              workingDirectory = { mode = 'auto' },
               codeAction = {
                 disableRuleComment = {
                   enable = true,

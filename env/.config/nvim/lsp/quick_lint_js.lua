@@ -12,8 +12,8 @@ return {
     filetypes = {
         'javascript',
         'javascriptreact',
-        'typescript',
-        'typescriptreact',
+        -- 'typescript',
+        -- 'typescriptreact',
     },
     root_markers = { 'package.json', 'jsconfig.json', '.git' },
 }

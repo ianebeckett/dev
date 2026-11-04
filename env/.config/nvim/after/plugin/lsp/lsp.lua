@@ -10,7 +10,10 @@ vim.lsp.enable({
   'lua_ls',
   'basedpyright',
   'clangd',
-  'quick_lint_js',
+  'ts_ls',
+  'svelte',
+  'eslint',
+  --'quick_lint_js',
   'jsonls',
   'ruby_lsp',
 })
