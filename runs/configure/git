@@ -2,6 +2,8 @@
 
 set -eu
 
+REPO_DIR="${REPO_DIR:-$HOME/dev}"
 source "$REPO_DIR/lib/linker.sh"
 
-link_config "$REPO_DIR/env/.gitconfig" "$HOME/.gitconfig"
+link_config "$REPO_DIR/env/config/git/.gitconfig" "$HOME/.gitconfig"
+link_config "$REPO_DIR/env/config/git/.gitignore_global" "$HOME/.gitignore_global"
