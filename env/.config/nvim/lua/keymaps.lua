@@ -102,3 +102,7 @@ end, { desc = "Yank the current file path" })
 -- 		vim.cmd.colorscheme("cobalt")
 -- 	end
 -- end, { desc = "[T]oggle [c]olorscheme" })
+
+vim.keymap.set("n", "<leader>t", function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostics" })
