@@ -116,3 +116,7 @@ extract () {
          echo "'$1' is not a valid file"
      fi
 }
+
+gcco() {
+    gcc "$1" -o "${1%.*}"
+}
