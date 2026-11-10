@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eu
+
+REPO_DIR="${REPO_DIR:-$HOME/dev}"
+source "$REPO_DIR/lib/linker.sh"
+
+link_config "$REPO_DIR/env/config/clang/.clang-format" "$HOME/.clang-format"
