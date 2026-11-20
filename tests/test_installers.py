@@ -81,6 +81,8 @@ elif name == 'curl':
         target = Path(args[args.index('-o') + 1])
         if url.endswith('uv/install.sh'):
             target.write_text('#!/bin/sh\nexec "$DEV_TEST_ROOT/bin/installer" uv\n')
+        elif '/pypy/' in url:
+            shutil.copyfile(root / 'pypy.tar.gz', target)
         else:
             shutil.copyfile(root / 'luals.tar.gz', target)
 elif name == 'installer':
@@ -90,13 +92,22 @@ elif name == 'installer':
     else:
         assert os.environ['NONINTERACTIVE'] == '1'
         executable('brew')
-elif name == 'sha256sum':
-    checksum = sys.stdin.read().split()[0]
+elif name in ('sha256sum', 'shasum'):
+    checksum, archive = sys.stdin.read().split()
     expected = {
         'x86_64': 'e9235d2d72ef55bc41cf8c99cda2ed64777682024b4bb81f5dea425060c5cbb8',
         'aarch64': 'abd2572e8fc929dc838a81ffb8473c5bce0bf39bfe8edb4b120b3b623176ce83',
     }
-    assert checksum == expected[os.environ.get('DEV_TEST_ARCH', 'x86_64')]
+    if archive.endswith('/pypy.tar.gz'):
+        expected = {
+            ('linux-gnu', 'x86_64'): '706965bcf372752ba69dafd59d860e51bc2fadbb0f8a47cec3426125d7058ceb',
+            ('linux-gnu', 'aarch64'): '5b568e1515dee46df58c9844dba95921c69dfd9f38ebf9e0f091caad5e10cd0c',
+            ('darwin', 'x86_64'): '6d64709b5488d5114c137ab542c857e6ab4ca165d3aea2e5a7c3c6fe6dc34b18',
+            ('darwin', 'arm64'): 'b839268a9eaf41d28e4dc0be20f2201e18121b31dc9ebc8bc19d140d9d34bc6c',
+        }
+        assert checksum == expected[(os.environ['OSTYPE'], os.environ.get('DEV_TEST_ARCH', 'x86_64'))]
+    else:
+        assert checksum == expected[os.environ.get('DEV_TEST_ARCH', 'x86_64')]
     sys.exit(1 if os.environ.get('DEV_TEST_FAIL') == 'checksum' else 0)
 elif name == 'npm':
     assert args[:2] == ['install', '--global']
@@ -141,9 +152,9 @@ class InstallerTests(unittest.TestCase):
         (self.root / 'state.json').write_text(json.dumps({'packages': []}))
         (self.root / 'calls').touch()
         (self.root / 'mock').write_text(f'#!{sys.executable}\n' + MOCK)
-        for command in ('sudo', 'uname', 'curl', 'installer', 'sha256sum'):
+        for command in ('sudo', 'uname', 'curl', 'installer', 'sha256sum', 'shasum'):
             self.mock(command)
-        for command in ('bash', 'sh', 'dirname', 'mkdir', 'mktemp', 'rm', 'cp', 'tar', 'gzip'):
+        for command in ('bash', 'sh', 'dirname', 'mkdir', 'mktemp', 'rm', 'cp', 'tar', 'gzip', 'mv', 'ln', 'readlink'):
             (self.bin / command).symlink_to(shutil.which(command))
         with tarfile.open(self.root / 'luals.tar.gz', 'w:gz') as archive:
             contents = b'#!/bin/sh\necho "LuaLS test release"\n'
@@ -253,6 +264,7 @@ class InstallerTests(unittest.TestCase):
 
     def test_runner_dry_run_from_other_directory(self):
         result = self.run_script('runner', '--dry-run')
+        self.assertIn('Would run: ./runs/install_pypy', result.stdout)
         self.assertIn('Would run: ./runs/install_language_servers', result.stdout)
         self.assertIn('Would run: ./runs/configure/neovim', result.stdout)
         self.assertEqual(self.calls(), [])
@@ -267,7 +279,7 @@ class InstallerTests(unittest.TestCase):
         (checkout / 'env/.config/zsh/.zshenv').write_text('')
         shutil.copyfile(REPO / 'runner', checkout / 'runner')
         scripts = [
-            'runs/install_packages', 'runs/install_language_servers',
+            'runs/install_packages', 'runs/install_pypy', 'runs/install_language_servers',
             'runs/configure/neovim',
         ]
         for script in scripts:
@@ -291,7 +303,74 @@ class InstallerTests(unittest.TestCase):
         self.env['DEV_TEST_FAIL_STEP'] = 'runs/install_language_servers'
         result = self.run_script(runner, success=False)
         self.assertEqual(result.returncode, 42)
-        self.assertEqual((self.root / 'order').read_text().splitlines(), scripts[:2])
+        self.assertEqual((self.root / 'order').read_text().splitlines(), scripts[:3])
+
+    def pypy_fixture(self, platform='linux64', contents=b'#!/bin/sh\necho "PyPy test release"\n'):
+        release = f'pypy3.11-v8.0.1-{platform}'
+        with tarfile.open(self.root / 'pypy.tar.gz', 'w:gz') as archive:
+            entry = tarfile.TarInfo(f'{release}/bin/pypy3.11')
+            entry.mode = 0o755
+            entry.size = len(contents)
+            archive.addfile(entry, io.BytesIO(contents))
+        return self.root / 'home/.local/opt' / release
+
+    def test_pypy_platforms_and_repeat(self):
+        for ostype, arch, platform in (
+            ('linux-gnu', 'x86_64', 'linux64'),
+            ('linux-gnu', 'aarch64', 'aarch64'),
+            ('darwin', 'x86_64', 'macos_x86_64'),
+            ('darwin', 'arm64', 'macos_arm64'),
+        ):
+            with self.subTest(platform=platform):
+                self.env.update(OSTYPE=ostype, DEV_TEST_ARCH=arch)
+                destination = self.pypy_fixture(platform)
+                self.clear_calls()
+                self.run_script('runs/install_pypy')
+                self.assertTrue(any(
+                    f'https://downloads.python.org/pypy/{destination.name}.tar.gz' in c
+                    for c in self.calls() if c[0] == 'curl'
+                ))
+                for name in ('pypy3', 'pypy3.11'):
+                    link = self.root / 'home/.local/bin' / name
+                    self.assertTrue(link.is_symlink())
+                    self.assertEqual(link.resolve(), destination / 'bin/pypy3.11')
+                link.unlink()
+                self.clear_calls()
+                self.run_script('runs/install_pypy')
+                self.assertTrue(link.is_symlink())
+                self.assertFalse(any(c[0] == 'curl' for c in self.calls()))
+
+    def test_pypy_failed_download_or_checksum_is_retryable(self):
+        destination = self.pypy_fixture()
+        for failure in ('download', 'checksum'):
+            with self.subTest(failure=failure):
+                self.env['DEV_TEST_FAIL'] = failure
+                self.run_script('runs/install_pypy', success=False)
+                self.assertFalse(destination.exists())
+                self.assertFalse((self.root / 'home/.local/bin/pypy3').exists())
+                self.assertFalse(list(destination.parent.glob('.dev-pypy.*')))
+        del self.env['DEV_TEST_FAIL']
+        self.run_script('runs/install_pypy')
+        self.assertTrue(destination.is_dir())
+
+    def test_pypy_broken_binary_is_not_installed(self):
+        destination = self.pypy_fixture(contents=b'#!/bin/sh\nexit 1\n')
+        self.run_script('runs/install_pypy', success=False)
+        self.assertFalse(destination.exists())
+        self.assertFalse(list(destination.parent.glob('.dev-pypy.*')))
+
+    def test_pypy_preserves_existing_regular_command(self):
+        self.pypy_fixture()
+        command = self.root / 'home/.local/bin/pypy3'
+        command.parent.mkdir(parents=True)
+        command.write_text('existing command')
+        self.run_script('runs/install_pypy', success=False)
+        self.assertEqual(command.read_text(), 'existing command')
+
+    def test_pypy_unsupported_architecture(self):
+        self.env['DEV_TEST_ARCH'] = 'riscv64'
+        self.run_script('runs/install_pypy', success=False)
+        self.assertFalse(any(c[0] == 'curl' for c in self.calls()))
 
 
 if __name__ == '__main__':

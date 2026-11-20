@@ -16,10 +16,6 @@ cd "$HOME/dev"
 ./setup
 ```
 
-`setup` updates the checkout with `git pull` and invokes `runner`. The runner
-loads `env/.config/zsh/.zshenv`, installs system packages and language servers,
-then runs the selected scripts in `runs/configure` in its explicit order.
-
 `./runner --dry-run` prints the scripts it would run without executing them.
 
 The language server installer uses these package sources:

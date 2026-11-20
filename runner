@@ -32,6 +32,7 @@ source ./env/.config/zsh/.zshenv || exit 1
 
 install_script="./runs/install_packages"
 execute "$install_script"
+execute ./runs/install_pypy
 execute ./runs/install_language_servers
 
 echo "Linking and configuring tools..."

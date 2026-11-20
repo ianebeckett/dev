@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+set -u
+
+usage() {
+    cat <<'EOF'
+Usage: run source[.py|.cpp] [C++stdno]
+
+Run Python with pypy3.11 by default (no standard argument).
+The .py extension is optional; use .cpp to compile and run C++ (default standard: 17).
+Matching .in files supply input.
+
+Examples:
+  run a
+  run a.cpp 23
+  run b.cpp 20
+  run a.py
+EOF
+}
+
+if [[ ${1:-} == --help || ${1:-} == -h ]]; then
+    usage
+    exit 0
+fi
+
+extension=py
+max_args=1
+if [[ ${1:-} == *.cpp ]]; then
+    extension=cpp
+    max_args=2
+fi
+
+if (( $# < 1 || $# > max_args )); then
+    usage >&2
+    exit 1
+fi
+
+source=$1
+[[ $source == *."$extension" ]] || source+=.$extension
+standard=${2:-17}
+if [[ $extension == cpp && ! $standard =~ ^[0-9]+$ ]]; then
+    printf 'Invalid C++ standard: %s (use a number such as 17 or 23)\n' "$standard" >&2
+    exit 1
+fi
+
+# Prefix relative paths so filenames cannot be interpreted as compiler options.
+[[ $source == /* ]] || source=./$source
+if [[ ! -f $source ]]; then
+    printf 'Source file not found: %s\n' "$source" >&2
+    exit 1
+fi
+
+executable=${source%.$extension}
+input=$executable.in
+if [[ $extension == py ]]; then
+    if [[ -f $input ]]; then
+        exec pypy3.11 "$source" < "$input"
+    else
+        exec pypy3.11 "$source"
+    fi
+fi
+
+flags=(
+    "-std=c++$standard" -O2 -Wall -Wextra -pedantic
+    -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op
+    -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align
+    -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -D_FORTIFY_SOURCE=2
+    -fsanitize=address,undefined -fno-sanitize-recover -fstack-protector
+)
+
+g++ "${flags[@]}" "$source" -o "$executable" || exit "$?"
+
+if [[ -f $input ]]; then
+    exec "$executable" < "$input"
+else
+    exec "$executable"
+fi

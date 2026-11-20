@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(dirname "$0")/../lib/linker.sh"
+
+# Match the Python 3.11 runtime used locally; keep release URLs and hashes pinned.
+# Checksums: https://pypy.org/checksums.html
+case "$OSTYPE:$(uname -m)" in
+    linux-gnu*:x86_64)
+        platform="linux64"
+        sha256="706965bcf372752ba69dafd59d860e51bc2fadbb0f8a47cec3426125d7058ceb"
+        ;;
+    linux-gnu*:aarch64|linux-gnu*:arm64)
+        platform="aarch64"
+        sha256="5b568e1515dee46df58c9844dba95921c69dfd9f38ebf9e0f091caad5e10cd0c"
+        ;;
+    darwin*:x86_64)
+        platform="macos_x86_64"
+        sha256="6d64709b5488d5114c137ab542c857e6ab4ca165d3aea2e5a7c3c6fe6dc34b18"
+        ;;
+    darwin*:arm64|darwin*:aarch64)
+        platform="macos_arm64"
+        sha256="b839268a9eaf41d28e4dc0be20f2201e18121b31dc9ebc8bc19d140d9d34bc6c"
+        ;;
+    *) printf 'Unsupported PyPy platform: %s / %s\n' "$OSTYPE" "$(uname -m)" >&2; exit 1 ;;
+esac
+
+release="pypy3.11-v8.0.1-$platform"
+install_dir="$HOME/.local/opt/$release"
+executable="$install_dir/bin/pypy3.11"
+
+if [[ -e "$install_dir" || -L "$install_dir" ]]; then
+    # Verify an existing installation before reusing it or changing any links.
+    "$executable" --version
+else
+    mkdir -p "$HOME/.local/opt"
+    download_dir="$(mktemp -d "$HOME/.local/opt/.dev-pypy.XXXXXX")"
+    trap 'rm -rf "$download_dir"' EXIT
+
+    echo "Installing $release..."
+    curl -fLsS "https://downloads.python.org/pypy/$release.tar.gz" -o "$download_dir/pypy.tar.gz"
+    if [[ "$OSTYPE" == darwin* ]]; then
+        printf '%s  %s\n' "$sha256" "$download_dir/pypy.tar.gz" | shasum -a 256 --check --status
+    else
+        printf '%s  %s\n' "$sha256" "$download_dir/pypy.tar.gz" | sha256sum --check --status
+    fi
+    tar -xzf "$download_dir/pypy.tar.gz" -C "$download_dir"
+    "$download_dir/$release/bin/pypy3.11" --version
+    # Keep the libraries adjacent to the executable and publish only after validation.
+    mv "$download_dir/$release" "$install_dir"
+fi
+
+link_config "$executable" "$HOME/.local/bin/pypy3.11"
+link_config "$executable" "$HOME/.local/bin/pypy3"

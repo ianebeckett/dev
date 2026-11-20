@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
+template="$script_dir/template.py"
+contest_dir="$HOME/cf/$(date +%F)"
+
+if [[ ! -f $template ]]; then
+    printf 'Template not found: %s\n' "$template" >&2
+    exit 1
+fi
+
+mkdir -p -- "$contest_dir"
+for problem in {a..j}; do
+    source_file="$contest_dir/$problem.py"
+    input_file="$contest_dir/$problem.in"
+    if [[ ! -e $source_file ]]; then
+        cp -- "$template" "$source_file"
+    fi
+    if [[ ! -e $input_file ]]; then
+        touch -- "$input_file"
+    fi
+done
+
+exec tmux-sessionizer "$contest_dir"
