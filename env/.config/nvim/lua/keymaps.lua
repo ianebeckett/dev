@@ -103,6 +103,11 @@ end, { desc = "Yank the current file path" })
 -- 	end
 -- end, { desc = "[T]oggle [c]olorscheme" })
 
-vim.keymap.set("n", "<leader>t", function()
+vim.keymap.set("n", "<leader>tl", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })
+
+vim.keymap.set("n", "<leader>tn", function()
+    local option = vim.opt.relativenumber --[[@as vim.Option]]
+    vim.opt.relativenumber = not option:get()
+end, { desc = "Toggle relative line number" })
