@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
-CONFIG_FILE_NAME="tmux-sessionizer.conf"
-CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-sessionizer"
-CONFIG_FILE="$CONFIG_DIR/$CONFIG_FILE_NAME"
 PANE_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/tmux-sessionizer"
 PANE_CACHE_FILE="$PANE_CACHE_DIR/panes.cache"
 
-# config file example
-# ------------------------
-# # file: ~/.config/tmux-sessionizer/tmux-sessionizer.conf
-# # If set this override the default TS_SEARCH_PATHS (~/ ~/personal ~/personal/dev/env/.config)
-# TS_SEARCH_PATHS=(~/)
-# # If set this add additional search paths to the default TS_SEARCH_PATHS
-# # The number prefix is the depth for the Path [OPTIONAL]
-# TS_EXTRA_SEARCH_PATHS=(~/ghq:3 ~/Git:3 ~/.config:2)
+TS_SEARCH_PATHS=(
+  $HOME
+  $HOME/personal
+  $HOME/school:3 # school/<course-no>/<assignment-type>/<assignment-name>
+  $HOME/work
+  $HOME/.config
+  $HOME/dev/env/.config
+  $HOME/dev/env/.config/nvim:3 # jump into dedicated named dirs for each plugin
+  $HOME/dev/env/.local/scripts
+  ~/.local/share/nvim/site/pack/core/opt # has neovim and plugin clones
+)
+
 # # if set this override the TS_MAX_DEPTH (1)
 # TS_MAX_DEPTH=2
+
 # This is not meant to override .tmux-sessionizer.  At first i thought this
 # would be a good command, but i don't think its ackshually what i want.
 #
@@ -22,42 +24,13 @@ PANE_CACHE_FILE="$PANE_CACHE_DIR/panes.cache"
 # of the first 10 windows.  This allows you to create as many windows in your
 # session as you would like without having your workflow interrupted by these
 # programatic windows
-#
 # how to use:
-# tmux-sessionizer -w 0 will execute the first command in window -t 69.
+# tmux-sessionizer -s 0 will execute the first command in window -t 99.
 # TS_SESSION_COMMANDS=(<cmd1> <cmd2>)
-#
-# TS_LOG=true # will write logs to ~/.local/share/tmux-sessionizer/tmux-sessionizer.logs
-# TS_LOG_FILE=<file> # will write logs to <file> Defaults to ~/.local/share/tmux-sessionizer/tmux-sessionizer.logs
-# ------------------------
+# example: TS_SESSION_COMMANDS=('bash -c "opencode . --print-logs 2>>/tmp/opencode-psa.log"' 'bash -c "opencode . --print-logs 2>>/tmp/opencode-psa.log"' "image-request")
+TS_SESSION_COMMANDS=('bash -c "neofetch" && sleep 999')
 
 pushd $HOME
-
-if [[ -f "$CONFIG_FILE" ]]; then
-    source "$CONFIG_FILE"
-fi
-
-if [[ -f "$CONFIG_FILE_NAME" ]]; then
-    source "$CONFIG_FILE_NAME"
-fi
-
-if [[ $TS_LOG != "true" ]]; then
-    if [[ -z $TS_LOG_FILE ]]; then
-        TS_LOG_FILE="$HOME/.local/share/tmux-sessionizer/tmux-sessionizer.logs"
-    fi
-
-    mkdir -p "$(dirname "$TS_LOG_FILE")"
-fi
-
-log() {
-    if [[ -z $TS_LOG ]]; then
-        return
-    elif [[ $TS_LOG == "echo" ]]; then
-        echo "$*"
-    elif [[ $TS_LOG == "file" ]]; then
-        echo "$*" >> "$TS_LOG_FILE"
-    fi
-}
 
 session_idx=""
 session_cmd=""
@@ -114,8 +87,6 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-log "tmux-sessionizer($VERSION): idx=$session_idx cmd=$session_cmd user_selected=$user_selected split_type=$split_type log=$TS_LOG log_file=$TS_LOG_FILE"
-
 # Validate split options are only used with session commands
 if [[ -n "$split_type" && -z "$session_idx" ]]; then
     echo "Error: --vsplit and --hsplit can only be used with -s/--session option"
@@ -136,10 +107,8 @@ sanity_check() {
 
 switch_to() {
     if [[ -z $TMUX ]]; then
-        log "attaching to session $1"
         tmux attach-session -t "$1"
     else
-        log "switching to session $1"
         tmux switch-client -t "$1"
     fi
 }
@@ -150,13 +119,10 @@ has_session() {
 
 hydrate() {
     if [[ ! -z $session_cmd ]]; then
-        log "skipping hydrate for $1 -- using \"$session_cmd\" instead"
         return
     elif [ -f "$2/.tmux-sessionizer" ]; then
-        log "sourcing(local) $2/.tmux-sessionizer"
         tmux send-keys -t "$1" "source $2/.tmux-sessionizer" c-M
     elif [ -f "$HOME/.tmux-sessionizer" ]; then
-        log "sourcing(global) $HOME/.tmux-sessionizer"
         tmux send-keys -t "$1" "source $HOME/.tmux-sessionizer" c-M
     fi
 }
@@ -212,15 +178,7 @@ cleanup_dead_panes() {
 sanity_check
 
 # if TS_SEARCH_PATHS is not set use default
-[[ -n "$TS_SEARCH_PATHS" ]] || TS_SEARCH_PATHS=(~/ ~/school:2 ~/personal ~/personal/dev/env/.config)
-
-# Add any extra search paths to the TS_SEARCH_PATHS array
-# e.g : EXTRA_SEARCH_PATHS=("$HOME/extra1:4" "$HOME/extra2")
-# note : Path can be suffixed with :number to limit or extend the depth of the search for the Path
-
-if [[ ${#TS_EXTRA_SEARCH_PATHS[@]} -gt 0 ]]; then
-    TS_SEARCH_PATHS+=("${TS_EXTRA_SEARCH_PATHS[@]}")
-fi
+[[ -n "$TS_SEARCH_PATHS" ]] || TS_SEARCH_PATHS=(~/ ~/personal/dev/env/.config)
 
 # utility function to find directories
 find_dirs() {
@@ -250,7 +208,6 @@ find_dirs() {
 }
 
 handle_session_cmd() {
-    log "executing session command $session_cmd with index $session_idx split_type=$split_type"
     if ! is_tmux_running; then
         echo "Error: tmux is not running.  Please start tmux first before using session commands."
         exit 1
@@ -268,14 +225,12 @@ handle_session_cmd() {
 
 handle_window_session_cmd() {
     local current_session="$1"
-    start_index=$((69 + $session_idx))
+    start_index=$((99 + $session_idx))
     target="$current_session:$start_index"
 
-    log "target: $target command $session_cmd has-session=$(tmux has-session -t="$target" 2> /dev/null)"
     if tmux has-session -t="$target" 2> /dev/null; then
         switch_to "$target"
     else
-        log "executing session command: tmux neww -dt $target $session_cmd"
         tmux neww -dt $target "$session_cmd"
         hydrate "$target" "$selected"
         tmux select-window -t $target
@@ -290,7 +245,6 @@ handle_split_session_cmd() {
     local existing_pane_id=$(get_pane_id "$session_idx" "$split_type")
 
     if [[ -n "$existing_pane_id" ]] && tmux list-panes -a -F "#{pane_id}" 2>/dev/null | grep -q "^${existing_pane_id}$"; then
-        log "switching to existing pane $existing_pane_id"
         tmux select-pane -t "$existing_pane_id"
         if [[ -z $TMUX ]]; then
             tmux attach-session -t "$current_session"
@@ -306,12 +260,10 @@ handle_split_session_cmd() {
             split_flag="-v"  # vertical layout (horizontal split)
         fi
 
-        log "creating new split: tmux split-window $split_flag -c $(pwd) $session_cmd"
         local new_pane_id=$(tmux split-window $split_flag -c "$(pwd)" -P -F "#{pane_id}" "$session_cmd")
 
         if [[ -n "$new_pane_id" ]]; then
             set_pane_id "$session_idx" "$split_type" "$new_pane_id"
-            log "created pane $new_pane_id for session_idx=$session_idx split_type=$split_type"
         fi
     fi
 }

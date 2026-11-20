@@ -66,6 +66,12 @@ trust_level = "trusted"
 [projects."/home/ian/school/csce-671/AgentConversationRecall"]
 trust_level = "trusted"
 
+[projects."/home/ian/school/ostep-code"]
+trust_level = "trusted"
+
+[projects."/home/ian/school/ostep-homework"]
+trust_level = "trusted"
+
 [tui]
 animations = false
 status_line = ["model-with-reasoning"]
