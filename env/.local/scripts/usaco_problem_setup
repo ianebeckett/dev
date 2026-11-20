@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -ne 1 || -z $1 || $1 == */* || $1 == . || $1 == .. ]]; then
+    printf 'Usage: %s <filename-stem>\n' "${0##*/}" >&2
+    exit 1
+fi
+
+script_dir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
+template="$script_dir/usaco_template.py"
+problem_dir="$HOME/usaco"
+source_file="$problem_dir/$1.py"
+input_file="$problem_dir/$1.in"
+
+if [[ ! -f $template ]]; then
+    printf 'Template not found: %s\n' "$template" >&2
+    exit 1
+fi
+
+mkdir -p -- "$problem_dir"
+if [[ ! -e $source_file && ! -L $source_file ]]; then
+    cp -- "$template" "$source_file"
+fi
+if [[ ! -e $input_file && ! -L $input_file ]]; then
+    touch -- "$input_file"
+fi
+
+exec tmux-sessionizer "$problem_dir"

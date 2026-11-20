@@ -4,6 +4,7 @@ PANE_CACHE_FILE="$PANE_CACHE_DIR/panes.cache"
 
 TS_SEARCH_PATHS=(
   $HOME
+  $HOME/cf:2
   $HOME/personal
   $HOME/school:3 # school/<course-no>/<assignment-type>/<assignment-name>
   $HOME/work

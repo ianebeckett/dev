@@ -3,7 +3,7 @@
 set -euo pipefail
 
 script_dir=$(dirname -- "$(readlink -f -- "${BASH_SOURCE[0]}")")
-template="$script_dir/template.py"
+template="$script_dir/cf_template.py"
 contest_dir="$HOME/cf/$(date +%F)"
 
 if [[ ! -f $template ]]; then
