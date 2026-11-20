@@ -2,6 +2,11 @@
 
 set -eu
 
+if [[ "$OSTYPE" == linux-gnu* ]]; then
+    # Authenticate before setup so later sudo commands can reuse the cache.
+    sudo -v || exit 1
+fi
+
 if ! command -v git &> /dev/null; then
     echo "Installing git..."
     case "$OSTYPE" in
