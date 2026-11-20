@@ -73,19 +73,12 @@ PROMPT='%B%F{blue}%~%f%b${vcs_info_msg_0_}%b %(!.#.$) '
 addToPath $HOME/.local/bin
 addToPath $HOME/.local/scripts
 addToPath $HOME/.local/lua-language-server/bin
-addToPath $HOME/.local/zig-x86_64-linux-0.15.2
 addToPath /usr/lib/postgresql/18/bin
 
 # python
 alias python=python3
 
-# go
-addToPath /usr/local/go/bin
-addToPath $HOME/go/bin
-
-# rust
-# . "$HOME/.cargo/env"
-addToPath $HOME/.cargo/bin
+typeset -U path PATH
 
 # ruby version manager
 if command -v rbenv >/dev/null 2>&1; then
@@ -103,17 +96,3 @@ export NVM_DIR="$HOME/.config/nvm"
 
 eval "$(ssh-agent -s)" > /dev/null
 # ssh-add -q ~/.ssh/gitlab ~/.ssh/id_ed25519
-
-# opencode
-export PATH=/home/ian/.opencode/bin:$PATH
-
-# >>> juliaup initialize >>>
-
-# !! Contents within this block are managed by juliaup !!
-
-path=("${HOME}/.local/.juliaup/bin" $path)
-export PATH
-# Tab completion for juliaup and julia channel selection
-[ -f "${HOME}/.julia/juliaup/completions/zsh.zsh" ] && source "${HOME}/.julia/juliaup/completions/zsh.zsh"
-
-# <<< juliaup initialize <<<
