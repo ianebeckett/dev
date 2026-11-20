@@ -18,6 +18,7 @@ vim.pack.add(
             src = 'https://github.com/nvim-telescope/telescope.nvim.git',
             version = vim.version.range('^0.2.0'),
         },
+        'https://github.com/folke/lazydev.nvim',
         { --depends on plenary
             src = 'https://github.com/ThePrimeagen/harpoon',
             version = 'harpoon2',

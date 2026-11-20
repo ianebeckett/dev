@@ -15,16 +15,9 @@ return {
         },
       },
       workspace = {
-        --See https://github.com/neovim/nvim-lspconfig/blob/master/lsp/lua_ls.lua
-        --See https://github.com/folke/lazydev.nvim
-        --See https://www.youtube.com/watch?v=bTWWFQZqzyI&list=PLep05UYkc6wTyBe7kPjQFWVXTlhKeQejM&index=8
-        library = {
-          vim.fn.expand('$VIMRUNTIME/lua'),
-          -- { path = "${3rd}/luv/library", words = { "vim%.uv" } }
-        },
         -- reduce CPU-intensive loading on attach
         checkThirdParty = false,
-        maxPreload = 100,
+        -- maxPreload = 100,
       },
       telemetry = {
         enable = false,
