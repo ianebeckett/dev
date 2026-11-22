@@ -70,7 +70,28 @@ return {
               -- We fallback to the current working directory if no project root is found
               local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
 
-              on_dir(project_root)
+              -- Start ESLint only when this file has a project configuration.
+              local candidates = vim.fs.find(vim.list_extend({ 'package.json' }, eslint_config_files), {
+                path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+                upward = true,
+                stop = vim.fs.dirname(project_root),
+                type = 'file',
+                limit = math.huge,
+              })
+              for _, path in ipairs(candidates) do
+                if vim.fs.basename(path) ~= 'package.json' then
+                  on_dir(project_root)
+                  return
+                end
+                -- Legacy ESLint configurations can also live in package.json.
+                local ok, package = pcall(function()
+                  return vim.json.decode(table.concat(vim.fn.readfile(path), '\n'))
+                end)
+                if ok and type(package) == 'table' and type(package.eslintConfig) == 'table' then
+                  on_dir(project_root)
+                  return
+                end
+              end
             end,
             settings = {
               debug = false,
@@ -100,6 +121,9 @@ return {
                 showDocumentation = {
                   enable = true,
                 },
+              },
+              experimental = {
+                useFlatConfig = false,
               },
             },
             before_init = function(_, config)

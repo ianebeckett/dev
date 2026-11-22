@@ -41,6 +41,44 @@
 --- It is recommended to use the same version of TypeScript in all packages, and therefore have it available in your workspace root. The location of the TypeScript binary will be determined automatically, but only once.
 ---
 
+local missing_typescript_notified = {}
+
+local function read_package(path)
+  local ok, package = pcall(function()
+    return vim.json.decode(table.concat(vim.fn.readfile(path), '\n'))
+  end)
+  return ok and type(package) == 'table' and package or {}
+end
+
+local function has_workspace_typescript(root)
+  -- Match typescript-language-server's workspace lookup, including package-manager SDKs.
+  local module_folders = {
+    'node_modules/typescript/lib',
+    '.vscode/pnpify/typescript/lib',
+    '.yarn/sdks/typescript/lib',
+    '.pnpm/sdks/typescript/lib',
+  }
+  local dir = root
+  while dir do
+    for _, folder in ipairs(module_folders) do
+      local lib = vim.fs.joinpath(dir, folder)
+      if vim.uv.fs_stat(lib) then
+        local package = read_package(vim.fs.joinpath(vim.fs.dirname(lib), 'package.json'))
+        -- The server uses the first matching directory; an incomplete install cannot start it.
+        return vim.fn.filereadable(vim.fs.joinpath(lib, 'tsserver.js')) == 1
+          and type(package.version) == 'string'
+          and package.version ~= ''
+      end
+    end
+    local parent = vim.fs.dirname(dir)
+    if parent == dir then
+      break
+    end
+    dir = parent
+  end
+  return false
+end
+
 ---@type vim.lsp.Config
 return {
   init_options = { hostInfo = 'neovim' },
@@ -65,7 +103,37 @@ return {
     -- We fallback to the current working directory if no project root is found
     local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
 
-    on_dir(project_root)
+    if has_workspace_typescript(project_root) then
+      on_dir(project_root)
+      return
+    end
+
+    if missing_typescript_notified[project_root] then
+      return
+    end
+    local manifests = vim.fs.find('package.json', {
+      path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+      upward = true,
+      stop = vim.fs.dirname(project_root),
+      type = 'file',
+      limit = math.huge,
+    })
+    for _, path in ipairs(manifests) do
+      local package = read_package(path)
+      for _, field in ipairs({ 'dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies' }) do
+        if type(package[field]) == 'table' and package[field].typescript ~= nil then
+          missing_typescript_notified[project_root] = true
+          vim.schedule(function()
+            vim.notify(
+              'TypeScript dependency missing; install project dependencies to enable TypeScript LSP.\n' .. project_root,
+              vim.log.levels.WARN,
+              { title = 'ts_ls' }
+            )
+          end)
+          return
+        end
+      end
+    end
   end,
   handlers = {
     -- handle rename request for certain code actions like extracting functions / types
