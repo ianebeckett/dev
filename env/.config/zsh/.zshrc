@@ -133,5 +133,10 @@ if [[ -s "$NVM_DIR/nvm.sh" ]]; then
     }
 fi
 
-eval "$(ssh-agent -s)" > /dev/null
+# Preserve a working inherited agent, including SSH forwarding.
+ssh-add -l >/dev/null 2>&1
+if (( $? == 2 )); then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/openssh_agent"
+    unset SSH_AGENT_PID
+fi
 # ssh-add -q ~/.ssh/gitlab ~/.ssh/id_ed25519
