@@ -5,11 +5,12 @@ export ZDOTDIR="$HOME/dev/env/.config/zsh"
 source "$ZDOTDIR/.zsh_aliases"
 source "$ZDOTDIR/.zsh_functions"
 
+mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh"
+
 # configure zsh history
 HISTFILE="$XDG_STATE_HOME/zsh/zsh_history"
-HISTSIZE=100000
-SAVEHIST=100000
-setopt INC_APPEND_HISTORY # write to the history file immediately
+HISTSIZE=120000
+SAVEHIST=120000
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt EXTENDED_HISTORY
 setopt HIST_EXPIRE_DUPS_FIRST # Delete duplicates first
@@ -32,8 +33,32 @@ bindkey -v '^?' backward-delete-char
 
 # fzf for back-i-search (must be sourced after completions)
 export FZF_DEFAULT_OPTS="--no-separator"
-source "$ZDOTDIR/fzf.zsh"
-source /usr/share/doc/fzf/examples/completion.zsh
+if (( $+commands[fzf] )); then
+    () {
+        local fzf_init fzf_completion
+        local fzf_prefix="${commands[fzf]:A:h:h}"
+        # Keep our custom key bindings instead of installing fzf's defaults.
+        local FZF_CTRL_T_COMMAND='' FZF_ALT_C_COMMAND='' FZF_CTRL_R_COMMAND=''
+
+        if fzf_init=$(fzf --zsh 2>/dev/null); then
+            eval "$fzf_init"
+        else
+            # Older fzf releases ship integration as separate shell scripts.
+            for fzf_completion in \
+                "$fzf_prefix/shell/completion.zsh" \
+                "$fzf_prefix/share/fzf/completion.zsh" \
+                "$fzf_prefix/share/fzf/shell/completion.zsh" \
+                /usr/share/doc/fzf/examples/completion.zsh \
+                "$HOME/.fzf/shell/completion.zsh"; do
+                if [[ -r "$fzf_completion" ]]; then
+                    source "$fzf_completion"
+                    break
+                fi
+            done
+        fi
+    }
+    source "$ZDOTDIR/fzf.zsh"
+fi
 
 # enable vi mode to for traversing the command line
 # alt+b - back one word
@@ -62,23 +87,24 @@ zstyle ':vcs_info:*' enable git
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '%F{green}*'
 zstyle ':vcs_info:*' unstagedstr '%F{1}*'
-zstyle ':vcs_info:*' formats '%F{green} (%b%u%F{green})%f'
+zstyle ':vcs_info:*' formats '%F{green} (%b%u%c%F{green})%f'
 
 # dir only version
 PROMPT='%B%F{blue}%~%f%b${vcs_info_msg_0_}%b %(!.#.$) '
 # "user@host" version
 #PROMPT='%B%F{green}%n@%m%f %F{blue}%~%f${vcs_info_msg_0_}%b %(!.#.$) '
 
-addToPath $HOME/.local/bin
-addToPath $HOME/.local/scripts
-addToPath $HOME/.local/lua-language-server/bin
-addToPath /usr/lib/postgresql/18/bin
+typeset -U path PATH
+
+path+=("$HOME/.local/bin")
+path+=("$HOME/.local/scripts")
+path+=("$HOME/.local/lua-language-server/bin")
+path+=("/usr/lib/postgresql/18/bin")
 
 # python
 alias python=python3
-
-typeset -U path PATH
 
 # ruby version manager
 if command -v rbenv >/dev/null 2>&1; then
@@ -91,8 +117,21 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export GROFF_NO_SGR=1
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    nvm node npm npx() {
+        local nvm_lazy_command="$0"
+
+        # Remove all wrappers before loading NVM.
+        unfunction nvm node npm npx
+
+        source "$NVM_DIR/nvm.sh" -- || return
+        if [[ -s "$NVM_DIR/bash_completion" ]]; then
+            source "$NVM_DIR/bash_completion"
+        fi
+
+        "$nvm_lazy_command" "$@"
+    }
+fi
 
 eval "$(ssh-agent -s)" > /dev/null
 # ssh-add -q ~/.ssh/gitlab ~/.ssh/id_ed25519

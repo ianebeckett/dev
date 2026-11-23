@@ -7,41 +7,6 @@ function md() {
   xdg-open /tmp/$1.html
 }
 
-addToPath() {
-    if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$1") ; then
-        PATH=$PATH:$1 ;
-    fi
-}
-
-addToPathFront() {
-    if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$1") ; then
-        PATH=$1:$PATH ;
-    fi
-}
-
-removeFromPath() {
-  local dir_to_remove="$1"
-  if [[ -z "$dir_to_remove" ]]; then
-    echo "Usage: removeFromPath <directory>"
-    return 1
-  fi
-
-  # Convert PATH string to an array for easier manipulation
-  local -a path_array
-  IFS=':' read -r -A path_array <<< "$PATH"
-
-  # Filter out the directory to remove
-  local -a new_path_array
-  for p in "${path_array[@]}"; do
-    if [[ "$p" != "$dir_to_remove" ]]; then
-      new_path_array+=("$p")
-    fi
-  done
-
-  # Reconstruct the PATH string
-  export PATH="$(IFS=':'; echo "${new_path_array[*]}")"
-}
-
 # remove/install google play store
 # view packages: adb shell pm list packages | grep 'foo'
 # TODO: make these into toggleFoo functions
