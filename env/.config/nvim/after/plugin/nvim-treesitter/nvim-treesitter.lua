@@ -28,6 +28,7 @@ ts.install({
 })
 
 local ignore_filetypes = {
+  'bigfile',
   'checkhealth',
   'qf'
 }
@@ -46,8 +47,15 @@ vim.api.nvim_create_autocmd('FileType', {
     local lang = vim.treesitter.language.get_lang(event.match) or event.match
     local buf = event.buf
 
-    pcall(vim.treesitter.start, buf, lang)
-    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    local started = pcall(vim.treesitter.start, buf, lang)
+    if not started or event.match == 'tex' or event.match == 'plaintex' then
+      return
+    end
+
+    local ok, query = pcall(vim.treesitter.query.get, lang, 'indents')
+    if ok and query then
+      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
 
   end,
 })

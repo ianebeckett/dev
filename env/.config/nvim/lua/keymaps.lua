@@ -23,11 +23,11 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 
 --replace selected text with clipboard contents
 --try with ve<leader>p to replace a word
-vim.keymap.set('x', '<leader>p', '\'_dP')
+vim.keymap.set('x', '<leader>p', '"_dP')
 
 --yank into system clipboard
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '\'+y')
-vim.keymap.set('n', '<leader>y', '\'+Y')
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
+vim.keymap.set('n', '<leader>Y', '"+Y')
 
 --quickfix list navigation
 vim.keymap.set('n', '<C-j>', '<Cmd>cnext<CR>zz')

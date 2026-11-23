@@ -54,9 +54,10 @@ autocmd('FileType', {
 
 autocmd('BufWinEnter', {
   desc = 'Open help docs in right split',
-  pattern = '*.txt',
-  callback = function()
-    vim.cmd('wincmd L')
+  callback = function(args)
+    if vim.bo[args.buf].buftype == 'help' then
+      vim.cmd('wincmd L')
+    end
   end
 })
 
@@ -113,7 +114,10 @@ autocmd('BufReadPost', {
 autocmd('BufWritePre', {
     desc = 'remove trailing whitespace before saving. Preserve search and cursor position.',
     pattern = '*',
-    callback = function()
+    callback = function(args)
+        if vim.bo[args.buf].filetype == 'markdown' then
+            return
+        end
         local search = vim.fn.getreg('/')
         local current_position = vim.api.nvim_win_get_cursor(0)
         vim.cmd [[%s/\s\+$//e]]
@@ -134,19 +138,19 @@ autocmd('TextYankPost', {
   callback = function()
     if vim.v.event.operator == 'y' then
       for i = 9, 1, -1 do -- Shift all numbered registers.
-        vim.fn.setreg(tostring(i), vim.fn.getreg(tostring(i - 1)))
+        vim.fn.setreg(tostring(i), vim.fn.getreginfo(tostring(i - 1)))
       end
     end
   end,
 })
 
 autocmd('PackChanged', {
-  desc = '',
+  desc = 'Update parsers after updating nvim-treesitter',
   callback = function(ev)
     if ev.data.kind == 'update' and ev.data.spec.name == 'nvim-treesitter' then
-      local ok = pcall(vim.cmd('TSUpdate'))
+      local ok, err = pcall(vim.cmd, 'TSUpdate')
       if not ok then
-        vim.notify('TSUpdate failed!', vim.log.levels.WARN)
+        vim.notify('TSUpdate failed: ' .. tostring(err), vim.log.levels.WARN)
       end
     end
   end,

@@ -9,7 +9,10 @@ vim.lsp.config('*', {
 vim.lsp.enable({
   'lua_ls',
   'basedpyright',
+  'ruff',
   'clangd',
+  'gopls',
+  'rust-analyzer',
   'ts_ls',
   'svelte',
   'eslint',
@@ -53,6 +56,26 @@ vim.diagnostic.config({
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local lspAttachGroup = augroup('lsp-attach', { clear = true })
+local formatters = {
+  c = 'clangd',
+  cpp = 'clangd',
+  go = 'gopls',
+  gomod = 'gopls',
+  gowork = 'gopls',
+  gotmpl = 'gopls',
+  rust = 'rust-analyzer',
+  ruby = 'rubocop',
+  python = 'ruff',
+  javascript = 'ts_ls',
+  javascriptreact = 'ts_ls',
+  ['javascript.jsx'] = 'ts_ls',
+  typescript = 'ts_ls',
+  typescriptreact = 'ts_ls',
+  ['typescript.tsx'] = 'ts_ls',
+  lua = 'lua_ls',
+  json = 'jsonls',
+  jsonc = 'jsonls',
+}
 -- local formatOnWriteGroup = augroup('format-on-write', { clear = false })
 
 autocmd('LspAttach', {
@@ -66,7 +89,13 @@ autocmd('LspAttach', {
 
     -- use Telescope for any supported list that benefits from fuzzy finding
     local telescope_builtin = require('telescope.builtin')
-    map('<leader>ff', function() vim.lsp.buf.format({ async = true }) end, '[F]ormat [F]ile')
+    map('<leader>ff', function()
+      vim.lsp.buf.format({
+        bufnr = ev.buf,
+        async = true,
+        name = formatters[vim.bo[ev.buf].filetype],
+      })
+    end, '[F]ormat [F]ile')
     map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     map('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')

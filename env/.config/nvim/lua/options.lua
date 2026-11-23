@@ -33,9 +33,6 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.showbreak = "~ "
 
---use undofile and undotree intead of swapfile
-vim.opt.swapfile = false
-vim.opt.backup = false
 vim.opt.undofile = true
 
 vim.opt.incsearch = true

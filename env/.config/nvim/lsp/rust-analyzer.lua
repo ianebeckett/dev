@@ -1,6 +1,6 @@
 local find_server = function()
         --prefer local binary
-        if os.execute("command -v " .. "rust-analyzer" .. " > /dev/null 2>&1") then
+        if vim.fn.executable('rust-analyzer') == 1 then
             return { 'rust-analyzer' }
         end
         --fall back to rustup version
