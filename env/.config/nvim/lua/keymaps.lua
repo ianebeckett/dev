@@ -2,7 +2,13 @@ vim.keymap.set('i', '<C-c>', '<esc>')
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- Ctrl+BS sends keycode ^H for deleting words in insert mode. depends on similar binding in tmux
-vim.keymap.set('i', '<C-H>', '<C-W>')
+vim.keymap.set({'i', 'n'}, '<C-H>', '<C-w>')
+
+vim.keymap.set({'i', 'n'}, '<C-BS>', '<C-w>', { desc = 'Delete previous word' })
+vim.keymap.set('i', '<C-Del>', function()
+    return vim.fn.col('.') <= #vim.api.nvim_get_current_line() and '<C-o>"_dw' or ''
+end, { expr = true, desc = 'Delete next word' })
+vim.keymap.set('n', '<C-Del>', '"_dw', { desc = 'Delete next word' })
 
 --netrw window management
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)  --'new' window, or 'netrw'
@@ -24,8 +30,10 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 --replace selected text with clipboard contents
 --try with ve<leader>p to replace a word
 vim.keymap.set('x', '<leader>p', '"_dP')
+--delete without overwriting clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>d', '\'_d')
 
---yank into system clipboard
+--yank into system clipboard by default
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>Y', '"+Y')
 
@@ -53,9 +61,6 @@ vim.keymap.set('n', '<leader>u', vim.cmd.Undotree)
 vim.keymap.set('n', 'U', '<C-r>', { desc = 'Redo' })
 
 vim.keymap.set('n', '<C-b>', '<C-a>', { desc = 'Increment number' })
-
---delete without overwriting clipboard
---vim.keymap.set({ 'n', 'v' }, '<leader>d', '\'_d')
 
 function Date()
     local row = vim.api.nvim_get_current_line()
