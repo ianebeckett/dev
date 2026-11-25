@@ -69,4 +69,5 @@ quit-after-last-window-closed = false
 clipboard-paste-protection = false
 window-decoration = none
 gtk-titlebar = true
-fullscreen = true
+fullscreen = false
+maximize = true
