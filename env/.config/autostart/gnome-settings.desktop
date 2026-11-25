@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=GNOME settings
+Comment=Apply desktop settings from the dev dotfiles
+Exec=sh -c "exec \\"\\${XDG_CONFIG_HOME:-\\$HOME/.config}/gnome/apply.sh\\""
+OnlyShowIn=GNOME;
+NoDisplay=true

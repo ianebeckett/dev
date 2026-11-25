@@ -7,7 +7,7 @@ packages=(gdb git-delta lazygit curl neovim tree-sitter-cli tmux fzf ripgrep yt-
 case "$OSTYPE" in
     linux-gnu*)
 
-        packages+=(zsh fd-find clang clangd nodejs npm ruby ruby-dev ruby-bundler build-essential libyaml-dev python3 ca-certificates)
+        packages+=(zsh fd-find clang clangd nodejs npm ruby ruby-dev ruby-bundler build-essential libyaml-dev python3 ca-certificates dconf-cli)
 
         echo "updating apt package lists..."
         sudo apt-get update

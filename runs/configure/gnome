@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -eu
+
+[[ "$OSTYPE" == linux-gnu* ]] || exit 0
+
+source "$HOME/dev/lib/linker.sh"
+
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}"
+link_config "$HOME/dev/env/.config/environment.d/60-gnome-shell.conf" "$config_dir/environment.d/60-gnome-shell.conf"
+link_config "$HOME/dev/env/.config/gnome" "$config_dir/gnome"
+link_config "$HOME/dev/env/.config/autostart/gnome-settings.desktop" "$config_dir/autostart/gnome-settings.desktop"
+
+if [[ ":${XDG_CURRENT_DESKTOP:-}:" == *:GNOME:* ]]; then
+    "$config_dir/gnome/apply.sh"
+fi
