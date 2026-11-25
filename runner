@@ -36,7 +36,7 @@ execute ./runs/install_pypy
 execute ./runs/install_language_servers
 
 echo "Linking and configuring tools..."
-config_scripts=("agents" "clang" "codex" "git" "neovim" "scripts" "tmux" "tmux-sessionizer" "zsh")
+config_scripts=("agents" "clang" "codex" "git" "lazygit" "neovim" "scripts" "tmux" "tmux-sessionizer" "zsh")
 
 for script in "${config_scripts[@]}"; do
     script="./runs/configure/$script"

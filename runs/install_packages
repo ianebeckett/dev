@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-packages=(gdb git-delta curl neovim tree-sitter-cli tmux fzf ripgrep yt-dlp tree trash-cli)
+packages=(gdb git-delta lazygit curl neovim tree-sitter-cli tmux fzf ripgrep yt-dlp tree trash-cli)
 
 case "$OSTYPE" in
     linux-gnu*)

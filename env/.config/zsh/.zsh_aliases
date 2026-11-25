@@ -1,5 +1,6 @@
 alias vim='nvim'
 
+alias lg='lazygit'
 alias gs='git status'
 alias gb='git branch'
 alias gc='git checkout'
