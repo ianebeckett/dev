@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-set -eu
-
-source "$HOME/dev/lib/linker.sh"
-
-link_config "$HOME/dev/env/.config/sway" "$XDG_CONFIG_HOME/sway"
