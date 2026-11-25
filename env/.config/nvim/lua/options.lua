@@ -49,10 +49,9 @@ vim.opt.signcolumn = 'yes'
 
 vim.o.winborder = 'rounded'
 
---NOTE: use shortmess when you remember what command you were trying to do
---without 'hit enter' prompt
-
--- Scheduling as this can impact startup time
+vim.g.clipboard = 'xclip'
+vim.cmd.runtime('autoload/provider/clipboard.vim')
+-- schedule this so it doesn't increase startup time
 vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
 
 vim.opt.isfname:append('@-@') --include @ as a valid filename character
