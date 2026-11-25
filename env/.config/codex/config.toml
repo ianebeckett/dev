@@ -72,6 +72,15 @@ trust_level = "trusted"
 [projects."/home/ian/school/ostep-homework"]
 trust_level = "trusted"
 
+[projects."/home/ian/bookmarks_backups"]
+trust_level = "trusted"
+
+[projects."/home/ian/api-prep"]
+trust_level = "trusted"
+
+[projects."/home/ian/api-design-node-v5"]
+trust_level = "trusted"
+
 [tui]
 animations = false
 status_line = ["model-with-reasoning"]
