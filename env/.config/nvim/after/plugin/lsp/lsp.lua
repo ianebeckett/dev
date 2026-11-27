@@ -31,6 +31,7 @@ vim.diagnostic.config({
     signs = true,
     float = {
         focusable = true,
+        focus_id = 'diagnostic',
         border = 'rounded',
         header = '',
         source = 'if_many',
@@ -101,16 +102,39 @@ autocmd('LspAttach', {
         name = formatters[vim.bo[ev.buf].filetype],
       })
     end, '[F]ormat [F]ile')
+
     map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     map('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
     -- gi is "return to position where I last exited insert mode and return to insert mode"
     map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-    map('<leader>vws', telescope_builtin.lsp_workspace_symbols, '[V]iew [W]orkspace [S]ymbols')
-    map('<leader>dv', vim.diagnostic.open_float, 'show diagnostic')
+
+    -- Diagnostics
     map(']d', function() vim.diagnostic.jump({ float = true, count = 1 }) end, 'next diagnostic')
     map('[d', function() vim.diagnostic.jump({ float = true, count = -1 }) end, 'previous diagnostic')
+    map('vd', vim.diagnostic.open_float, '[V]iew [D]iagnostic')
+    map('yd', function()
+      local _, float_win = vim.diagnostic.open_float({ focus = false })
+      if not float_win then
+        vim.notify('No diagnostics on this line', vim.log.levels.INFO)
+        return
+      end
+      vim.api.nvim_win_call(float_win, function()
+        vim.cmd('normal! gg"+yG')
+      end)
+      -- Let the 50 ms TextYankPost highlight display before closing the float.
+      vim.defer_fn(function()
+        if vim.api.nvim_win_is_valid(float_win) then
+          vim.api.nvim_win_close(float_win, true)
+        end
+      end, 80)
+    end, '[Y]ank [D]iagnostic')
+
+    -- use Telescope for any supported list that benefits from fuzzy finding
+    local telescope_builtin = require('telescope.builtin')
+    map('<leader>vws', telescope_builtin.lsp_workspace_symbols, '[V]iew [W]orkspace [S]ymbols')
     map('vrr', telescope_builtin.lsp_references, '[V]iew [RR]eferences')
+
     map('vrn', vim.lsp.buf.rename, '[V]im [R]e[N]ame')
     map('vca', vim.lsp.buf.code_action, '[V]im [C]ode [A]ction', { 'n', 'x' })
     map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls') -- has Telescope builtin
