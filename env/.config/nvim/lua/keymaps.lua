@@ -71,9 +71,13 @@ vim.keymap.set("v", ">", ">gv")
 -- Use a vertical split instead of the default horizontal split for <c-w><c-f>
 vim.keymap.set("n", "<c-w><c-f>", [[:vsplit<cr>gF]], { desc = "Open file under cursor" })
 
-vim.keymap.set("n", "<leader>yf", function()
+vim.keymap.set("n", "yf", function()
 	vim.fn.setreg("+", vim.fn.expand("%"))
-end, { desc = "Yank the current file path" })
+end, { desc = "Yank the current buffer's path (usually relative to cwd)" })
+
+vim.keymap.set("n", "yp", function()
+	vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, { desc = "Yank the current buffer's absolute path" })
 
 vim.keymap.set("n", "<leader>td", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
