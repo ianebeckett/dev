@@ -41,10 +41,6 @@ vim.keymap.set('n', '<leader>Y', '"+Y')
 vim.keymap.set('n', '<C-j>', '<Cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-k>', '<Cmd>cprev<CR>zz')
 
---edit all instances of cursor word in file
---superceded by "vrn" -> lsp buf rename
---vim.keymap.set('n', '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<left><left><left>')
-
 --chmod +x current file without leaving vim
 vim.keymap.set('n', '<leader>x', '<Cmd>!chmod +x %<cr>', { silent = true })
 
@@ -72,38 +68,12 @@ vim.keymap.set('n', '<leader>dl', '<cmd>lua Date()<cr>', { desc = '[d]ate [l]ine
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
--- --these could be useful for git diffs
--- set("n", "<M-j>", function()
---   if vim.opt.diff:get() then
---     vim.cmd [[normal! ]c]]
---   else
---     vim.cmd [[m .+1<CR>==]]
---   end
--- end)
-
--- set("n", "<M-k>", function()
---   if vim.opt.diff:get() then
---     vim.cmd [[normal! [c]]
---   else
---     vim.cmd [[m .-2<CR>==]]
---   end
--- end)
-
 -- Use a vertical split instead of the default horizontal split for <c-w><c-f>
 vim.keymap.set("n", "<c-w><c-f>", [[:vsplit<cr>gF]], { desc = "Open file under cursor" })
 
 vim.keymap.set("n", "<leader>yf", function()
 	vim.fn.setreg("+", vim.fn.expand("%"))
 end, { desc = "Yank the current file path" })
-
--- vim.keymap.set("n", "<leader>tc", function()
--- 	local colorscheme = vim.trim(vim.fn.execute("colorscheme"))
--- 	if colorscheme == "rose-pine" then
--- 		vim.cmd.colorscheme("tokyonight-day")
--- 	elseif colorschema == "tokyonight-day" then
--- 		vim.cmd.colorscheme("cobalt")
--- 	end
--- end, { desc = "[T]oggle [c]olorscheme" })
 
 vim.keymap.set("n", "<leader>td", function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())

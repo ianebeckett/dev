@@ -82,7 +82,6 @@ local formatters = {
   scss = 'cssls',
   less = 'cssls',
 }
--- local formatOnWriteGroup = augroup('format-on-write', { clear = false })
 
 autocmd('LspAttach', {
   desc = 'Set LSP keymaps upon attaching to a buffer',
@@ -93,8 +92,6 @@ autocmd('LspAttach', {
       vim.keymap.set(mode, keys, func, { buffer = ev.buf, desc = 'LSP: ' .. desc })
     end
 
-    -- use Telescope for any supported list that benefits from fuzzy finding
-    local telescope_builtin = require('telescope.builtin')
     map('<leader>ff', function()
       vim.lsp.buf.format({
         bufnr = ev.buf,
@@ -140,35 +137,5 @@ autocmd('LspAttach', {
     map('vic', vim.lsp.buf.incoming_calls, '[V]iew [I]ncoming [C]alls') -- has Telescope builtin
     map('voc', vim.lsp.buf.outgoing_calls, '[V]iew [O]utgoing [C]alls') -- has Telescope builtin
 
-    -- -- format on write.
-    -- -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-    -- local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    -- if not client then
-    --   return
-    -- end
-    -- if not client:supports_method('textDocument/willSaveWaitUntil')
-    --     and client:supports_method('textDocument/formatting') then
-    --   autocmd('BufWritePre', {
-    --     group = formatOnWriteGroup,
-    --     buffer = ev.buf,
-    --     callback = function()
-    --       vim.lsp.buf.format({
-    --         bufnr = ev.buf,
-    --         id = client.id,
-    --         timeout_ms = 200,
-    --         filter = function()
-    --           --enable/disable here
-    --           return client.name == 'lua_ls' or
-    --               client.name == 'prettier'
-    --         end,
-    --       })
-    --     end
-    --   })
-    -- end
-    --
-    --also potentially useful:
-    --vim.lsp.buf.typehierarchy('supertypes', 'subtypes')
-    --vim.lsp.codelens
-    --vim.lsp.util.apply_workspace_edit
   end
 })
