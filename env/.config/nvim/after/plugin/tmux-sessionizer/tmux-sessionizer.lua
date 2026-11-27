@@ -1,4 +1,3 @@
-vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 --run session commands while in neovim
 --Neovim registers super as alt, but alt+[hjkl] are used by Harpoon.
 --To avoid smearing harpoon keymaps, we could configure upstream to send

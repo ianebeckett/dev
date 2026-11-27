@@ -81,6 +81,9 @@ trust_level = "trusted"
 [projects."/home/ian/api-design-node-v5"]
 trust_level = "trusted"
 
+[projects."/home/ian/hackerprep"]
+trust_level = "trusted"
+
 [tui]
 animations = false
 status_line = ["model-with-reasoning"]
