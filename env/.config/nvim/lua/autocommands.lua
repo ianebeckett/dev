@@ -1,6 +1,17 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+-- Preserve file identity for development servers watching package-based projects.
+autocmd({ 'BufReadPost', 'BufNewFile' }, {
+  group = augroup('WebProjectBackupCopy', { clear = true }),
+  desc = 'Preserve watched files in projects with package.json',
+  callback = function(args)
+    if vim.bo[args.buf].buftype == '' and vim.fs.root(args.buf, 'package.json') then
+      vim.bo[args.buf].backupcopy = 'yes'
+    end
+  end,
+})
+
 autocmd('FileType', {
   desc = 'Specify format options for all filetypes',
   pattern = '*',
