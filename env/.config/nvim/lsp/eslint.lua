@@ -42,22 +42,6 @@ return {
   },
   workspace_required = true,
 
-  -- -- the `LspEslintFixAll` command can be used to format a document on save:
-  -- -- I will use Prettier instead
-  -- on_attach = function(client, bufnr)
-    --   vim.api.nvim_buf_create_user_command(0, 'LspEslintFixAll', function()
-      --     client:request_sync('workspace/executeCommand', {
-        --       command = 'eslint.applyAllFixes',
-        --       arguments = {
-          --         {
-            --           uri = vim.uri_from_bufnr(bufnr),
-            --         },
-            --       },
-            --     }, nil, bufnr)
-            --   end, {})
-            -- end,
-
-
             root_dir = function(bufnr, on_dir)
               -- The project root is where the LSP can be started from
               -- As stated in the documentation above, this LSP supports monorepos and simple projects.

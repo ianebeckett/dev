@@ -16,8 +16,9 @@ vim.lsp.enable({
   'ts_ls',
   'svelte',
   'eslint',
-  --'quick_lint_js',
   'jsonls',
+  'html',
+  'cssls',
   'ruby_lsp',
 })
 
@@ -75,6 +76,10 @@ local formatters = {
   lua = 'lua_ls',
   json = 'jsonls',
   jsonc = 'jsonls',
+  html = 'html',
+  css = 'cssls',
+  scss = 'cssls',
+  less = 'cssls',
 }
 -- local formatOnWriteGroup = augroup('format-on-write', { clear = false })
 

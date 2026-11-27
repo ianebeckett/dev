@@ -1,5 +1,5 @@
 // Linter Test File - Contains various common issues
-// Test this file with ESLint, Biome, quick-lint-js, etc.
+// Test this file with ESLint, Biome, etc.
 
 // 1. Unused variables
 const unusedVariable = 'I am never used';

@@ -111,11 +111,14 @@ elif name in ('sha256sum', 'shasum'):
     sys.exit(1 if os.environ.get('DEV_TEST_FAIL') == 'checksum' else 0)
 elif name == 'npm':
     assert args[:2] == ['install', '--global']
-    assert args[-2:] == ['vscode-langservers-extracted@4.10.0', 'quick-lint-js@3.2.0']
+    assert args[2:] == [
+        '--prefix', str(root / 'home/.local'),
+        'vscode-langservers-extracted@4.10.0', 'typescript-language-server@5.1.3',
+    ]
     executable('vscode-json-language-server', Path(args[args.index('--prefix') + 1]) / 'bin')
-    executable('quick-lint-js', Path(args[args.index('--prefix') + 1]) / 'bin')
+    executable('typescript-language-server', Path(args[args.index('--prefix') + 1]) / 'bin')
     state['json_server'] = args[-2]
-    state['quick_lint_js'] = args[-1]
+    state['typescript_server'] = args[-1]
     save()
 elif name == 'gem':
     assert args[:2] == ['install', 'ruby-lsp']
@@ -208,6 +211,7 @@ class InstallerTests(unittest.TestCase):
         for command in ('npm', 'gem', 'uv'):
             self.assertTrue(any(c[0] == command and 'install' in c for c in calls))
         self.assertTrue((self.root / 'home/.local/lua-language-server/bin/lua-language-server').is_file())
+        self.assertTrue((self.root / 'home/.local/bin/typescript-language-server').is_file())
         self.assert_repeat_install()
 
     def test_linux_arm64_release(self):
