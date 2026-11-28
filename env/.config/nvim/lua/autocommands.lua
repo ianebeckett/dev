@@ -1,6 +1,22 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+-- Preserve the scrolloff margin even at the end of a file.
+autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+  group = augroup('ScrollPastEOF', { clear = true }),
+  callback = function()
+    if vim.bo.buftype ~= '' then return end
+
+    local height = vim.api.nvim_win_get_height(0)
+    local margin = math.min(vim.wo.scrolloff, math.floor(height / 2))
+    local overflow = vim.fn.winline() - (height - margin)
+
+    if overflow > 0 then
+      vim.cmd('normal! ' .. overflow .. '\5') -- Ctrl-E scrolls downward
+    end
+  end,
+})
+
 -- Preserve file identity for development servers watching package-based projects.
 autocmd({ 'BufReadPost', 'BufNewFile' }, {
   group = augroup('WebProjectBackupCopy', { clear = true }),
